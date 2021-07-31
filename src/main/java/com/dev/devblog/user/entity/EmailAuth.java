@@ -1,4 +1,6 @@
-package com.dev.devblog.entity;
+package com.dev.devblog.user.entity;
+
+import com.dev.devblog.user.entity.User;
 
 import javax.persistence.*;
 
@@ -6,9 +8,9 @@ import javax.persistence.*;
 @Table (name = "EMAIL_AUTH")
 public class EmailAuth {
     @Id
-    private long authId;
+    private Long authId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "user_code")
     private User userCode;
 

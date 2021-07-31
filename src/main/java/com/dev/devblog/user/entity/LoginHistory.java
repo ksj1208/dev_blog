@@ -1,4 +1,6 @@
-package com.dev.devblog.entity;
+package com.dev.devblog.user.entity;
+
+import com.dev.devblog.user.entity.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,7 +11,7 @@ public class LoginHistory {
     @Id
     private long historyId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_code")
     private User userCode;
 

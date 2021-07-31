@@ -1,4 +1,4 @@
-package com.dev.devblog.entity;
+package com.dev.devblog.profile.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +10,9 @@ import java.time.LocalDateTime;
 @Table (name = "BLOG_PROFILE")
 public class BlogProfile {
     @Id
-    private long profileCode;
+    private Long profileCode;
     @Column
     private String content;
     @Column
     private LocalDateTime createDate;
-
 }
