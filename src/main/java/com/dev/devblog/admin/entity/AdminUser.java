@@ -1,9 +1,10 @@
-package com.dev.devblog.hs;
+package com.dev.devblog.admin.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "ADMIN_USER")
 public class AdminUser {
 
     @Id
@@ -18,7 +19,7 @@ public class AdminUser {
     @Column
     private String nickName;
     @Column
-    private Date createDate;
+    private LocalDateTime createDate;
     @Column
     private String status;
 

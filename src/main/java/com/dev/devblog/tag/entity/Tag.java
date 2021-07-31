@@ -1,18 +1,20 @@
-package com.dev.devblog.hs;
+package com.dev.devblog.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "TAG")
 public class Tag {
     @Id
     private Long tagCode;
     @Column
     private String tagName;
     @Column
-    private Date createDate;
+    private LocalDateTime createDate;
     @Column
     private String status;
 
