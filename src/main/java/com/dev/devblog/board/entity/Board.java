@@ -1,6 +1,6 @@
 package com.dev.devblog.board.entity;
 
-import com.dev.devblog.admin.entity.AdminUser;
+import com.dev.devblog.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,9 +28,9 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
-    @JoinColumn(name = "ADMIN_CODE", referencedColumnName = "adminCode")
+    @JoinColumn(name = "USER_CODE", referencedColumnName = "userCode")
     @ManyToOne(fetch = FetchType.LAZY)
-    private AdminUser admin;
+    private User user;
 
     @Column
     private String subject;

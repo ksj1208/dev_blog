@@ -1,4 +1,4 @@
-package com.dev.devblog.admin.entity;
+package com.dev.devblog.user.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
