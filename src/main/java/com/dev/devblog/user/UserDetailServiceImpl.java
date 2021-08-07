@@ -1,6 +1,7 @@
 package com.dev.devblog.user;
 
 import com.dev.devblog.user.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,13 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService {
+@RequiredArgsConstructor
+public class UserDetailServiceImpl implements UserDetailsService {
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {

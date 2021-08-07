@@ -1,21 +1,19 @@
 package com.dev.devblog.web;
 
-import com.dev.devblog.user.UserRepository;
-import com.dev.devblog.user.UserService;
+import com.dev.devblog.user.UserDetailServiceImpl;
 import com.dev.devblog.user.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    UserService userService;
+    private final UserDetailServiceImpl userDetailServiceImpl;
 
     @GetMapping("/")
     public String homeView() {
@@ -34,7 +32,7 @@ public class HomeController {
 
     @PostMapping("/signup")
     public String signup(User user) {
-        userService.createNew(user);
+        userDetailServiceImpl.createNew(user);
         return "redirect:/";
     }
 

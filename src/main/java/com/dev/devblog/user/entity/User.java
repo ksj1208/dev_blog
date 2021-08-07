@@ -33,6 +33,8 @@ public class User {
     public User(){
     }
 
+
+
     public User(Long userCode, String userId, String password){
         this.userCode = userCode;
         this.userId = userId;
