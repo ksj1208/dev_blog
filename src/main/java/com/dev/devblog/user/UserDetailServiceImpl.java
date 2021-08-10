@@ -37,7 +37,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Transactional
     public User createNew(User user){
-        user.encodePassword(passwordEncoder);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return this.userRepository.save(user);
     }
 
