@@ -13,8 +13,4 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserDetailServiceImpl userDetailServiceImpl;
 
-    @GetMapping("/user/{role}/{userId}/{password}")
-    public User createUser(@ModelAttribute User user){
-        return userDetailServiceImpl.createNew(user);
-    }
 }
