@@ -4,6 +4,13 @@ spring:
     driverClassName: org.mariadb.jdbc.Driver
     username: blog
     password: blog
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    mode: HTML5
+    order: 0
+    prefix: classpath:templates/
+    suffix: .html
 
   jpa:
     hibernate:
@@ -16,3 +23,6 @@ spring:
     show-sql: true  # 실행되는 쿼리문 보여주기 여부
     database: mysql # 사용되는 데이터베이스(MariaDB는 없기 때문에 mysql로 지정)
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    server:
+      port: 8080
