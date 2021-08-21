@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Slf4j
-public class DateUtil {
+public class CommonUtil {
 
 
     //LocalDateTime 을 String 으로 변환
@@ -15,9 +15,14 @@ public class DateUtil {
     }
 
     //String 을 LocalDateTime으로 변환
-    public static LocalDateTime setStringToDate(String dateStr){
-        return LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern("yyyyMMdd HHmmss"));
+    public static LocalDateTime setStringToDate(String dateStr, String pattern){
+        return LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(pattern));
 
+    }
+
+    //string null 체크
+    public static boolean checkString(String str){
+        return str == null || str.trim().isEmpty();
     }
 
 
