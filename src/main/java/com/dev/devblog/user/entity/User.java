@@ -37,14 +37,14 @@ public class User {
     public User(){
     }
 
+
+
     public User(Long userCode, String userId, String password){
         this.userCode = userCode;
         this.userId = userId;
         this.password = password;
     }
 
-    public void encodePassword(PasswordEncoder passwordEncoder){
-        this.password = passwordEncoder.encode(this.password);
-    }
+
 
 }
