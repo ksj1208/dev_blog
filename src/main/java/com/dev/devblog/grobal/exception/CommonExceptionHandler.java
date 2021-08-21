@@ -20,13 +20,11 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException exception, @CurrentUserCode Long userCode) {
-        log.error("NoSuchElement exception : " + exception.getMessage() + "::" + exception);
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException exception) {
-
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
