@@ -26,10 +26,10 @@ public class HomeController {
         return "pages/login";
     }
 
-    @GetMapping("/signup")
+    /*@GetMapping("/signup")
     public String signupView() {
         return "pages/signup";
-    }
+    }*/
 
     @PostMapping("/signup")
     public String signup(User user) {
