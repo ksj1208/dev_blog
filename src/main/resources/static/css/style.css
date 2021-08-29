@@ -128,7 +128,7 @@ header {
     margin-right:5px;
     width: 120px;
     height: 30px;
-    background: url(../images/logo.png)no-repeat 0% 0%;
+    background: url(../img/logo.png)no-repeat 0% 0%;
     background-size: 100% 100%;
     vertical-align:middle;
 }
@@ -138,7 +138,7 @@ header {
     font-size: 0;
     width: 25px;
     height: 25px;
-    background: url(../images/search.svg)no-repeat 0% 0%;
+    background: url(../img/search.svg)no-repeat 0% 0%;
     background-size: 100% 100%;
     vertical-align: middle;
 }
@@ -255,7 +255,7 @@ header {
     font-size:0;
     display:inline-block;
     width:15px; height:15px;
-    background:url(../images/paging_arrow.png)no-repeat 0 0;
+    background:url(../img/paging_arrow.png)no-repeat 0 0;
     background-size:100% 400%;
     vertical-align:middle;
 }

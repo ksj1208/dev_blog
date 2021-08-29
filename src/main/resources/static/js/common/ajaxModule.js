@@ -3,7 +3,8 @@ const ajaxModule = {
     dataType: 'json',
     csrfToken: $("meta[name='_csrf']").attr("content"),
     csrfHeader: $("meta[name='_csrf_header']").attr("content"),
-
+    
+    //get 요청
     get: function (_url, _parameters, _callback) {
         if (_url != null) {
             //5번째 파라미터로 동기화 방식을 받을 수 있다.
