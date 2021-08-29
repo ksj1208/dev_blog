@@ -17,7 +17,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String homeView() {
-        return "pages/home";
+        return "index";
     }
 
     @GetMapping("/login")
