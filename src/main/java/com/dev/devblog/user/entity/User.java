@@ -34,6 +34,9 @@ public class User {
     @Column
     private LocalDateTime passwordUpdateDate;
 
+    @Column
+    private String email;
+
     public User(){
     }
 
@@ -45,6 +48,12 @@ public class User {
         this.password = password;
     }
 
+    public User(Long userCode, String userId, String password, String email){
+        this.userCode = userCode;
+        this.userId = userId;
+        this.password = password;
+        this.email = email;
+    }
 
 
 }

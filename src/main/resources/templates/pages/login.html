@@ -13,20 +13,8 @@
     <input type="text" name="username" placeholder="account를 입력해주세요.">
     <input type="password" name="password" placeholder="password를 입력해주세요.">
     <button type="submit">로그인</button>
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=a3ba113686e820ae50156cdc2f58daac&redirect_uri=http://localhost:8080/kakaocallback&response_type=code"><img src="/img/kakao_login_btn.png"></a>
 </form>
 
-        <span th:if="${userId==null}">
-                <a href="https://kauth.kakao.com/oauth/authorize?client_id=a3ba113686e820ae50156cdc2f58daac&redirect_uri=http://localhost:8080/login&response_type=code">
-                      <img
-                              src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-                              width="222"
-                      />
-                </a>
-        </span>
-        <span th:if="${userId!=null}">
-                <form name="logout" action="http://localhost:8080/logout">
-                    <input type="submit" value="로그아웃">
-		        </form>
-	</span>
 </body>
 </html>
