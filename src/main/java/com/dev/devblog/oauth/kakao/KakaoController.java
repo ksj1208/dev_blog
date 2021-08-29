@@ -1,5 +1,7 @@
 package com.dev.devblog.oauth.kakao;
 
+import com.dev.devblog.user.UserDetailServiceImpl;
+import com.dev.devblog.user.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +24,14 @@ import org.springframework.web.servlet.mvc.method.annotation.HttpHeadersReturnVa
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.UUID;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class KakaoController {
+    private final KakaoService kakaoService;
+    private final UserDetailServiceImpl userDetailService;
 
     @GetMapping("/kakaocallback")
     @ResponseBody
@@ -101,7 +106,26 @@ public class KakaoController {
         }
 
         log.info("kakao userId: " + kakaoProfile.getId());
-        log.info("kakao userEmail: " + kakaoProfile.getKakao_account().getEmail());
+        log.info("kakao email: " + kakaoProfile.getKakao_account().getEmail());
+
+        log.info("userName: " + kakaoProfile.getKakao_account().getEmail()+"_" + kakaoProfile.getId());
+        log.info("userEmail: " + kakaoProfile.getKakao_account().getEmail());
+        UUID tempPassword = UUID.randomUUID();
+        log.info("userPassword: " + tempPassword);
+
+        User user = User.builder()
+                .userId(String.valueOf(kakaoProfile.getId()))
+                .password(tempPassword.toString())
+                .email(kakaoProfile.getKakao_account().getEmail())
+                .build();
+
+
+        //기존 가입자 인지 쳌크
+//        User originUser = userDetailService.loadUserByUsername()
+//
+//        if(originUser == null){
+//            kakaoService.createNew(kakaoU)
+//        }
 
         return response2.getBody();
     }
