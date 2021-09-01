@@ -22,6 +22,7 @@ public class UserDummyProvider {
                 .build();
 
         return userRepository.save(user);
+
     }
 
     public User createUserDummy() {

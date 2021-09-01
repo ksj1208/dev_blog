@@ -88,6 +88,7 @@ public class HomeControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"))
                 .andDo(print());
+
     }
 
     @DisplayName("HomeController 테스트 - 어드민페이지 일반유저 접근 테스트")

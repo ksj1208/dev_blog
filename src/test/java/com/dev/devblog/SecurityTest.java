@@ -37,5 +37,6 @@ public class SecurityTest {
                 .param("password", "test!@")
                 .with(csrf()))
                 .andExpect(authenticated());
+
     }
 }
