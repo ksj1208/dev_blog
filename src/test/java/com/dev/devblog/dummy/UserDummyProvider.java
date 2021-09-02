@@ -22,5 +22,15 @@ public class UserDummyProvider {
                 .build();
 
         return userRepository.save(user);
+
+    }
+
+    public User createUserDummy() {
+        User user = User.builder()
+                .userId("test0124")
+                .password(new BCryptPasswordEncoder().encode("0124"))
+                .createDate(LocalDateTime.now())
+                .build();
+        return userRepository.save(user);
     }
 }
