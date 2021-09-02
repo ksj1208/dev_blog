@@ -17,7 +17,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String homeView() {
-        return "pages/home";
+        return "index";
     }
 
     @GetMapping("/login")
@@ -53,5 +53,8 @@ public class HomeController {
     public String deniedView() {
         return "pages/denied";
     }
+
+
+
 
 }

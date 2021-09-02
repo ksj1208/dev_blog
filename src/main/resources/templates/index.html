@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="viewport-fit=cover, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <title>우아한 남매들 기술 블로그 입니다.</title>
+    <link rel="stylesheet" href="css/style.css" type='text/css' />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stickyfill/2.1.0/stickyfill.min.js" integrity="sha512-dmLpQXesGDP0ZM/s8zGKQU3Xlbix57QfwFNFh+BY5Ad/afObQ/lBo200mHWuHu8LOoI7tlK09yP3L/4DjdQ5Xw==" crossorigin="anonymous"></script>
+    <script src="js/common/ajaxModule.js"></script>
+    <script>
+        $(function() {
+            $('.menuBtn').click(function(e) {
+                e.preventDefault();
+                if ($(this).hasClass('active')) {
+                    $('body').removeClass('scroll-lock');
+                    $('.menuBtn').removeClass('active');
+                    $('.sideBarWrap').removeClass('on');
+                } else {
+                    $('body').addClass('scroll-lock');
+                    $('.menuBtn').addClass('active');
+                    $('.sideBarWrap').addClass('on');
+                }
+            });
+
+            $(".sideBarDim").click(function() {
+                $('body').removeClass('scroll-lock');
+                $('.menuBtn').removeClass('active');
+                $('.sideBarWrap').removeClass('on');
+
+            });
+            $("#search_open").click(function() {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $('.search_area').removeClass('on');
+                    $('.inp_txt').val('');
+                    
+                } else {
+                    $('.inp_txt').focus();
+                    $(this).addClass('active');
+                    $('.search_area').addClass('on');
+                }
+            });
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="gnb flex-between">
+                <h1 class="logo"><a href="/"><span class="logoImg">우아한남매들</span>기술블로그</a></h1>
+                <div>
+                    <div class="menu">
+                        <a href="#" class="search" id="search_open">검색</a>
+                        <div class="search_area">
+                            <form action="/search">
+                                <fieldset>
+                                    <legend>검색 영역</legend>
+                                    <div class="inp_search inner">
+                                        <label for="search_txt" class="blind">검색어 입력</label>
+                                        <input type="text" class="inp_txt" name="searchText" id="search_txt" placeholder="검색어를 입력해 주세요."  onkeyup="enterkey()" />
+                                        <button type="submit" class="btn_search"><span class="ico_search">검색</span></button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mob_cat_area mob">
+                        <a href="javascript:;" class="menuBtn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                        <div class="sideBarWrap">
+                            <div class="sideBarDim"></div>
+                            <div class="sideBar">
+                                <div class="sideCatecory">
+                                    <ul>
+                                        <li><a href="#" class="cat-item">APP</a></li>
+                                        <li><a href="#" class="cat-item">BACKEND</a></li>
+                                        <li><a href="#" class="cat-item">CULTURE</a></li>
+                                        <li><a href="#" class="cat-item">DATA</a></li>
+                                        <li><a href="#" class="cat-item">EDUCATION</a></li>
+                                        <li><a href="#" class="cat-item">INFRA</a></li>
+                                        <li><a href="#" class="cat-item">PROGRAMMING</a></li>
+                                        <li><a href="#" class="cat-item">IQA/TESTING</a></li>
+                                        <li><a href="#" class="cat-item">ROBOTICS</a></li>
+                                        <li><a href="#" class="cat-item">SECURITY</a></li>
+                                        <li><a href="#" class="cat-item">WEB FRONTED</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="banner_wrap">
+            <div class="banner">
+                <p><img src="img/logo.png" /></p>
+            </div>
+        </div>
+        <div class="container inner">
+            <div class="catecory pc">
+                <a href="#" class="cat-item">APP</a>
+                <a href="#" class="cat-item">BACKEND</a>
+                <a href="#" class="cat-item">CULTURE</a>
+                <a href="#" class="cat-item">DATA</a>
+                <a href="#" class="cat-item">EDUCATION</a>
+                <a href="#" class="cat-item">INFRA</a>
+                <a href="#" class="cat-item">PROGRAMMING</a>
+                <a href="#" class="cat-item">IQA/TESTING</a>
+                <a href="#" class="cat-item">ROBOTICS</a>
+                <a href="#" class="cat-item">SECURITY</a>
+                <a href="#" class="cat-item">WEB FRONTED</a>
+            </div>
+            <div class="content">
+                <div class="post">
+                    <!--한페이지 당 10개 -->
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">김성준</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+                    <div class="post-item">
+                        <a href="#">
+                            <p class="info">
+                                <span class="date">2021년 8월 13일</span>
+                                <span class="author">이호성</span>
+                            </p>
+                            <h2>제목</h2>
+                            <p>내용</p>
+                        </a>
+                    </div>
+
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link arrow first" href="#">first</a></li>
+                        <li class="page-item"><a class="page-link arrow pre" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link on" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link arrow next" href="#">Next</a></li>
+                        <li class="page-item"><a class="page-link arrow last" href="#">last</a></li>
+                    </ul>
+                </div>
+                <div class="tag pc">
+                    <div class="title">태그</div>
+                    <ul>
+                        <li><a href="#" class="tag-name">전체보기<span class="tag-count">(10)</span></a> </li>
+                        <li><a href="#" class="tag-name">WEB<span class="tag-count">(5)</span></a></li>
+                        <li><a href="#" class="tag-name">AGENT<span class="tag-count">(4)</span></a></li>
+                        <li><a href="#" class="tag-name">코드리뷰<span class="tag-count">(3)</span></a></li>
+                        <li><a href="#" class="tag-name">DB<span class="tag-count">(2)</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            document.body.addEventListener("scroll", function() {
+                var height = document.body.scrollTop;
+                var element = document.querySelector('.tag');
+
+                if (height >= 550) {
+                    $('.tag').addClass('fixed-menu');
+                    $('.tag').css({
+                        "top": $('header').outerHeight() + 10 + "px"
+                    });
+                    Stickyfill.add(element);
+                } else {
+                    $('.tag').removeClass('fixed-menu');
+                    $('.tag').css({
+                        "top": $('header').outerHeight() + 10 + "px"
+                    });
+                    Stickyfill.remove(element);
+                }
+
+            })
+
+        })();
+        
+        function enterkey() {
+            if (window.event.keyCode == 13) { 
+                // 엔터키가 눌렸을 때 
+            }
+        }
+
+
+      
+    </script>
+</body>
+
+</html>
