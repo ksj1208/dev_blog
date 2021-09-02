@@ -63,6 +63,7 @@ public class HomeControllerTest {
                 .with(csrf()))
                 .andExpect(authenticated())
                 .andExpect(redirectedUrl("/"));
+
     }
 
     @DisplayName("HomeController 테스트 - 로그인 실패 프로세스 테스트")
@@ -74,6 +75,7 @@ public class HomeControllerTest {
                 .with(csrf()))
                 .andExpect(unauthenticated())
                 .andExpect(redirectedUrl("/login?error"));
+
     }
 
     @DisplayName("HomeController 테스트 - 회원가입 성공 프로세스 테스트")
@@ -88,7 +90,6 @@ public class HomeControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"))
                 .andDo(print());
-
     }
 
     @DisplayName("HomeController 테스트 - 어드민페이지 일반유저 접근 테스트")
