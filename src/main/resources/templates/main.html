@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="user/layout/mainLayout">
+
+<section layout:fragment="content">
+    <!--한페이지 당 10개 -->
+    <div class="post-item">
+      <a href="#">
+        <p class="info">
+          <span class="date">2021년 8월 13일</span>
+          <span class="author">김성준</span>
+        </p>
+        <h2>제목</h2>
+        <p>내용</p>
+      </a>
+    </div>
+
+
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link arrow first" href="#">first</a></li>
+      <li class="page-item"><a class="page-link arrow pre" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link on" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link arrow next" href="#">Next</a></li>
+      <li class="page-item"><a class="page-link arrow last" href="#">last</a></li>
+    </ul>
+</section>

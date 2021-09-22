@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace= "user/common/head"></head>
+<body>
+    <div class="wrap">
+        <header th:replace= "user/common/header"></header>
+        <nav th:replace= "user/common/nav"></nav>
+            <div class="content">
+                <section layout:fragment="content" class="post"></section>
+                <div th:replace= "user/common/tagList">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
