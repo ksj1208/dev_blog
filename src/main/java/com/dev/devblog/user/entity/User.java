@@ -36,6 +36,8 @@ public class User {
 
     @Column
     private String email;
+    @Column
+    private String accountPath;
 
     public User(){
     }
@@ -51,11 +53,13 @@ public class User {
         this.password = password;
     }
 
-    public User(Long userCode, String userId, String password, String email){
+    public User(Long userCode, String userId, String password, String email, String nickName, String accountPath){
         this.userCode = userCode;
         this.userId = userId;
         this.password = password;
+        this.nickName = nickName;
         this.email = email;
+        this.accountPath = accountPath;
     }
 
 
