@@ -55,3 +55,8 @@ kakao-info:
   client_secret: CFdNPevlFNAumWBWdqyKNd6hlj1VdTlI
   redirect-uri: "http://localhost:8080/kakao/callback"
   scope: profile_nickname, account_email
+
+
+file-path:
+  root: C:\\Users\\ksj\\Documents
+  image: \image\

@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BoardSaveRequest {
-
-    private Long boardId;
+    private String content;
+    private String subject;
 }

@@ -133,6 +133,10 @@ header {
     vertical-align:middle;
 }
 
+.login {
+    display: inline-block;
+}
+
 .search,.ico_search{
     display: inline-block;
     font-size: 0;
