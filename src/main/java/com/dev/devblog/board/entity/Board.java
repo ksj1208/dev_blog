@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 public class Board {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long boardId;
 
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
