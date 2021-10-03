@@ -1,13 +1,17 @@
 package com.dev.devblog.board.controller;
 
 import com.dev.devblog.board.domain.Boards;
+import com.dev.devblog.board.dto.BoardListResponse;
 import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.service.BoardCUDService;
 import com.dev.devblog.board.service.BoardReadService;
 import com.dev.devblog.grobal.annotation.CurrentUserCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +20,10 @@ public class BoardApiController {
     private final BoardReadService boardReadService;
     private final BoardCUDService boardCUDService;
 
-    @GetMapping("/boards/list/{userCode}")
-    public ResponseEntity<String> getList(@PathVariable final Long userCode) {
-        return ResponseEntity.ok().build();
+    @GetMapping("/boards/list")
+    public ResponseEntity<BoardListResponse> getList(Pageable pageable) {
+        BoardListResponse response = boardReadService.getList(pageable);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/boards/save")

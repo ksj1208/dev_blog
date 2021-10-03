@@ -10,12 +10,22 @@
     <script src="/summernote/summernote-lite.js"></script>
     <script src="/summernote/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="/summernote/summernote-lite.css">
+
+    <style>
+        @font-face {
+            font-family: 'NotoSansKR';
+            src: url('/summernote/font/NotoSansKR-Black.otf') format('opentype')
+        }
+    </style>
 </head>
 <body>
     <div>
+        <label>제목: </label> <input type="text" id="subject">
         <textarea rows="10" cols="30" id="content" name="content" class="summernote" style="width: 800px; height: 500px;"></textarea>
-        <button id="saveBtn">저장</button>
+        <button id="saveBtn">저장</button><button id="previewBtn">미리보기</button>
     </div>
+
+    <div id="previewArea"></div>
 
 <script type="text/javascript" src="/js/common/smartEditor.js"></script>
 <script type="text/javascript" src="/js/admin/board/boardWrite.js"></script>

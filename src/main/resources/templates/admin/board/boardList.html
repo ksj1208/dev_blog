@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>admin</title>
-</head>
-<body>
-<button id="writeBtn">작성</button>
-</body>
+<head th:replace= "admin/common/head"></head>
 
+<body>
+<button id="writeBtn" style="border: 1px solid black">작성</button>
+
+<div>
+    <table id="boardListTable" border="1px">
+        <thead>
+            <th>No</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일자</th>
+            <th>상태</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <ul id="pageList" class="pagination">
+        <li class="page-item"><a class="page-link arrow first" href="#">first</a></li>
+        <li class="page-item"><a class="page-link arrow pre" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link on" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link arrow next" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link arrow last" href="#">last</a></li>
+    </ul>
+</div>
+</body>
+<script src="/js/common/Paging.js"></script>
 <script src="/js/admin/board/boardList.js"></script>
 </html>

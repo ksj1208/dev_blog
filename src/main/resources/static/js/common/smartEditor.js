@@ -9,17 +9,26 @@ const smartEditor = {
     },
 
     createFrame: () => {
-            $('.summernote').summernote({
+        const fontList = ['맑은 고딕','굴림','돋움','바탕','궁서','NotoSansKR'
+            ,'Arial','Courier New','Verdana','Tahoma','Times New Roamn'];
+
+        $('.summernote').summernote({
             height: 400,
             width: 1000,
             lang: "ko-KR",
+            fontNames: fontList,
+            fontNamesIgnoreCheck: fontList,
             callbacks: {
                 onImageUpload: (files) => {
                     Array.from(files).forEach((file) => {
                         smartEditor.imageUpload(file)
                     })
+                },
+                onMediaDelete : function($target, editor, $editable) {
+                    //TODO 이미지 삭제 버튼 클릭 시 처리 추가
+                    console.log($target[0].src);
                 }
-            }
+            },
         });
     },
 
@@ -28,7 +37,6 @@ const smartEditor = {
         formData.append("file", file)
 
         const successHandler = (data) => {
-            console.log(data)
             $('.summernote').summernote('editor.insertImage', data)
         }
 
