@@ -48,4 +48,5 @@ public class Board {
 
     @Column(name = "HIT_CNT")
     private long hitCnt;
+
 }
