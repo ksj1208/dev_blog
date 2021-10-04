@@ -1,11 +1,9 @@
 package com.dev.devblog.board.controller;
 
-import com.dev.devblog.board.domain.Boards;
 import com.dev.devblog.board.dto.BoardListResponse;
 import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.service.BoardCUDService;
 import com.dev.devblog.board.service.BoardReadService;
-import com.dev.devblog.grobal.annotation.CurrentUserCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

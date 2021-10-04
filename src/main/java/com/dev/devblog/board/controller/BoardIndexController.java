@@ -1,11 +1,19 @@
 package com.dev.devblog.board.controller;
 
+import com.dev.devblog.board.dto.BoardResponse;
+import com.dev.devblog.board.service.BoardReadService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
+@RequiredArgsConstructor
 public class BoardIndexController {
+
+    private final BoardReadService boardReadService;
 
     @GetMapping("/admin/board/listPage")
     public String adminBoardListPage() {
@@ -15,5 +23,13 @@ public class BoardIndexController {
     @GetMapping("/admin/board/writePage")
     public String adminBoardWirtePage() {
         return "/admin/board/boardWrite";
+    }
+
+    @GetMapping("/user/board/detailPage/{boardId}")
+    public String userBoardDetailPage(@PathVariable Long boardId, Model model) {
+        BoardResponse response = boardReadService.getDetail(boardId);
+        model.addAttribute("board", response);
+
+        return "/user/board/boardDetail";
     }
 }
