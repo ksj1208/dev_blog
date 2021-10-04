@@ -14,98 +14,8 @@ layout:decorate="user/layout/mainLayout">
         <p>내용</p>
       </a>
     </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
-    <div class="post-item">
-      <a href="#">
-        <p class="info">
-          <span class="date">2021년 8월 13일</span>
-          <span class="author">이호성</span>
-        </p>
-        <h2>제목</h2>
-        <p>내용</p>
-      </a>
-    </div>
 
-    <ul class="pagination">
+    <ul id="pageList" class="pagination">
       <li class="page-item"><a class="page-link arrow first" href="#">first</a></li>
       <li class="page-item"><a class="page-link arrow pre" href="#">Previous</a></li>
       <li class="page-item"><a class="page-link on" href="#">1</a></li>
@@ -114,4 +24,7 @@ layout:decorate="user/layout/mainLayout">
       <li class="page-item"><a class="page-link arrow next" href="#">Next</a></li>
       <li class="page-item"><a class="page-link arrow last" href="#">last</a></li>
     </ul>
+
+    <script type="text/javascript" th:src="@{/js/common/Paging.js}"></script>
+    <script type="text/javascript" th:src="@{/js/user/main/boardList.js}"></script>
 </section>

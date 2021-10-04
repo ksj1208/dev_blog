@@ -4,10 +4,10 @@
 <body>
     <div class="wrap">
         <header th:replace= "user/common/header"></header>
-        <nav th:replace= "user/common/nav"></nav>
+        <nav th:replace= "user/common/banner"></nav>
+        <div class="container inner">
             <div class="content">
-                <section layout:fragment="content" id="contentArea" class="post"></section>
-                <div th:replace= "user/common/tagList">
+                <section layout:fragment="content" class="post"></section>
             </div>
         </div>
     </div>
