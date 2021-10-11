@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="user/layout/loginLayout">
+
+<section layout:fragment="content">
+    <div class="post-item">
+        <p th:utext="${board.content}"></p>
+    </div>
+</section>

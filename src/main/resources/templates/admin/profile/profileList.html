@@ -3,16 +3,16 @@
 <head th:replace= "admin/common/head"></head>
 
 <body>
-<button id="writeBtn" style="border: 1px solid black">작성</button>
+<button id="profileWriteBtn" style="border: 1px solid black">작성</button>
 
 <div>
-    <table id="boardListTable" border="1px">
+    <table id="profileListTable" border="1px">
         <thead>
-            <th>No</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일자</th>
-            <th>상태</th>
+        <th>No</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일자</th>
+        <th>상태</th>
         </thead>
         <tbody></tbody>
     </table>
@@ -28,6 +28,6 @@
     </ul>
 </div>
 </body>
-<script type="text/javascript" th:src="@{/js/common/Paging.js}"></script>
-<script type="text/javascript" th:src="@{/js/admin/board/boardList.js}"></script>
+<script src="/js/common/Paging.js"></script>
+<script src="/js/admin/profile/profileList.js"></script>
 </html>
