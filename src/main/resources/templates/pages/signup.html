@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace= "user/common/head"></head>
-<body>
-<div class="wrap">
-    <header th:replace= "user/common/header"></header>
-    <div class="banner_wrap">
-        <div class="banner">
-            <p><img src="img/logo.png" /></p>
-        </div>
-    </div>
-    <div class="content">
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="user/layout/loginLayout">
 
-       <!-- <section layout:fragment="content" class="post"></section>-->
+    <section layout:fragment="content">
+    <div class="content">
         <div>
             <h1>회원 가입</h1>
 
@@ -52,8 +44,4 @@
             </div>
         </div>
     </div>
-
-
-</div>
-</body>
-</html>
+</section>

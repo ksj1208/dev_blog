@@ -37,7 +37,7 @@ public class User {
     @Column
     private String email;
     @Column
-    private String accountPath;
+    private String accountPath; //일반로그인,sns로그인인지 구분
 
     public User(){
     }
