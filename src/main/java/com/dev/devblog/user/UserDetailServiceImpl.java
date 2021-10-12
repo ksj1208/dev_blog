@@ -28,11 +28,21 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException(userId);
         }
-
+        //권한체크 수정필요 (현재 하드코딩되어있음)
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        return new org.springframework.security.core.userdetails.User(user.getUserId(), user.getPassword(), authorities);
+        CustomUserDetails customUserDetails = new CustomUserDetails();
+        customUserDetails.setUserId(user.getUserId());
+        customUserDetails.setUserCode(user.getUserCode());
+        customUserDetails.setPassword(user.getPassword());
+        customUserDetails.setAuthorities(authorities);
+        customUserDetails.setNickName(user.getNickName());
+        customUserDetails.setEmail(user.getEmail());
+        customUserDetails.setAccountPath(user.getAccountPath());
+
+        return customUserDetails;
+
     }
 
     @Transactional
