@@ -12,7 +12,8 @@ const boardList = {
     search: (pageNum) => {
         const request = {
             page: pageNum - 1,
-            size: 2
+            size: 5,
+            status: 'A'
         }
 
         const successHandler= (response) => {
@@ -21,7 +22,7 @@ const boardList = {
             boardList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/boards/list?' + $.param(request), {
+        fetch('/boards/list/'+ request.status + '?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())
@@ -35,7 +36,7 @@ const boardList = {
             return `<div class="post-item">
                         <a href="#" onclick= "location.href ='/user/board/detailPage/${item.boardId}'">
                             <p class="info">
-                                <span class="date">2021년 8월 13일</span>
+                                <span class="date">${item.createDate}</span> &middot;
                                 <span class="author">${item.writer}</span>
                             </p>
                          <h2>${item.subject}</h2>
@@ -49,7 +50,7 @@ const boardList = {
     },
 
     appendPaging: (totalCount, pageNum) => {
-        const paging = new Paging(2, 10, totalCount, pageNum)
+        const paging = new Paging(5, 10, totalCount, pageNum)
         paging.showPaging()
         paging.attachClickEvent(boardList.search)
     }

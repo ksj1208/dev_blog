@@ -29,7 +29,6 @@ public class BoardIndexController {
     public String userBoardDetailPage(@PathVariable Long boardId, Model model) {
         BoardResponse response = boardReadService.getDetail(boardId);
         model.addAttribute("board", response);
-
         return "/user/board/boardDetail";
     }
 }

@@ -49,4 +49,7 @@ public class Board {
     @Column(name = "HIT_CNT")
     private long hitCnt;
 
+    public void updateStatus(String status) {
+       this.status = status;
+    }
 }

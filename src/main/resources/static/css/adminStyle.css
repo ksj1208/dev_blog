@@ -1,0 +1,11 @@
+.boardTable {
+    width: 800px;
+}
+
+.boardTable th {
+    text-align: center;
+}
+
+.boardTable .checkBox{
+    text-align: center;
+}
