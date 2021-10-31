@@ -9,15 +9,18 @@ const smartEditor = {
     },
 
     createFrame: () => {
-        const fontList = ['맑은 고딕','굴림','돋움','바탕','궁서','NotoSansKR'
-            ,'Arial','Courier New','Verdana','Tahoma','Times New Roamn'];
+        const fontList = ['맑은 고딕','굴림','돋움','바탕','궁서','NotoSansKR','Arial','Courier New','Verdana','Tahoma','Times New Roamn'];
 
         $('.summernote').summernote({
             height: 400,
             width: 1000,
             lang: "ko-KR",
-            fontNames: fontList,
-            fontNamesIgnoreCheck: fontList,
+            fontNames: fontList, fontNamesIgnoreCheck: fontList,
+            fontSizes: ['8','9','10','11','12','14','18','24','36'],
+            toolbar: [ ['font', ['fontname','fontsize','fontsizeunit']]
+                , ['fontstyle', ['bold','italic','underline','strikethrough','forecolor','backcolor','superscript','subscript','clear']]
+                , ['style', ['style']], ['paragraph', ['paragraph','height','ul','ol']]
+                , ['insert', ['table','hr','link','picture','video']], ['codeview'], ],
             callbacks: {
                 onImageUpload: (files) => {
                     Array.from(files).forEach((file) => {

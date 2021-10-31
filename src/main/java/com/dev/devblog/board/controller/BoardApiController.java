@@ -2,6 +2,7 @@ package com.dev.devblog.board.controller;
 
 import com.dev.devblog.board.dto.BoardListResponse;
 import com.dev.devblog.board.dto.BoardSaveRequest;
+import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
 import com.dev.devblog.board.service.BoardCUDService;
 import com.dev.devblog.board.service.BoardReadService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,9 @@ public class BoardApiController {
     private final BoardReadService boardReadService;
     private final BoardCUDService boardCUDService;
 
-    @GetMapping("/boards/list")
-    public ResponseEntity<BoardListResponse> getList(Pageable pageable) {
-        BoardListResponse response = boardReadService.getList(pageable);
+    @GetMapping("/boards/list/{status}")
+    public ResponseEntity<BoardListResponse> getList(Pageable pageable, @PathVariable String status) {
+        BoardListResponse response = boardReadService.getList(pageable, status);
         return ResponseEntity.ok(response);
     }
 
@@ -30,5 +31,11 @@ public class BoardApiController {
         boardCUDService.boardSave(request, 1L);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/boards/status")
+    public ResponseEntity<String> boardUpdateStatus(@RequestBody final BoardUpdateStatusRequest request) {
+        boardCUDService.boardStatusUpdate(request);
+        return ResponseEntity.ok("변경이 완료되었습니다.");
     }
 }

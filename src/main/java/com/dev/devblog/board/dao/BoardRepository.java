@@ -10,6 +10,12 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     @Query(value = "SELECT b FROM Board b" +
             " WHERE b.content LIKE %:searchContent%" +
+            " AND b.status IN (:status)" +
             " ORDER BY b.createDate DESC ")
-    Page<Board> findAllByContentContaining(String searchContent, Pageable pageable);
+    Page<Board> findAllByContentContaining(String searchContent, Pageable pageable, String status);
+
+    @Query(value = "SELECT b FROM Board b" +
+            " WHERE b.content LIKE %:searchContent%" +
+            " ORDER BY b.createDate DESC ")
+    Page<Board> findAllByContaining(String searchContent, Pageable pageable);
 }

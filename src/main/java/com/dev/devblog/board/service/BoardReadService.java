@@ -17,8 +17,11 @@ public class BoardReadService {
 
     private final BoardRepository boardRepository;
 
-    public BoardListResponse getList(Pageable pageable) {
-        return BoardListResponse.from(boardRepository.findAllByContentContaining("", pageable));
+    public BoardListResponse getList(Pageable pageable, String status) {
+        if(! status.equals("All"))
+            return BoardListResponse.from(boardRepository.findAllByContentContaining("", pageable, status));
+
+        return BoardListResponse.from(boardRepository.findAllByContaining("", pageable));
     }
 
     public BoardResponse getDetail(Long boardId) {

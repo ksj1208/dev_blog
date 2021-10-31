@@ -1,9 +1,358 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="user/layout/loginLayout">
+      layout:decorate="user/layout/detailLayout">
 
 <section layout:fragment="content">
-    <div class="post-item">
-        <p th:utext="${board.content}"></p>
+    <div class="container inner">
+        <div class="content_wrap">
+            <div class="cont_header">
+                <h1 th:utext="${board.subject}"/>
+                <div class="flex-between">
+                    <div class="desc">
+                        <label th:utext="${board.createDate}"/> &middot; <label th:utext="${board.writer}"/>
+                    </div>
+                    <div class="cont_action"></div>
+                </div>
+                <div class="catecory cont_category ">
+                    <a href="#" class="cat-item">APP</a>
+                </div>
+            </div>
+            <div class="cont_post">
+                <p th:utext="${board.content}"/>
+                <div class="post_bottom">
+                    <ul class="post-tag">
+                        <li class="tag-item">#test</li>
+                        <li class="tag-item">#image</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cont_commet">
+                <div class="flex-between ptb20">
+                    <h4>2개의 댓글</h4>
+                    <div class="btn-post-wrap flex-start">
+                        <div class="btn-post">
+                            <a href="javascript:;" class="btn-like">
+                                <span class="ico-like">좋아요</span>
+                                <span class="like-count">공감</span>
+                                <!--[D]: 1부터 counting-->
+                            </a>
+                        </div>
+                        <div class="btn-post post-share">
+                            <button type="button" class="btn-share"><span class="ico-share">공유하기</span></button>
+                            <div class="post-share-box">
+                                <ul>
+                                    <li><a href="javascript:;" onclick="clip(); return false;">
+                                        <span class="ico-sns ico-url"></span>URL 복사</a></li>
+                                    <li><a href="javascript:;"><span class="ico-sns ico-kakao"></span>카카오톡으로 공유</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column">
+                    <textarea class="comment-input" rows="8" placeholder="댓글을 작성하세요."></textarea>
+                    <button type="button" class="btn-comment">댓글 작성</button>
+                </div>
+                <div class="comment-box">
+                    <div class="comment">
+                        <div class="flex-between">
+                            <div class="cbox-info">
+                                <div class="cbox_profile">김성준</div>
+                                <div class="cbox_date">2021년 10월 15일</div>
+                            </div>
+                            <div class="cbox-action">
+                                <button type="button">수정</button>
+                                <button type="button" class="btn-delComment">삭제</button>
+                            </div>
+                        </div>
+                        <div class="cbox_txt">
+                            <p>김성준 댓글</p>
+                        </div>
+                        <div class="cbox_tool">
+                            <ul class="flex-start">
+                                <li><button type="button" class="btn-reply">답글</button></li>
+                                <li>
+                                    <a href="javascript:;" class="btn-like">
+                                        <span class="ico-like">좋아요</span>
+                                        <span class="like-count">공감</span><!--[D]: 1부터 counting-->
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+
+
+<!--                        <div class="cbox_reply_area">-->
+<!--                            <div class="reply_write_wrap flex-column">-->
+<!--                                <textarea class="comment-input" rows="6" placeholder="댓글을 작성하세요."></textarea>-->
+<!--                                <div class="reply_btn-_wrap">-->
+<!--                                    <button type="button" class="btn-cancel">취소</button>-->
+<!--                                    <button type="button" class="btn-comment">댓글 작성</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="reply_list_wrap">-->
+<!--                                <ul class="reply_list">-->
+<!--                                    <li>-->
+<!--                                        <div class="reply_comment">-->
+<!--                                            <div class="flex-between">-->
+<!--                                                <div class="cbox-info">-->
+<!--                                                    <div class="cbox_profile">김성준</div>-->
+<!--                                                    <div class="cbox_date">2021년 10월 15일</div>-->
+<!--                                                </div>-->
+<!--                                                <div class="cbox-action">-->
+<!--                                                    <button type="button">수정</button>-->
+<!--                                                    <button type="button" class="btn-delComment">삭제</button>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="cbox_txt">-->
+<!--                                                <p>이호성 댓글</p>-->
+<!--                                            </div>-->
+<!--                                            <div class="cbox_tool">-->
+<!--                                                <ul>-->
+<!--                                                    <li>-->
+<!--                                                        <a href="javascript:;" class="btn-like">-->
+<!--                                                            <span class="ico-like">좋아요</span>-->
+<!--                                                            <span class="like-count">공감</span>-->
+<!--                                                            &lt;!&ndash;[D]: 1부터 counting&ndash;&gt;-->
+<!--                                                        </a>-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="comment">-->
+<!--                        <div class="flex-between">-->
+<!--                            <div class="cbox-info">-->
+<!--                                <div class="cbox_profile">김성준</div>-->
+<!--                                <div class="cbox_date">2021년 10월 15일</div>-->
+<!--                            </div>-->
+<!--                            <div class="cbox-action">-->
+<!--                                <button type="button">수정</button>-->
+<!--                                <button type="button" class="btn-delComment">삭제</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="cbox_txt">-->
+<!--                            <p>이호성 댓글</p>-->
+<!--                        </div>-->
+<!--                        <div class="cbox_tool">-->
+<!--                            <ul class="flex-start">-->
+<!--                                <li><button type="button" class="btn-reply">답글</button></li>-->
+<!--                                <li>-->
+<!--                                    <a href="javascript:;" class="btn-like">-->
+<!--                                        <span class="ico-like">좋아요</span>-->
+<!--                                        <span class="like-count">공감</span>-->
+<!--                                        &lt;!&ndash;[D]: 1부터 counting&ndash;&gt;-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="cbox_reply_area">-->
+<!--                        <div class="reply_list_wrap">-->
+<!--                            <ul class="reply_list">-->
+<!--                                <li>-->
+<!--                                    <div class="reply_comment">-->
+<!--                                        <div class="flex-between">-->
+<!--                                            <div class="cbox-info">-->
+<!--                                                <div class="cbox_profile">김성준</div>-->
+<!--                                                <div class="cbox_date">2021년 10월 15일</div>-->
+<!--                                            </div>-->
+<!--                                            <div class="cbox-action">-->
+<!--                                                <button type="button">수정</button>-->
+<!--                                                <button type="button" class="btn-delComment">삭제</button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="cbox_txt">-->
+<!--                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam odio-->
+<!--                                                recusandae deserunt iusto itaque sunt sed laudantium, quo numquam-->
+<!--                                                molestiae doloribus cum aliquam</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="cbox_tool">-->
+<!--                                            <ul>-->
+<!--                                                <li>-->
+<!--                                                    <a href="javascript:;" class="btn-like">-->
+<!--                                                        <span class="ico-like">좋아요</span>-->
+<!--                                                        <span class="like-count">공감</span>-->
+<!--                                                        &lt;!&ndash;[D]: 1부터 counting&ndash;&gt;-->
+<!--                                                    </a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="reply_comment">-->
+<!--                                        <div class="flex-between">-->
+<!--                                            <div class="cbox-info">-->
+<!--                                                <div class="cbox_profile">김성준</div>-->
+<!--                                                <div class="cbox_date">2021년 10월 15일</div>-->
+<!--                                            </div>-->
+<!--                                            <div class="cbox-action">-->
+<!--                                                <button type="button">수정</button>-->
+<!--                                                <button type="button" class="btn-delComment">삭제</button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="cbox_txt">-->
+<!--                                            <p>이호성 댓글</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="cbox_tool">-->
+<!--                                            <ul>-->
+<!--                                                <li>-->
+<!--                                                    <a href="javascript:;" class="btn-like">-->
+<!--                                                        <span class="ico-like">좋아요</span>-->
+<!--                                                        <span class="like-count">공감</span>-->
+<!--                                                        &lt;!&ndash;[D]: 1부터 counting&ndash;&gt;-->
+<!--                                                    </a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="post_bottom">-->
+<!--                <ul class="paginate">-->
+<!--                    <li class="prev">-->
+<!--                        <a href="/"><i class="ico-paginate"></i><span class="pagiTitle">이전글 제목이전글 제목이전글 제목이전글 제목이전글-->
+<!--                                    제목이전글 제목이전글 제목</span></a>-->
+<!--                    </li>-->
+<!--                    <li class="next">-->
+<!--                        <a href="/"><span class="pagiTitle">다음글 제목</span><i class="ico-paginate"></i></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
+
+    <script>
+        $(function () {
+            $('.menuBtn').click(function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('active')) {
+                    $('body').removeClass('scroll-lock');
+                    $('.menuBtn').removeClass('active');
+                    $('.sideBarWrap').removeClass('on');
+                } else {
+                    $('body').addClass('scroll-lock');
+                    $('.menuBtn').addClass('active');
+                    $('.sideBarWrap').addClass('on');
+                }
+            });
+
+            $(".sideBarDim").click(function () {
+                $('body').removeClass('scroll-lock');
+                $('.menuBtn').removeClass('active');
+                $('.sideBarWrap').removeClass('on');
+
+            });
+            $("#search_open").click(function () {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $('.search_area').removeClass('on');
+                    $('.inp_txt').val('');
+
+                } else {
+                    $('.inp_txt').focus();
+                    $(this).addClass('active');
+                    $('.search_area').addClass('on');
+                }
+            });
+
+        });
+
+        (function () {
+
+            var shareBtn = document.querySelector('.btn-share');
+            var shareBox = document.querySelector('.post-share-box');
+
+            document.querySelectorAll('.btn-like').forEach(function (e) {
+                e.addEventListener('click', function (event) {
+                    e.classList.toggle('on');
+                });
+            });
+
+            shareBtn.addEventListener('click', function () {
+                shareBox.classList.add('on');
+            });
+
+            document.body.addEventListener('click', function (e) {
+                if (shareBox.classList.contains('on')) {
+                    shareBox.classList.remove('on');
+                }
+            }, true);
+
+            document.querySelectorAll('.btn-delComment').forEach(function (e) {
+                e.addEventListener('click', deleteComment);
+            });
+
+
+        })();
+
+
+        function enterkey() {
+            if (window.event.keyCode == 13) {
+                // 엔터키가 눌렸을 때
+            }
+        }
+
+        function clip() {
+            var url = '';
+            var textarea = document.createElement('textarea');
+            document.body.appendChild(textarea);
+            url = window.document.location.href;
+            textarea.value = url;
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('url 복사 성공!')
+        }
+
+        function deleteComment() {
+            swal({
+                //title: "작성한 댓글을 삭제할까요?",
+                text: "작성한 댓글을 삭제할까요?",
+                // icon: "warning",
+                buttons: ["취소", "네!"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("삭제 완료!", {
+                            icon: "success",
+                        });
+                    } else {
+                        //swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+
+        function deleteContent() {
+            swal({
+                //title: "작성한 글을 삭제할까요?",
+                text: "작성한 글을 삭제할까요?",
+                //icon: "warning",
+                buttons: ["취소", "네!"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("삭제 완료!", {
+                            icon: "success",
+                        });
+                    } else {
+                        //swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    </script>
 </section>
+</html>

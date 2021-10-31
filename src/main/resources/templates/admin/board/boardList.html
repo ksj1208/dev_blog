@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace= "admin/common/head"></head>
-
+<head th:replace= "admin/common/head">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<link rel="stylesheet" href="/css/adminStyle.css" type='text/css' />
 <body>
 <button id="writeBtn" style="border: 1px solid black">작성</button>
-
+<button id="deleteBtn" style="border: 1px solid black">삭제</button>
 <div>
-    <table id="boardListTable" border="1px">
+    <table id="boardListTable" class="boardTable" border="1px">
         <thead>
+            <th><input type="checkbox" id="termsAll"></th>
             <th>No</th>
             <th>제목</th>
             <th>작성자</th>
