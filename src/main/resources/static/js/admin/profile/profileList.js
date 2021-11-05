@@ -12,6 +12,7 @@ const profileList = {
         location.href = "/profile/profileWriter"
     },
 
+
     search: (pageNum) => {
         const request = {
             page: pageNum - 1,
@@ -35,7 +36,7 @@ const profileList = {
         $('#profileListTable tr:not(:first)').remove();
 
         const rows = data.map((item, i) => {
-            return `<tr>
+            return `<tr style="cursor: pointer" onclick= "location.href ='/profile/detailPage/${item.profileCode}'">
                 <td>${i + 1}</td>
                 <td>${item.subject}</td>
                 <td>${item.writer}</td>
