@@ -40,6 +40,7 @@ public class ProfileApiController {
         log.info("");
         log.info("");
         log.info("");
+
         return ResponseEntity.ok().build();
     }
 

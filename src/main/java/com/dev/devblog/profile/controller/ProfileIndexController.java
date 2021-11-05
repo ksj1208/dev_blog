@@ -27,6 +27,7 @@ public class ProfileIndexController {
         return "/admin/profile/profileWriter";
     }
 
+
     @GetMapping("/profile/detailPage/{profileCode}")
     public String userBoardDetailPage(@PathVariable Long profileCode, Model model) {
         log.info("================= 프로필 조회 시작 =================");

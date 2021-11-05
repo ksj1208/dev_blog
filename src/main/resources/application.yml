@@ -9,6 +9,12 @@ spring:
   profiles:
     include: oauth
 
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   security:
     oauth2:
@@ -57,6 +63,9 @@ kakao-info:
   scope: profile_nickname, account_email
 
 
+
 file-path:
-  root: C:\\Users\\ksj\\Documents
+  root: D:\Spring\dev_blog\uploads
   image: \image\
+
+

@@ -32,6 +32,7 @@ const profileList = {
             .then(data => successHandler(data))
     },
 
+
     appendData: (data) => {
         $('#profileListTable tr:not(:first)').remove();
 
