@@ -10,5 +10,5 @@ public interface ProfileRepository extends JpaRepository<BlogProfile, Long> {
 
     @Query(value = "SELECT b FROM BlogProfile b" +
             " ORDER BY b.createDate DESC ")
-    Page<BlogProfile> findAllByPageable(Pageable pageable);
+    Page<BlogProfile> findAllWithPageable(Pageable pageable);
 }

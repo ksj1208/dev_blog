@@ -21,6 +21,7 @@ public class ProfileApiController {
 
     @GetMapping("/profiles/list")
     public ResponseEntity<ProfileListResponse> getList(final Pageable pageable){
+        // 예) /profiles/list?page=0&size=20&sort=id,desc&sort=username,desc
         log.info("================= 프로필 리스트 시작 =================");
         ProfileListResponse response = profileReadService.getList(pageable);
         log.info(response.toString());
@@ -39,7 +40,9 @@ public class ProfileApiController {
         log.info("");
         log.info("");
         log.info("");
+
         return ResponseEntity.ok().build();
     }
+
 
 }
