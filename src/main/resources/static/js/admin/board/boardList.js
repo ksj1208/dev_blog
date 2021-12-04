@@ -6,12 +6,57 @@ const boardList = {
     },
 
     bind: () => {
-        document.getElementById("writeBtn").addEventListener('click', boardList.onclickWriteBtn);
+        document.getElementById("writeBtn").addEventListener('click', boardList.onclickWriteBtn)
         document.getElementById('termsAll').addEventListener('click', boardList.onclickTermsAll)
+        document.getElementById('deleteBtn').addEventListener('click', boardList.onclickDeleteBtn)
+        document.getElementById('updateBtn').addEventListener('click', boardList.onclickUpdateBtn)
+    },
+
+    onclickDeleteBtn: () => {
+        let boardIdArr = []
+        document.querySelectorAll('#terms').forEach(target => {
+            if(target.checked)
+                boardIdArr.push(target.value)
+        })
+
+        const request = boardIdArr
+        const successHandler = (data) => {
+            boardList.search(1)
+            alert(data)
+        }
+
+        if(! confirm("게시글을 삭제하시겠습니까?"))
+            return
+
+        fetch("/boards/delete", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            },
+            body: JSON.stringify(request)
+        })
+            .then((response) => response.text())
+            .then(data => successHandler(data))
     },
 
     onclickWriteBtn: () => {
         location.href = "/admin/board/writePage"
+    },
+
+    onclickUpdateBtn: () => {
+        let boardIdArr = []
+        document.querySelectorAll('#terms').forEach(target => {
+            if(target.checked)
+                boardIdArr.push(target.value)
+        })
+
+        if(boardIdArr.length == 0)
+            return alert("수정할 게시글을 선택해주세요.")
+        if(boardIdArr.length > 1)
+            return alert("하나의 게시글만 수정이 가능합니다.")
+
+        location.href = "/admin/board/updatePage/" + boardIdArr[0]
     },
 
     search: (pageNum) => {
@@ -99,7 +144,6 @@ const boardList = {
         })
             .then((response) => response.text())
             .then(data => successHandler(data))
-
     }
 }
 

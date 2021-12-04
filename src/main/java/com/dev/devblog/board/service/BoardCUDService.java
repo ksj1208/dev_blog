@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -35,5 +37,25 @@ public class BoardCUDService {
         );
 
         board.updateStatus(request.getStatus());
+    }
+
+    public void boardDelete(List<Long> boardIdArr) {
+        for(Long boardId : boardIdArr) {
+            boardRepository.findById(boardId).orElseThrow(
+                    () -> new NoSuchElementException("삭제할 게시글이 존재하지 않습니다.")
+            );
+
+            boardRepository.deleteById(boardId);
+        }
+    }
+
+    public void boardUpdate(BoardSaveRequest request) {
+        Board board = boardRepository.findById(request.getBoardId()).orElseThrow(
+                () -> new NoSuchElementException("수정할 게시글이 존재하지 않습니다.")
+        );
+
+        board.updateSubject(request.getSubject());
+        board.updateContent(request.getContent());
+        board.updateDate(LocalDateTime.now());
     }
 }
