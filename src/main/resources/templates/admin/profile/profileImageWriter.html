@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<title>프로필 - 목록</title>
+
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<body>
+<div class="wrap">
+
+    <div class="content">
+        <section layout:fragment="content" class="post">
+
+            <table border="1" cellpadding="0" cellspacing="0" style="text-align: center;">
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">제목</td>
+                    <td align="left" width="70%"><input type="text" id="subject" name="subject"></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">작성자</td>
+                    <td align="left" width="70%"><input type="text" id="writer" name="writer" size="10"></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">내용</td>
+                    <td align="left" width="70%"><textarea id="content" name="content" cols="40" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">이미지</td>
+                    <td align="left" width="70%"><input type="file" id="profileImage" name="profileImage" size="10"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="button" id="profileSaveBtn" name="profileSaveBtn" value="등록하기"/>
+                    </td>
+                </tr>
+            </table>
+
+        </section>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/js/admin/profile/profileImageWriter.js"></script>
+</body>
+</html>

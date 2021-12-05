@@ -42,4 +42,8 @@ public class BlogProfile {
     private LocalDateTime updateDate;
     @Column
     private String status;
+
+    public void updateStatus(String status) {
+        this.status = status;
+    }
 }

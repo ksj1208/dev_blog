@@ -1,7 +1,9 @@
 package com.dev.devblog.profile.controller;
 
+import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
 import com.dev.devblog.profile.dto.ProfileSaveRequest;
 import com.dev.devblog.profile.dto.ProfileListResponse;
+import com.dev.devblog.profile.dto.ProfileUpdateStatusRequest;
 import com.dev.devblog.profile.service.ProfileCUDService;
 import com.dev.devblog.profile.service.ProfileReadService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class ProfileApiController {
 
     @GetMapping("/profiles/list")
     public ResponseEntity<ProfileListResponse> getList(final Pageable pageable){
+        // 예) /profiles/list?page=0&size=20&sort=id,desc&sort=username,desc
         log.info("================= 프로필 리스트 시작 =================");
         ProfileListResponse response = profileReadService.getList(pageable);
         log.info(response.toString());
@@ -39,7 +42,21 @@ public class ProfileApiController {
         log.info("");
         log.info("");
         log.info("");
+
         return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/profile/status")
+    public ResponseEntity<String> profileUpdateStatus(@RequestBody final ProfileUpdateStatusRequest request) {
+        log.info("================= 프로필 상태 변경 시작 =================");
+        log.info("Request Value :" + request.getProfileCode() + " :: " + request.getStatus());
+        profileCUDService.profileStatusUpdate(request);
+        log.info("================= 프로필 상태 변경 끝 =================");
+        log.info("");
+        log.info("");
+        log.info("");
+
+        return ResponseEntity.ok("변경이 완료되었습니다.");
     }
 
 }

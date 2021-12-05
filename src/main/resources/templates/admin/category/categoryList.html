@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      lang="ko">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace= "admin/common/head"></head>
 
-
 <body>
-<button id="profileWriteBtn" style="border: 1px solid black">작성</button>
-<button id="profileDeleteBtn" style="border: 1px solid black">삭제</button>
+<h2>카테고리 목록 페이지입니다.</h2>
+
+<button id="categoryWriteBtn" style="border: 1px solid black">생성</button>
+<button id="categoryDeleteBtn" style="border: 1px solid black">삭제</button>
+
 <div>
-    <table id="profileListTable" border="1px">
+    <table id="categoryListTable" border="1px">
         <thead>
-        <th><input type="checkbox" id="profileCheckAll" name="profileCheckAll"></th>
+        <th><input type="checkbox" id="checkboxAll" name="checkboxAll"></th>
         <th>No</th>
-        <th>제목</th>
-        <th>작성자</th>
+        <th>카테고리명</th>
         <th>등록일자</th>
+        <th>수정일자</th>
         <th>상태</th>
         </thead>
         <tbody></tbody>
@@ -33,5 +33,5 @@
 </div>
 </body>
 <script src="/js/common/Paging.js"></script>
-<script src="/js/admin/profile/profileList.js"></script>
+<script type="text/javascript" src="/js/admin/category/categoryList.js"></script>
 </html>

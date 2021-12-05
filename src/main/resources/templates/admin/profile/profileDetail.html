@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<title>프로필 - 상세</title>
+
+<body>
+<div class="wrap">
+
+    <div class="content">
+        <section layout:fragment="content" class="post">
+
+
+            <table border="1" cellpadding="0" cellspacing="0" style="text-align: center;">
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">제목</td>
+                    <td align="left" width="70%"><label th:utext="${profile.subject}"/></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">작성자</td>
+                    <td align="left" width="70%"><label th:utext="${profile.writer}"/></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">내용</td>
+                    <td align="left" width="70%"><label th:utext="${profile.content}"/></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">작성일</td>
+                    <td align="left" width="70%"><label th:utext="${profile.createDate}"/></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#e3e3e4" width="30%">상태</td>
+                    <td align="left" width="70%"><label th:utext="${profile.status}"/></td>
+                </tr>
+            </table>
+
+        </section>
+    </div>
+</div>
+
+
+<!--<script type="text/javascript" src="/js/admin/profile/profileWriter.js"></script>-->
+</body>
+</html>
