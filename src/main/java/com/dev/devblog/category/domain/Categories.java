@@ -1,12 +1,7 @@
 package com.dev.devblog.category.domain;
 
-import com.dev.devblog.board.domain.Boards;
-import com.dev.devblog.board.dto.BoardSaveRequest;
-import com.dev.devblog.board.dto.BoardStatusType;
-import com.dev.devblog.board.entity.Board;
 import com.dev.devblog.category.dto.CategorySaveRequest;
 import com.dev.devblog.category.entity.Category;
-import com.dev.devblog.user.entity.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -30,6 +25,7 @@ public class Categories {
 				.categoryName(this.categoryName)
 				.categoryStatus(this.categoryStatus)
 				.createDate(LocalDateTime.now())
+				.updateDate(LocalDateTime.now())
 				.build();
 	}
 }

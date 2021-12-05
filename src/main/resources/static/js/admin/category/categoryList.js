@@ -6,7 +6,33 @@ const categoryList = {
 
     bind: () => {
         document.getElementById('categoryWriteBtn').addEventListener('click', categoryList.onClickCategoryWrite)
-        document.getElementById('checkboxAll').addEventListener('click', profileList.onClickCheckboxAll)
+        document.getElementById('categoryDeleteBtn').addEventListener('click', categoryList.onClickCategoryDelete)
+        document.getElementById('checkboxAll').addEventListener('click', categoryList.onClickCheckboxAll)
+    },
+
+    onClickCategoryDelete: () => {
+        let categoryIdArr = []
+        document.querySelectorAll('.checkbox').forEach(target => {
+            if(target.checked)
+                categoryIdArr.push(target.value)
+        })
+
+        const request = categoryIdArr
+        const successHandler = (data) => {
+            categoryList.search(1)
+            // alert(data)
+        }
+
+        fetch("/categories/delete", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            },
+            body: JSON.stringify(request)
+        })
+            .then((response) => response.text())
+            .then(data => successHandler(data))
     },
 
     onClickCategoryWrite: () => {
@@ -15,12 +41,12 @@ const categoryList = {
 
     onClickCheckboxAll: () => {
         const checkAll = document.getElementById('checkboxAll')
-        document.querySelectorAll('#checkbox').forEach(target => {
+        document.querySelectorAll('.checkbox').forEach(target => {
             target.checked = false;
         })
 
         if(checkAll.checked)
-            document.querySelectorAll('#checkbox').forEach(target => {
+            document.querySelectorAll('.checkbox').forEach(target => {
                 target.checked = true;
             })
     },
@@ -50,10 +76,12 @@ const categoryList = {
 
         const rows = data.map((item, i) => {
             return `<tr>
-                <td><input type="checkbox" id="checkbox" name="checkbox" value="${item.categoryId}"></td>
+                <td><input type="checkbox" class="checkbox" name="checkbox" value="${item.categoryId}"></td>
                 <td>${i + 1}</td>
-                <td>${item.categoryName}</td>
+                <td style="cursor: pointer" onclick= "location.href ='/category/detailPage/${item.categoryId}'">${item.categoryName}</td>
+<!--                <td>${item.categoryName}</td>-->
                 <td>${item.createDate}</td>
+                <td>${item.updateDate}</td>
                 <td>${item.categoryStatus}</td>
             </tr>`
         }).join('')

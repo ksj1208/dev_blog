@@ -1,31 +1,36 @@
-const categoryWrite = {
+const categoryDetail = {
 
     init: () => {
-        categoryWrite.bind()
+        categoryDetail.bind()
     },
 
     bind: () => {
-        document.getElementById('saveBtn').addEventListener('click', categoryWrite.save)
+        document.getElementById('updateBtn').addEventListener('click', categoryDetail.update)
     },
 
-    save: () => {
-        categoryWrite.createRequest();
+    update: () => {
+        categoryDetail.updateRequest();
     },
 
-    createRequest: () => {
+    updateRequest: () => {
+        const categoryId = document.getElementById('categoryId').value
         const categoryName = document.getElementById('categoryName').value
+        const categoryStatus = document.getElementById('categoryStatus').value
         const request = {
+            categoryId: categoryId,
             categoryName: categoryName,
-            categoryStatus: "사용"
+            categoryStatus: categoryStatus
         }
 
+        console.log("request = " , request);
+
         const successHandler= () => {
-            // alert("카테고리 등록 완료")
+            // alert("카테고리 수정 완료")
             location.href = "/category/categoryListPage"
         }
 
-        fetch("/categories/save", {
-            method: "POST",
+        fetch("/categories/update", {
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
@@ -39,4 +44,4 @@ const categoryWrite = {
     }
 }
 
-categoryWrite.init()
+categoryDetail.init()

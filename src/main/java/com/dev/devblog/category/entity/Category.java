@@ -1,9 +1,7 @@
 package com.dev.devblog.category.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +12,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
+@ToString
 public class Category {
 
 	@Id
@@ -29,4 +29,19 @@ public class Category {
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
+
+	@Column(name = "UPDATE_DATE")
+	private LocalDateTime updateDate;
+
+	public void updateCategoryStatus(String categoryStatus) {
+		this.categoryStatus = categoryStatus;
+	}
+
+	public void updateCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public void updateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
 }
