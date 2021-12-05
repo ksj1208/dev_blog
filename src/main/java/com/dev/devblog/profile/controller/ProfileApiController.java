@@ -1,8 +1,10 @@
 package com.dev.devblog.profile.controller;
 
+import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
 import com.dev.devblog.profile.dto.ProfileSaveRequest;
 import com.dev.devblog.profile.dto.ProfileListResponse;
+import com.dev.devblog.profile.dto.ProfileUpdateRequest;
 import com.dev.devblog.profile.dto.ProfileUpdateStatusRequest;
 import com.dev.devblog.profile.service.ProfileCUDService;
 import com.dev.devblog.profile.service.ProfileReadService;
@@ -52,6 +54,19 @@ public class ProfileApiController {
         log.info("Request Value :" + request.getProfileCode() + " :: " + request.getStatus());
         profileCUDService.profileStatusUpdate(request);
         log.info("================= 프로필 상태 변경 끝 =================");
+        log.info("");
+        log.info("");
+        log.info("");
+
+        return ResponseEntity.ok("변경이 완료되었습니다.");
+    }
+
+    @PatchMapping("/profile/modify")
+    public ResponseEntity<String> profileUpdate(@RequestBody final ProfileUpdateRequest request) {
+        log.info("================= 프로필 변경 시작 =================");
+        log.info("Request Value :" + request.getProfileCode() + " :: " + request.getSubject() + " :: " + request.getContent());
+        profileCUDService.profileUpdate(request);
+        log.info("================= 프로필 변경 끝 =================");
         log.info("");
         log.info("");
         log.info("");

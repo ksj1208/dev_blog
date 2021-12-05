@@ -2,6 +2,11 @@
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <title>프로필 - 상세</title>
 
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <body>
 <div class="wrap">
 
@@ -12,31 +17,37 @@
             <table border="1" cellpadding="0" cellspacing="0" style="text-align: center;">
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">제목</td>
-                    <td align="left" width="70%"><label th:utext="${profile.subject}"/></td>
+                    <td align="left" width="70%">
+                        <input type="hidden" id="profileCode" th:value="${profile.profileCode}">
+                        <input type="text" id="subject" th:value="${profile.subject}">
+                    </td>
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">작성자</td>
-                    <td align="left" width="70%"><label th:utext="${profile.writer}"/></td>
+                    <td align="left" width="70%"><label id="writer" th:utext="${profile.writer}"/></td>
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">내용</td>
-                    <td align="left" width="70%"><label th:utext="${profile.content}"/></td>
+                    <td align="left" width="70%"><textarea id="content" th:text="${profile.content}"></textarea></td>
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">작성일</td>
-                    <td align="left" width="70%"><label th:utext="${profile.createDate}"/></td>
+                    <td align="left" width="70%"><label id="createDate" th:utext="${profile.createDate}"/></td>
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">상태</td>
-                    <td align="left" width="70%"><label th:utext="${profile.status}"/></td>
+                    <td align="left" width="70%"><label id="status" th:utext="${profile.status}"/></td>
                 </tr>
             </table>
+
+            <button id="profileListBtn" style="border: 1px solid black">목록으로</button>
+            <button id="profileModifyBtn" style="border: 1px solid black">수정</button>
 
         </section>
     </div>
 </div>
 
 
-<!--<script type="text/javascript" src="/js/admin/profile/profileWriter.js"></script>-->
+<script type="text/javascript" src="/js/admin/profile/profileDetail.js"></script>
 </body>
 </html>

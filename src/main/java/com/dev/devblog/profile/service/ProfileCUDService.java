@@ -5,6 +5,7 @@ import com.dev.devblog.board.entity.Board;
 import com.dev.devblog.profile.dao.ProfileRepository;
 import com.dev.devblog.profile.domain.Profiles;
 import com.dev.devblog.profile.dto.ProfileSaveRequest;
+import com.dev.devblog.profile.dto.ProfileUpdateRequest;
 import com.dev.devblog.profile.dto.ProfileUpdateStatusRequest;
 import com.dev.devblog.profile.entity.BlogProfile;
 import com.dev.devblog.user.UserRepository;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @Service
@@ -35,7 +37,16 @@ public class ProfileCUDService {
         BlogProfile profile = profileRepository.findById(request.getProfileCode()).orElseThrow(
                 () -> new NoSuchElementException("변경할 프로필을 찾을 수 없습니다")
         );
-
+        int result = profileRepository.updateToDisableAllProfileCode();
         profile.updateStatus(request.getStatus());
+    }
+
+    public void profileUpdate(ProfileUpdateRequest request) {
+        BlogProfile profile = profileRepository.findById(request.getProfileCode()).orElseThrow(
+                () -> new NoSuchElementException("수정할 게시글이 존재하지 않습니다.")
+        );
+        profile.updateSubject(request.getSubject());
+        profile.updateContent(request.getContent());
+        profile.updateDate(LocalDateTime.now());
     }
 }

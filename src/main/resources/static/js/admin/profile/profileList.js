@@ -6,7 +6,7 @@ const profileList = {
 
     bind: () => {
         document.getElementById('profileWriteBtn').addEventListener('click', profileList.onClickProfileWrite)
-        document.getElementById('profileCheckAll').addEventListener('click', profileList.onClickProfileCheckAll)
+        //document.getElementById('profileCheckAll').addEventListener('click', profileList.onClickProfileCheckAll)
     },
 
     onClickProfileWrite: () => {
@@ -50,7 +50,6 @@ const profileList = {
 
         const rows = data.map((item, i) => {
             return `<tr>
-                <td><input type="checkbox" id="profileCheck" name="profileCheck" value="${item.profileCode}"></td>
                 <td>${i + 1}</td>
                 <td style="cursor: pointer" onclick= "location.href ='/profile/detailPage/${item.profileCode}'">${item.subject}</td>
                 <td>${item.writer}</td>
@@ -71,7 +70,7 @@ const profileList = {
     },
 
     onchangeStatus: (e) => {
-        if(!confirm("상태를 변경하시겠습니까?"))
+        if(!confirm("이 프로필을 활성화 하시겠습니까? 다른 프로필은 비활성화 됩니다."))
             return
 
         const profileCode = e.target.dataset.profilecode
