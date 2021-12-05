@@ -28,10 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .mvcMatchers("/**").permitAll();
 
-        http.formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll();
+//        http.formLogin()
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/")
+//                .permitAll();
 
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -42,9 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/denied");
 
         http.authorizeRequests().antMatchers("/kakao/callback").permitAll()
-                .anyRequest().authenticated()
-            .and()
-                .oauth2Login();
+                .anyRequest().authenticated();
+//            .and()
+//                .oauth2Login();
     }
 
 

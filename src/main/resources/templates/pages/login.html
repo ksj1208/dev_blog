@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>로그인 페이지</title>
-</head>
-<body>
-<h1>로그인</h1>
-<hr>
-<form th:action="@{/login}" method="post">
-    <input type="text" name="username" placeholder="account를 입력해주세요.">
-    <input type="password" name="password" placeholder="password를 입력해주세요.">
-    <button type="submit">로그인</button>
-    <a href="https://kauth.kakao.com/oauth/authorize?client_id=a3ba113686e820ae50156cdc2f58daac&redirect_uri=http://localhost:8080/kakao/callback&response_type=code"><img src="/img/kakao_login_btn.png"></a>
-</form>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="user/layout/loginLayout">
+<section layout:fragment="content">
+    <div class="content">
+        <div>
+            <h1>login</h1>
+            <div>
+                <form th:action="@{/login}" method="post">
+                    <table>
+                        <tr>
+                            <td>ID</td>
+                            <td>
+                                <input type="text" name="username" placeholder="account를 입력해주세요.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" name="password" placeholder="password를 입력해주세요.">
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button id="goLogin" type="submit">로그인</button>
+                            </td>
+                        </tr>
 
-</body>
-</html>
+                    </table>
+                </form>
+                <table>
+                    <tr>
+                        <td>
+                            <button id="goSignup">signup</button>
+                        </td>
+                        <td>
+                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=a3ba113686e820ae50156cdc2f58daac&redirect_uri=http://localhost:8080/kakao/callback&response_type=code"><img src="/img/kakao_login_btn.png"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="/js/user/login/login.js"></script>

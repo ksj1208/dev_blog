@@ -1,14 +1,17 @@
 package com.dev.devblog.user;
 
 import com.dev.devblog.user.entity.RoleInfo;
+import com.dev.devblog.user.entity.User;
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-@Data
+//@Data
+@Getter
 public class CustomUserDetails implements UserDetails {
 
     private long userCode;
@@ -21,6 +24,22 @@ public class CustomUserDetails implements UserDetails {
     private String email;
     private String accountPath;
     private Collection<GrantedAuthority> authorities; //권한목록
+
+    private CustomUserDetails(User user){
+        this.userId = user.getUserId();
+        this.userCode = user.getUserCode();
+        this.password = user.getPassword();
+        this.nickName = user.getNickName();
+        this.email = user.getEmail();
+        this.accountPath = user.getAccountPath();
+        //this.authorities = authorities();
+
+    }
+
+
+    public static UserDetails from(User user) {
+        return new CustomUserDetails(user);
+    }
 
 
     //해당 유저 권한 목록
