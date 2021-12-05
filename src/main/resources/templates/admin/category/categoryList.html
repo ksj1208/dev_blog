@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace= "admin/common/head"></head>
+
+<body>
+<h2>카테고리 목록 페이지입니다.</h2>
+
+<button id="categoryWriteBtn" style="border: 1px solid black">생성</button>
+
+<div>
+    <table id="categoryListTable" border="1px">
+        <thead>
+        <th><input type="checkbox" id="checkboxAll" name="checkboxAll"></th>
+        <th>No</th>
+        <th>카테고리명</th>
+        <th>등록일자</th>
+        <th>상태</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <ul id="pageList" class="pagination">
+        <li class="page-item"><a class="page-link arrow first" href="#">first</a></li>
+        <li class="page-item"><a class="page-link arrow pre" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link on" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link arrow next" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link arrow last" href="#">last</a></li>
+    </ul>
+</div>
+</body>
+<script src="/js/common/Paging.js"></script>
+<script type="text/javascript" src="/js/admin/category/categoryList.js"></script>
+</html>
