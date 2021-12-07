@@ -33,7 +33,7 @@ public class Profiles {
                 .subject(this.subject)
                 .content(this.content)
                 .createDate(LocalDateTime.now())
-                .status(BoardStatusType.ACTIVE.getValue())
+                .status(BoardStatusType.INACTIVE.getValue())
                 .build();
     }
 }
