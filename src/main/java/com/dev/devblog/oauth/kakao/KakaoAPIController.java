@@ -1,6 +1,6 @@
 package com.dev.devblog.oauth.kakao;
 
-import com.dev.devblog.user.UserDetailServiceImpl;
+import com.dev.devblog.user.service.UserDetailServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

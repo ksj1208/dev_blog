@@ -1,14 +1,13 @@
-package com.dev.devblog.user;
+package com.dev.devblog.user.controller;
 
-import com.dev.devblog.user.entity.User;
+import com.dev.devblog.user.dao.UserRepository;
+import com.dev.devblog.user.service.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController {
+public class UserApiController {
 
     private final UserRepository userRepository;
     private final UserDetailServiceImpl userDetailServiceImpl;

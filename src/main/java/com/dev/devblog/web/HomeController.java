@@ -1,12 +1,10 @@
 package com.dev.devblog.web;
 
-import com.dev.devblog.user.UserDetailServiceImpl;
-import com.dev.devblog.user.entity.User;
+import com.dev.devblog.user.service.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -26,10 +24,10 @@ public class HomeController {
         return "pages/login";
     }
 
-    @GetMapping("/signup")
-    public String signupView() {
-        return "pages/signup";
-    }
+//    @GetMapping("/signup")
+//    public String signupView() {
+//        return "pages/signup";
+//    }
 
   /*  @PostMapping("/signup")
     public String signup(User user) {

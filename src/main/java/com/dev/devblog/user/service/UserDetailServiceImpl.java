@@ -1,8 +1,9 @@
-package com.dev.devblog.user;
+package com.dev.devblog.user.service;
 
+import com.dev.devblog.user.CustomUserDetails;
+import com.dev.devblog.user.dao.UserRepository;
 import com.dev.devblog.user.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
