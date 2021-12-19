@@ -22,9 +22,8 @@ public class User {
     private String userId;
     @Column
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "ROLE_CODE")
-    private RoleInfo roleCode;
+    @Column
+    private String authority;
     @Column
     private String nickName;
     @Column
@@ -33,7 +32,6 @@ public class User {
     private LocalDateTime createDate;
     @Column
     private LocalDateTime passwordUpdateDate;
-
     @Column
     private String email;
     @Column
