@@ -8,7 +8,7 @@
             <h1>회원 가입</h1>
 
             <div>
-                <form th:action="@{/signup}" method="post">
+                <form th:action="@{/signup}" method="post" onsubmit="joionMember">
                     <table>
                         <tr>
                             <td>ID</td>
@@ -24,11 +24,11 @@
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td><input type="password" name="password" placeholder="Enter Password"></td>
+                            <td><input type="password" name="userPassword" placeholder="Enter Password"></td>
                         </tr>
                         <tr>
                             <td>Recheck Password</td>
-                            <td><input type="password" name="password" placeholder="Enter Recheck Password"></td>
+                            <td><input type="password" name="userPassword" placeholder="Enter Recheck Password"></td>
                         </tr>
                         <tr>
                             <td>Email</td>
@@ -44,4 +44,27 @@
             </div>
         </div>
     </div>
+
+        <script>
+            function joinMember(){
+                //닉네임 체크
+                //비밀번호 유효성 검사
+                isValidPassword(document.getElementById('password').value) //내가 체크해야할 패스워드
+                //동일여부
+                //인증완료
+
+                //authEmail.js (이메일 인증에 관련된 함수만 있는 스트립트)
+
+                return true;
+            }
+
+
+            function isValidPassword(){
+                //비밀번호 유효성 체크
+                if(true){
+                    return true
+                }
+                return false
+            }
+        </script>
 </section>
