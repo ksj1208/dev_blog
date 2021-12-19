@@ -12,4 +12,5 @@ public class ProfileUpdateRequest {
     private Long profileCode;
     private String content;
     private String subject;
+
 }

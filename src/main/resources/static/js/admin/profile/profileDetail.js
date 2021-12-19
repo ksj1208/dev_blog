@@ -27,13 +27,16 @@ const profileDetail = {
         if(!confirm("프로필을 수정하시겠습니까?"))
             return
 
+
         const request = profileDetail.modifyRequest()
         const successHandler = (data) => {
             alert("프로필 수정 완료")
             location.href = "/profile/listPage"
         }
 
+
         fetch("/profile/modify", {
+
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

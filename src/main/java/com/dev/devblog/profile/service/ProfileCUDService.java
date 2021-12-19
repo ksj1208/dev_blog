@@ -42,6 +42,7 @@ public class ProfileCUDService {
     }
 
     public void profileUpdate(ProfileUpdateRequest request) {
+
         BlogProfile profile = profileRepository.findById(request.getProfileCode()).orElseThrow(
                 () -> new NoSuchElementException("수정할 게시글이 존재하지 않습니다.")
         );
