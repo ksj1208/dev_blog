@@ -32,7 +32,6 @@ public class User {
     private LocalDateTime createDate;
     @Column
     private LocalDateTime passwordUpdateDate;
-
     @Column
     private String email;
     @Column
