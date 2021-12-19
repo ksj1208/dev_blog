@@ -1,6 +1,5 @@
 package com.dev.devblog.board.entity;
 
-import com.dev.devblog.category.entity.Category;
 import com.dev.devblog.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

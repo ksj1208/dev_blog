@@ -22,8 +22,9 @@ public class User {
     private String userId;
     @Column
     private String password;
-    @Column
-    private String authority;
+    @ManyToOne
+    @JoinColumn(name = "ROLE_CODE")
+    private RoleInfo roleCode;
     @Column
     private String nickName;
     @Column
