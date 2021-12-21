@@ -5,18 +5,18 @@
             <h1>회원 가입</h1>
 
             <div>
-                <form th:action="@{/login}" method="post">
+                <form th:action="@{/login}" method="post" onsubmit="return false">
                     <table>
                         <tr>
                             <td>ID</td>
                             <td colspan="2">
-                                <input type="text" name="userId" placeholder="Enter ID">
+                                <input type="text" id= "userId" name="userId" placeholder="Enter ID">
                             </td>
                         </tr>
                         <tr>
                             <td>Password</td>
                             <td colspan="2">
-                                <input type="password" name="current-password" placeholder="Enter Password">
+                                <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter Password">
                             </td>
                         </tr>
                         <tr>

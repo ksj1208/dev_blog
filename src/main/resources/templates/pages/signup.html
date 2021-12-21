@@ -8,35 +8,37 @@
             <h1>회원 가입</h1>
 
             <div>
-                <form th:action="@{/signup}" method="post" onsubmit="joionMember">
+                <form th:action="@{/signup}" method="post" onsubmit="return joinMember()">
                     <table>
                         <tr>
                             <td>ID</td>
                             <td>
-                                <input type="text" name="userId" placeholder="Enter ID">
+                                <input type="text" id="userId" name="userId" placeholder="Enter ID">
                             </td>
+                            <td><button id="existBtnUserId">중복확인</button></td>
                         </tr>
                         <tr>
                             <td>NickName</td>
                             <td>
-                                <input type="text" name="nickName" placeholder="Enter NickName">
+                                <input type="text" id="nickName" name="nickName" placeholder="Enter NickName">
                             </td>
+                            <td><button id="existBtnNickName">중복확인</button></td>
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td><input type="password" name="userPassword" placeholder="Enter Password"></td>
+                            <td colspan="2"><input type="password" id="currentPassword" name="currentPassword" placeholder="Enter Password"></td>
                         </tr>
                         <tr>
                             <td>Recheck Password</td>
-                            <td><input type="password" name="userPassword" placeholder="Enter Recheck Password"></td>
+                            <td colspan="2"><input type="password" id="recheckPassword" name="recheckPassword" placeholder="Enter Recheck Password"></td>
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td><input type="email" name="email" placeholder="Enter Email"></td>
+                            <td colspan="2"><input type="email" id="email" name="email" placeholder="Enter Email"></td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <input type="submit" value="가입하기">
+                            <td colspan="3">
+                                <input type="submit" id="joinMember" value="가입하기">
                             </td>
                         </tr>
                     </table>
@@ -67,4 +69,5 @@
                 return false
             }
         </script>
+        <script type="text/javascript" src="/js/user/login/joinMember.js"></script>
 </section>
