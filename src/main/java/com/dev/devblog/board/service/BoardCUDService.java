@@ -5,7 +5,7 @@ import com.dev.devblog.board.domain.Boards;
 import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
 import com.dev.devblog.board.entity.Board;
-import com.dev.devblog.user.UserRepository;
+import com.dev.devblog.user.dao.UserRepository;
 import com.dev.devblog.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

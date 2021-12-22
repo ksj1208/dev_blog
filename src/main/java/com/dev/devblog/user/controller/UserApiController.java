@@ -1,18 +1,30 @@
 package com.dev.devblog.user.controller;
 
 import com.dev.devblog.user.UserDetailServiceImpl;
-import com.dev.devblog.user.UserRepository;
-import com.dev.devblog.user.entity.User;
+import com.dev.devblog.user.dao.UserRepository;
+import com.dev.devblog.user.dto.JoinMemberReqeust;
+import com.dev.devblog.user.service.UserCUDService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {
 
     private final UserRepository userRepository;
     private final UserDetailServiceImpl userDetailServiceImpl;
+    private final UserCUDService userCUDService;
+
+    @PostMapping("/users/join")
+    public ResponseEntity<String> userJoin(@RequestBody final JoinMemberReqeust request){
+        log.info("가입호출 ");
+        //UserCUDService.joinMember(request);
+        log.info("가입끝");
+
+        return ResponseEntity.ok("가입완료");
+    }
 
 }

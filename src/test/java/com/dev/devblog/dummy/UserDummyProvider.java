@@ -1,6 +1,6 @@
 package com.dev.devblog.dummy;
 
-import com.dev.devblog.user.UserRepository;
+import com.dev.devblog.user.dao.UserRepository;
 import com.dev.devblog.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

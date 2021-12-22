@@ -1,14 +1,12 @@
 package com.dev.devblog.profile.service;
 
-import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
-import com.dev.devblog.board.entity.Board;
 import com.dev.devblog.profile.dao.ProfileRepository;
 import com.dev.devblog.profile.domain.Profiles;
 import com.dev.devblog.profile.dto.ProfileSaveRequest;
 import com.dev.devblog.profile.dto.ProfileUpdateRequest;
 import com.dev.devblog.profile.dto.ProfileUpdateStatusRequest;
 import com.dev.devblog.profile.entity.BlogProfile;
-import com.dev.devblog.user.UserRepository;
+import com.dev.devblog.user.dao.UserRepository;
 import com.dev.devblog.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

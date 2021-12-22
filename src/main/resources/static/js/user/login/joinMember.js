@@ -64,6 +64,11 @@ const joinMember ={
         if(joinMember.isValidPassword(request.currentPassword)){
             return true
         }
+        if(request.recheckPassword != null ){
+            if(joinMember.isSamePassword(request.currentPassword, request.recheckPassword)){
+                return true
+            }
+        }
 
     },
 
@@ -77,13 +82,27 @@ const joinMember ={
 
     onclickJoinMember: () => {
         const request = joinMember.createRequest()
-        //이메일 인증하기
+        //이메일 인증완료여부 체크
 
+        //위에 항목 모두 true인지 확인
 
-            //위애 항목이 다 true 여야하고..
-        if(joinMember.isSamePassword(requestl.currentPassword, reqeust.recheckPassword)){
-            return true
+        const successHandler = (data) => {
+            alert("회원가입완료")
+            location.href = "/"
+
         }
+
+        fetch("/users/join", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('userId')
+            },
+            body: JSON.stringify(request)
+        })
+            .then((response) => response.text())
+            .then((data) => successHandler(data))
+            .catch((error) => alert(error))
 
     },
 
