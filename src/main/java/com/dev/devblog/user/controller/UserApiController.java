@@ -14,17 +14,16 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserApiController {
 
-    private final UserRepository userRepository;
     private final UserDetailServiceImpl userDetailServiceImpl;
     private final UserCUDService userCUDService;
 
     @PostMapping("/users/join")
     public ResponseEntity<String> userJoin(@RequestBody final JoinMemberReqeust request){
         log.info("가입호출 ");
-        //UserCUDService.joinMember(request);
+        userCUDService.joinMember(request);
         log.info("가입끝");
 
-        return ResponseEntity.ok("가입완료");
+        return ResponseEntity.ok().build();
     }
 
 }

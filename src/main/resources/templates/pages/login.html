@@ -5,7 +5,7 @@
             <h1>회원 가입</h1>
 
             <div>
-                <form th:action="@{/login}" method="post" onsubmit="return false">
+                <form th:action="@{/login}" method="post" onsubmit="return onclickLogin()">
                     <table>
                         <tr>
                             <td>ID</td>
@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <input type="submit" value="LOGIN">
+                                <input type="submit" id="loginBtn" value="LOGIN">
                             </td>
                         </tr>
 

@@ -1,28 +1,32 @@
-const goLogin ={
-    inig: () =>{
+const goLogin = {
+    init: () => {
         goLogin.bind()
     },
 
-    bind: () =>{
-        document.getElementById("goJoin").addEventListener('click', goLogin.onclickGoJoin)
-        document.getElementById("recheckPassword").addEventListener('focusout', )
+    bind: () => {
+        document.getElementById("goJoin").addEventListener('click', goLogin.onclickGoJoinPage)
+        document.getElementById("searchId").addEventListener('click', goLogin.onclickSearchIdPage)
+        document.getElementById("searchPassword").addEventListener('click', goLogin.onclickSearchPasswordPage)
+        document.getElementById("loginBtn").addEventListener('click', goLogin.onclickLogin)
     },
 
-    onclickGoJoin: () =>{
+    onclickGoJoinPage: () => {
         location.href = "/users/signpup"
-        console.log("click!");
-
-        if(sign.isValidUseriId(userId))
-            return true
 
     },
 
-    isValidUseriId(userId){
-        //유효성검사
+    onclickSearchIdPage: () => {
+
     },
-    isExistUserId(userId){
-        //중복검사
+
+    onclickSearchPasswordPage: () => {
+
+    },
+
+    onclickLogin: () => {
+
     }
+
 
 }
 

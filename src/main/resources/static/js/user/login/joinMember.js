@@ -1,10 +1,10 @@
-const joinMember ={
+const joinMember = {
 
-    init: () =>{
+    init: () => {
         joinMember.bind()
     },
 
-    bind: () =>{
+    bind: () => {
         document.getElementById("userId").addEventListener('onkeyup', joinMember.onkeyupUserId)
         document.getElementById("existBtnUserId").addEventListener('onclick', joinMember.onclickBtnUserId)
         document.getElementById("nickName").addEventListener('onkeyup', joinMember.onkeyupNickName)
@@ -88,6 +88,7 @@ const joinMember ={
 
         const successHandler = (data) => {
             alert("회원가입완료")
+            //회원가입 완료되면 이동하는 페이지
             location.href = "/"
 
         }
