@@ -10,6 +10,7 @@
                 <div class="flex-between">
                     <div class="desc">
                         <label th:utext="${board.createDate}"/> &middot; <label th:utext="${board.writer}"/>
+                        <input type="hidden" id="boardId" th:value="${board.boardId}">
                     </div>
                     <div class="cont_action"></div>
                 </div>
@@ -28,7 +29,7 @@
             </div>
             <div class="cont_commet">
                 <div class="flex-between ptb20">
-                    <h4>2개의 댓글</h4>
+                    <h4 id="commentCount"></h4>
                     <div class="btn-post-wrap flex-start">
                         <div class="btn-post">
                             <a href="javascript:;" class="btn-like">
@@ -50,10 +51,10 @@
                     </div>
                 </div>
                 <div class="flex-column">
-                    <textarea class="comment-input" rows="8" placeholder="댓글을 작성하세요."></textarea>
-                    <button type="button" class="btn-comment">댓글 작성</button>
+                    <textarea id="comment" class="comment-input" rows="8" placeholder="댓글을 작성하세요."></textarea>
+                    <button type="button" id="commentBtn" class="btn-comment">댓글 작성</button>
                 </div>
-                <div class="comment-box">
+                <div id="comment_box" class="comment-box">
                     <div class="comment">
                         <div class="flex-between">
                             <div class="cbox-info">
@@ -79,6 +80,7 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
 
 
 
@@ -219,19 +221,18 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-<!--            <div class="post_bottom">-->
-<!--                <ul class="paginate">-->
-<!--                    <li class="prev">-->
-<!--                        <a href="/"><i class="ico-paginate"></i><span class="pagiTitle">이전글 제목이전글 제목이전글 제목이전글 제목이전글-->
-<!--                                    제목이전글 제목이전글 제목</span></a>-->
-<!--                    </li>-->
-<!--                    <li class="next">-->
-<!--                        <a href="/"><span class="pagiTitle">다음글 제목</span><i class="ico-paginate"></i></a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
+            <div class="post_bottom">
+                <ul class="paginate">
+                    <li class="prev">
+                        <a href="/"><i class="ico-paginate"></i><span class="pagiTitle">이전글 제목이전글 제목이전글 제목이전글 제목이전글
+                                    제목이전글 제목이전글 제목</span></a>
+                    </li>
+                    <li class="next">
+                        <a href="/"><span class="pagiTitle">다음글 제목</span><i class="ico-paginate"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
     <script>
         $(function () {
@@ -354,5 +355,7 @@
                 });
         }
     </script>
+
+<script type="text/javascript" th:src="@{/js/user/board/commentForm.js}"></script>
 </section>
 </html>
