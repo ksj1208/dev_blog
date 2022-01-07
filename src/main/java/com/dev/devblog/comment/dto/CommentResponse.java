@@ -13,13 +13,15 @@ public class CommentResponse {
     private final String nickName;
     private final String comment;
     private final LocalDateTime createDate;
+    private final String writeRole;
 
-    private CommentResponse(Comment comment) {
+    private CommentResponse(Comment comment, Long readUserCode) {
         this.boardId = comment.getBoardId();
         this.commentId = comment.getCommentId();
         this.nickName = comment.getUser().getNickName();
         this.comment = comment.getContent();
         this.createDate = comment.getCreateDate();
+        this.writeRole = comment.getUser().getUserCode() == readUserCode ? "Y" : "N";
     }
 
     public String getCreateDate() {
@@ -31,7 +33,7 @@ public class CommentResponse {
         return year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute;
     }
 
-    public static CommentResponse from(Comment comment) {
-        return new CommentResponse(comment);
+    public static CommentResponse from(Comment comment, Long readUserCode) {
+        return new CommentResponse(comment, readUserCode);
     }
 }

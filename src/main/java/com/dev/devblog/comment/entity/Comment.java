@@ -36,4 +36,8 @@ public class Comment {
 
     @Column(name = "CREATE_DATE")
     private LocalDateTime createDate;
+
+    public void updateContent(String comment) {
+        this.content = comment;
+    }
 }

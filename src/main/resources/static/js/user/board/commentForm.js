@@ -23,6 +23,7 @@ const commentForm = {
 
     tableAppend(data) {
         document.getElementById('comment_box').innerHTML = ''
+        console.log(data)
         const rows = data.commentList.map((item, i) => {
             return `<div class="comment">
                         <div class="flex-between">
@@ -30,13 +31,15 @@ const commentForm = {
                                 <div class="cbox_profile">${item.nickName}</div>
                                 <div class="cbox_date">${item.createDate}</div>
                             </div>
-                            <div class="cbox-action">
-                                <button type="button">수정</button>
-                                <button type="button" class="btn-delComment">삭제</button>
-                            </div>
+                            ${item.writeRole == 'Y'? `
+                                 <div class="cbox-action">
+                                    <button type="button" onclick="commentForm.showUpdateForm(this, ${item.commentId})">수정</button>
+                                    <button type="button" class="btn-delComment" onclick="commentForm.deleteComment(${item.commentId})">삭제</button>
+                                </div>
+                            `:``}
                         </div>
                         <div class="cbox_txt">
-                            <p>${item.comment}</p>
+                            <pre style="font-size: 15px;">${item.comment}</pre>
                         </div>
                         <div class="cbox_tool">
                             <ul class="flex-start">
@@ -53,6 +56,79 @@ const commentForm = {
         }).join('')
 
         document.getElementById('comment_box').insertAdjacentHTML('beforeend', rows)
+    },
+
+    deleteComment(commentId) {
+        if(! confirm("댓글 삭제하시겠습니까?")) return
+        const successHandler = () => {
+            alert("댓글이 삭제되었습니다.")
+            commentForm.getCommentList()
+        }
+
+        fetch("/comment/delete/" + commentId, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            },
+        })
+            .then((response) => {
+                if(response.ok)
+                    return successHandler(response)
+                else
+                    throw response
+            })
+            .catch((error) => error.text().then((res) => alert(res)))
+    },
+
+    showUpdateForm(e, id) {
+        const commentArea = e.parentNode.parentNode.nextElementSibling
+        const commentTag = commentArea.firstElementChild
+        const cBoxAction = e.parentNode.parentNode.lastChild.previousElementSibling
+        const cBoxTag = cBoxAction.innerHTML
+
+        cBoxAction.innerHTML = `<div class="cbox-action">
+                                    <button type="button" id="updateBtn_${id}">저장</button>
+                                    <button type="button" id="updateCancel_${id}" class="btn-delComment">취소</button>
+                                </div>`
+        commentArea.innerHTML = `<textarea id="newComment_${id}" class="comment-input" rows="8" wrap="hard">${commentTag.textContent}</textarea>`
+
+        document.getElementById('updateCancel_' + id).addEventListener('click', () => {
+            commentArea.innerHTML = ''
+            commentArea.appendChild(commentTag)
+            cBoxAction.innerHTML = cBoxTag
+        })
+
+        document.getElementById('updateBtn_' + id).addEventListener('click', (e) => {
+            commentForm.updateComment(id)
+        })
+    },
+
+    updateComment(commentId) {
+        const comment = document.getElementById('newComment_' + commentId).value
+
+        if(! confirm("댓글을 수정하시겠습니까?")) return
+
+        const successHandler = () => {
+            alert("댓글 수정을 완료했습니다.")
+            commentForm.getCommentList()
+        }
+
+        fetch("/comment/update", {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            },
+            body: JSON.stringify({commentId, comment})
+        })
+            .then((response) => {
+                if(response.ok)
+                    return successHandler(response)
+                else
+                    throw response
+            })
+            .catch((error) => error.text().then((res) => alert(res)))
     },
 
     onclickCommentBtn() {
