@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
 public @interface ControllerTargetTest {

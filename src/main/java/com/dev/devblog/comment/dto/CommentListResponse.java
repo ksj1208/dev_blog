@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 public class CommentListResponse {
     private final List<CommentResponse> commentList;
 
-    private CommentListResponse(List<Comment> list) {
-        this.commentList = list.stream().map(CommentResponse::from).collect(Collectors.toList());
+    private CommentListResponse(List<Comment> list, Long userCode) {
+        this.commentList = list.stream().map((o) -> CommentResponse.from(o, userCode)).collect(Collectors.toList());
     }
 
-    public static CommentListResponse from(List<Comment> list) {
-        return new CommentListResponse(list);
+    public static CommentListResponse from(List<Comment> list, Long userCode) {
+        return new CommentListResponse(list, userCode);
     }
 }

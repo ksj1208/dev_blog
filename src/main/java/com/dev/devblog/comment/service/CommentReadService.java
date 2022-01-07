@@ -11,7 +11,7 @@ public class CommentReadService {
 
     private final CommentRepository commentRepository;
 
-    public CommentListResponse getList(Long boardId) {
-        return CommentListResponse.from(commentRepository.findAll());
+    public CommentListResponse getList(Long boardId, Long userCode) {
+        return CommentListResponse.from(commentRepository.findAllById(boardId), userCode);
     }
 }

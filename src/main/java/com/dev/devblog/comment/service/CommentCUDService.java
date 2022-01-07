@@ -4,6 +4,8 @@ import com.dev.devblog.board.dao.BoardRepository;
 import com.dev.devblog.comment.CommentRepository;
 import com.dev.devblog.comment.Comments;
 import com.dev.devblog.comment.dto.CommentSaveRequest;
+import com.dev.devblog.comment.dto.CommentUpdateRequest;
+import com.dev.devblog.comment.entity.Comment;
 import com.dev.devblog.user.UserRepository;
 import com.dev.devblog.user.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +34,27 @@ public class CommentCUDService {
         );
 
         commentRepository.save(comments.toCreateEntity(user));
+    }
+
+    public void commentDelete(Long commentId, Long currentUserCode) {
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new NoSuchElementException("삭제할 댓글 정보가 없습니다.")
+        );
+
+        if(! currentUserCode.equals(comment.getUser().getUserCode()))
+            throw new IllegalArgumentException("잘못된 요청정보 입니다.");
+
+        commentRepository.deleteById(commentId);
+    }
+
+    public void commentUpdate(CommentUpdateRequest request, Long currentUserCode) {
+        Comment comment = commentRepository.findById(request.getCommentId()).orElseThrow(
+                () -> new NoSuchElementException("삭제할 댓글 정보가 없습니다.")
+        );
+
+        if(! currentUserCode.equals(comment.getUser().getUserCode()))
+            throw new IllegalArgumentException("잘못된 요청정보 입니다.");
+
+        comment.updateContent(request.getComment());
     }
 }
