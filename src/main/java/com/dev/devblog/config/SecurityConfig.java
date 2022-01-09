@@ -41,10 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedPage("/denied");
 
-        http.authorizeRequests().antMatchers("/kakao/callback").permitAll()
-                .anyRequest().authenticated()
-            .and()
-                .oauth2Login();
+//        http.authorizeRequests().antMatchers("/kakao/callback").permitAll()
+//                .anyRequest().authenticated()
+//            .and()
+//                .oauth2Login();
     }
 
 
