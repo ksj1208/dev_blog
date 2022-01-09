@@ -23,11 +23,11 @@ public class User {
     @Column
     private String password;
     @Column
-    private String authority;
+    private String authority; //권한
     @Column
     private String nickName;
     @Column
-    private String status;
+    private String status;  //탈퇴 : N , 유지: Y
     @Column
     private LocalDateTime createDate;
     @Column
@@ -35,7 +35,7 @@ public class User {
     @Column
     private String email;
     @Column
-    private String accountPath; //일반로그인,sns로그인인지 구분
+    private String accountPath; //가입루트 (이메일:email, 카카오: kakao, 네이버: naver)
 
     public User(){
     }

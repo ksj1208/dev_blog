@@ -11,16 +11,16 @@ const goLogin = {
     },
 
     onclickGoJoinPage: () => {
-        location.href = "/users/signpup"
+        location.href = "/users/signup"
 
     },
 
     onclickSearchIdPage: () => {
-
+        alert("id search check")
     },
 
     onclickSearchPasswordPage: () => {
-
+        alert("password search check")
     },
 
     onclickLogin: () => {

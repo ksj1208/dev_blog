@@ -6,25 +6,25 @@ const joinMember = {
 
     bind: () => {
         document.getElementById("userId").addEventListener('onkeyup', joinMember.onkeyupUserId)
-        document.getElementById("existBtnUserId").addEventListener('onclick', joinMember.onclickBtnUserId)
+        document.getElementById("existBtnUserId").addEventListener('click', joinMember.onclickBtnUserId)
         document.getElementById("nickName").addEventListener('onkeyup', joinMember.onkeyupNickName)
-        document.getElementById("existBtnNickName").addEventListener('onclick', joinMember.onclickBtnNickName)
+        document.getElementById("existBtnNickName").addEventListener('click', joinMember.onclickBtnNickName)
         document.getElementById("currentPassword").addEventListener('onkeyup', joinMember.onkeyupPassword)
         document.getElementById("recheckPassword").addEventListener('focusout', joinMember.focusoutPassword)
-        document.getElementById("joinMember").addEventListener('onclick', joinMember.onclickJoinMember)
+        document.getElementById("joinMember").addEventListener('click', joinMember.save)
 
     },
 
     createRequest: () => {
         const userId = document.getElementById("userId").value
         const nickName = document.getElementById("nickName").value
-        const currentPassword = document.getElementById("currentPassword").value
+        const password = document.getElementById("currentPassword").value
         const recheckPassword = document.getElementById("recheckPassword").value
         const email = document.getElementById("email").value
-        const request = {
-            userId : userId,
+        return {
+            userId: userId,
             nickName: nickName,
-            currentPassword: currentPassword,
+            password: password,
             recheckPassword: recheckPassword,
             email: email
         }
@@ -80,7 +80,7 @@ const joinMember = {
     },
 
 
-    onclickJoinMember: () => {
+    save: () => {
         const request = joinMember.createRequest()
         //이메일 인증완료여부 체크
 
@@ -118,6 +118,7 @@ const joinMember = {
     },
     isExistUserId(userId){
         //아이디 중복검사
+        alert("id check");
     },
 
     isValidPassword(password){
@@ -152,6 +153,7 @@ const joinMember = {
 
     isExistNickName(nickName){
         //닉네임 중복 검사
+        alert("nick name check ");
 
     }
 

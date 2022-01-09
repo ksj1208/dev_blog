@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 public class Users {
 
     private final String userId;
-    private final String nickName;
     private final String password;
+    private final String nickName;
     private final String email;
 
     private Users(JoinMemberReqeust request){
         this.userId = request.getUserId();
-        this.nickName = request.getNickName();
         this.password = request.getPassword();
+        this.nickName = request.getNickName();
         this.email = request.getEmail();
     }
 

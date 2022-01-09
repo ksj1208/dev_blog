@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserIndexController {
     private final UserReadService userReadService;
 
-    @GetMapping("/users/singup")
+    @GetMapping("/users/signup")
     public String goJoinPage(){
-        return "/pages/singup";
+        return "/pages/signup";
     }
 
 
