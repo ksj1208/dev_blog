@@ -22,6 +22,9 @@ public class Users {
         this.email = request.getEmail();
     }
 
+
+
+
     public static Users of(JoinMemberReqeust request){
         return new Users(request);
     }

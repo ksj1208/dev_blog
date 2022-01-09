@@ -1,5 +1,9 @@
 const joinMember = {
 
+    //전역변수
+    //All: {}
+    //all :
+
     init: () => {
         joinMember.bind()
     },
@@ -97,7 +101,7 @@ const joinMember = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
-                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('userId')
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
             },
             body: JSON.stringify(request)
         })
@@ -109,7 +113,7 @@ const joinMember = {
 
     isValidUserId(userId){
         //아이디 유효성 검사
-        var reg_userId = /^[a-zA-Z0-9]{4,12}$/;
+        let reg_userId = /^[a-zA-Z0-9]{4,12}$/;
         if (!reg_userId.test(userId)){
             return false;
         }else {
@@ -123,12 +127,12 @@ const joinMember = {
 
     isValidPassword(password){
         //패스워드 유효성검사
-        var reg_password = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+        let reg_password = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
         if(!reg_password.test(password)){
             return false;
-        }else {
-            return true;
         }
+            return true;
+
 
     },
 
@@ -136,9 +140,9 @@ const joinMember = {
         //패스워드 일치 검사
         if(currentPassword === recheckPassword){
             return true
-        }else {
-            return false
         }
+            return false
+
     },
 
     isValidNickName(nickName){
@@ -146,9 +150,9 @@ const joinMember = {
         var reg_nickName = /^[가-힣a-zA-Z0-9]{4,12}$/;
         if(!reg_nickName.test(nickName)){
             return false;
-        }else {
-            return true;
         }
+            return true;
+
     },
 
     isExistNickName(nickName){
