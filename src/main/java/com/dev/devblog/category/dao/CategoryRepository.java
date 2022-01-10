@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	@Query(value = "SELECT c FROM Category c" +
+			" WHERE c.categoryStatus = '사용'" +
 			" ORDER BY c.createDate DESC ")
 	Page<Category> findAllByPageable(Pageable pageable);
 }
