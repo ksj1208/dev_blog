@@ -24,6 +24,7 @@ const commentForm = {
     tableAppend(data) {
         document.getElementById('comment_box').innerHTML = ''
         console.log(data)
+
         const rows = data.commentList.map((item, i) => {
             return `<div class="comment">
                         <div class="flex-between">
@@ -43,7 +44,7 @@ const commentForm = {
                         </div>
                         <div class="cbox_tool">
                             <ul class="flex-start">
-                                <li><button type="button" class="btn-reply">답글</button></li>
+                                <li><button type="button" class="btn-reply" onclick="commentForm.showReplyArea(${item.commentId})">답글 ${item.pcommentList.length}</button></li>
                                 <li>
                                     <a href="javascript:;" class="btn-like">
                                         <span class="ico-like">좋아요</span>
@@ -52,10 +53,92 @@ const commentForm = {
                                 </li>
                             </ul>
                         </div>
+                        ${item.pcommentList.length > 0 ? `<div id="replyWrap_${item.commentId}" class="cbox_reply_area">` 
+                : `<div id="replyWrap_${item.commentId}" class="cbox_reply_area" style="display: none">`}
+                          <div id="replyArea_${item.commentId}" class="reply_write_wrap flex-column" style="display: none">
+                            <textarea id="replyText_${item.commentId}" class="comment-input" rows="6" placeholder="댓글을 작성하세요."></textarea>
+                            <div class="reply_btn-_wrap">
+                                <button type="button" class="btn-cancel" onclick="commentForm.hideReplyArea(${item.commentId})">취소</button>
+                                <button type="button" class="btn-comment" onclick="commentForm.replyCommentSave(${item.commentId})">댓글 작성</button>
+                            </div>
+                          </div>
+                          ${item.pcommentList.length > 0 ? `${commentForm.appendReply(item.pcommentList)}` : ``}
+                       </div>
                     </div>`
         }).join('')
 
         document.getElementById('comment_box').insertAdjacentHTML('beforeend', rows)
+    },
+
+    replyCommentSave(commentId) {
+        const comment = document.getElementById('replyText_' + commentId).value
+        const boardId = document.getElementById('boardId').value
+
+        const successHandler = () => {
+            alert("답글이 등록되었습니다.")
+            comment.value = ""
+            commentForm.getCommentList()
+        }
+
+        fetch("/comment/replySave", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            },
+            body: JSON.stringify({comment, commentId, boardId})
+        })
+            .then((response) => response.text())
+            .then((data) => successHandler(data))
+            .catch((error) => alert(error))
+
+    },
+
+    appendReply(pCommentList) {
+        let row = ''
+
+        pCommentList.map((item, i) => {
+            row += `<div class="reply_list_wrap">
+                    <ul class="reply_list">
+                        <li>
+                            <div class="reply_comment">
+                                <div class="flex-between">
+                                    <div class="cbox-info">
+                                        <div class="cbox_profile">${item.nickName}</div>
+                                        <div class="cbox_date">${item.createDate}</div>
+                                    </div>
+                                    <div class="cbox-action">
+                                        <button type="button">수정</button>
+                                        <button type="button" class="btn-delComment">삭제</button>
+                                    </div>
+                                </div>
+                                <div class="cbox_txt">
+                                    <p style="font-size: 15px;">${item.comment}</p>
+                                </div>
+                                <div class="cbox_tool">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:;" class="btn-like">
+                                                <span class="ico-like">좋아요</span>
+                                                <span class="like-count">공감</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>`
+        })
+        return row
+    },
+
+    showReplyArea(commentId) {
+        document.getElementById('replyArea_' + commentId).style.display = 'block'
+    },
+
+    hideReplyArea(commentId) {
+        document.getElementById('replyArea_' + commentId).style.display = 'none'
     },
 
     deleteComment(commentId) {

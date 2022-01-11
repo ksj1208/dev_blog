@@ -4,6 +4,8 @@ import com.dev.devblog.comment.entity.Comment;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class CommentResponse {
@@ -13,7 +15,9 @@ public class CommentResponse {
     private final String nickName;
     private final String comment;
     private final LocalDateTime createDate;
+    private final Long pCommentId;
     private final String writeRole;
+    private List<CommentResponse> pCommentList;
 
     private CommentResponse(Comment comment, Long readUserCode) {
         this.boardId = comment.getBoardId();
@@ -21,6 +25,7 @@ public class CommentResponse {
         this.nickName = comment.getUser().getNickName();
         this.comment = comment.getContent();
         this.createDate = comment.getCreateDate();
+        this.pCommentId = comment.getPCommentId();
         this.writeRole = comment.getUser().getUserCode() == readUserCode ? "Y" : "N";
     }
 
@@ -35,5 +40,9 @@ public class CommentResponse {
 
     public static CommentResponse from(Comment comment, Long readUserCode) {
         return new CommentResponse(comment, readUserCode);
+    }
+
+    public void setPCommentList(List<Comment> pCommentList, Long readUserCode) {
+        this.pCommentList = pCommentList.stream().map((o) -> CommentResponse.from(o, readUserCode)).collect(Collectors.toList());
     }
 }
