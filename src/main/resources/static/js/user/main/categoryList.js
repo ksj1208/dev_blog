@@ -11,8 +11,8 @@ const categoryList = {
 
     search: (pageNum) => {
         const request = {
-            // page: pageNum - 1,
-            // size: 5,
+            page: pageNum - 1,
+            size: 5,
             status: '사용'
         }
 
@@ -21,7 +21,7 @@ const categoryList = {
             categoryList.appendData(data.content)
         }
 
-        fetch('/categories/list/', {
+        fetch('/categories/list/'+ request.status + '?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

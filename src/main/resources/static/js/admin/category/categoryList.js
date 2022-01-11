@@ -64,7 +64,7 @@ const categoryList = {
             categoryList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/categories/list?' + $.param(request), {
+        fetch('/categories/listAll?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

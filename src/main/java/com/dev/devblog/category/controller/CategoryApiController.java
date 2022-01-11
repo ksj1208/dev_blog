@@ -18,9 +18,15 @@ public class CategoryApiController {
     private final CategoryReadService categoryReadService;
     private final CategoryCUDService categoryCUDService;
 
-	@GetMapping("/categories/list")
+	@GetMapping("/categories/listAll")
 	public ResponseEntity<CategoryListResponse> getList(final Pageable pageable){
-		CategoryListResponse response = categoryReadService.getList(pageable);
+		CategoryListResponse response = categoryReadService.getListAll(pageable);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/categories/list/{status}")
+	public ResponseEntity<CategoryListResponse> getUseList(final Pageable pageable, @PathVariable String status){
+		CategoryListResponse response = categoryReadService.getList(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 

@@ -16,8 +16,8 @@ public class CategoryReadService {
 
 	private final CategoryRepository categoryRepository;
 
-	public CategoryListResponse getList(Pageable pageable){
-		return CategoryListResponse.from(categoryRepository.findAllByPageable(pageable));
+	public CategoryListResponse getList(Pageable pageable, String status){
+		return CategoryListResponse.from(categoryRepository.findAllByPageableAndStatus(pageable, status));
 	}
 
 	public CategoryResponse getDetail(Long categoryId) {
@@ -25,5 +25,9 @@ public class CategoryReadService {
 				() -> new NoSuchElementException("해당 카테고리가 존재하지 않습니다.")
 		);
 		return CategoryResponse.from(category);
+	}
+
+	public CategoryListResponse getListAll(Pageable pageable) {
+		return CategoryListResponse.from(categoryRepository.findAllByPageable(pageable));
 	}
 }
