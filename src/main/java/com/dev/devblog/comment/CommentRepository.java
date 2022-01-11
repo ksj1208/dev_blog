@@ -10,6 +10,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(value = "SELECT c FROM Comment c" +
             " WHERE c.boardId = :boardId" +
-            " ORDER BY c.createDate DESC ")
-    List<Comment> findAllById(Long boardId);
+            " AND c.pCommentId IS NULL" +
+            " ORDER BY c.createDate ASC ")
+    List<Comment> findAllByBoardId(Long boardId);
+
+    @Query(value = "SELECT c FROM Comment c" +
+            " WHERE c.pCommentId = :commentId" +
+            " ORDER BY c.createDate ASC ")
+    List<Comment> findAllById(Long commentId);
 }

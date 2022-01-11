@@ -3,6 +3,7 @@ package com.dev.devblog.comment;
 import com.dev.devblog.comment.dto.CommentListResponse;
 import com.dev.devblog.comment.dto.CommentSaveRequest;
 import com.dev.devblog.comment.dto.CommentUpdateRequest;
+import com.dev.devblog.comment.dto.ReplyCommentSaveRequest;
 import com.dev.devblog.comment.service.CommentCUDService;
 import com.dev.devblog.comment.service.CommentReadService;
 import com.dev.devblog.grobal.annotation.CurrentUserCode;
@@ -39,6 +40,12 @@ public class CommentController {
     @PatchMapping("/comment/update")
     public ResponseEntity<String> commentUpdate(@RequestBody final CommentUpdateRequest request, @CurrentUserCode Long userCode) {
         commentCUDService.commentUpdate(request, userCode);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/comment/replySave")
+    public ResponseEntity<String> replySave(@RequestBody final ReplyCommentSaveRequest request, @CurrentUserCode Long userCode) {
+        commentCUDService.replySave(request, userCode);
         return ResponseEntity.ok().build();
     }
 }
