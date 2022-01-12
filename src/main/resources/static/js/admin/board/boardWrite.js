@@ -1,13 +1,12 @@
 const boardWrite = {
 
     init: () => {
-        smartEditor.init()
+        toastEditor.createFrame()
         boardWrite.bind()
     },
 
     bind: () => {
         document.getElementById('saveBtn').addEventListener('click', boardWrite.save)
-        document.getElementById('previewBtn').addEventListener('click', boardWrite.preview)
     },
 
     save: () => {
@@ -30,13 +29,8 @@ const boardWrite = {
             .catch((error) => alert(error))
     },
 
-    preview: () => {
-        const previewArea = document.getElementById('previewArea')
-        previewArea.innerHTML = document.getElementById('content').value
-    },
-
     createSaveRequest: () => {
-        const content = document.getElementById('content').value
+        const content = toastEditor.getValue()
         const subject = document.getElementById('subject').value
         const request = {content, subject}
 

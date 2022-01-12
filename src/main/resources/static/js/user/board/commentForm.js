@@ -2,10 +2,24 @@ const commentForm = {
     init() {
         this.bind()
         this.getCommentList()
+        this.showContent()
     },
 
     bind() {
         document.getElementById('commentBtn').addEventListener('click', this.onclickCommentBtn)
+    },
+
+    showContent() {
+        const { Editor } = toastui;
+        const { codeSyntaxHighlight } = Editor.plugin;
+
+        const viewer = Editor.factory({
+            el: document.querySelector('#viewer'),
+            viewer: true,
+            height: '500px',
+            initialValue: document.getElementById('boardContent').value,
+            plugins: [[codeSyntaxHighlight, { highlighter: Prism }]]
+        });
     },
 
     getCommentList() {
@@ -44,7 +58,9 @@ const commentForm = {
                         </div>
                         <div class="cbox_tool">
                             <ul class="flex-start">
-                                <li><button type="button" class="btn-reply" onclick="commentForm.showReplyArea(${item.commentId})">답글 ${item.pcommentList.length}</button></li>
+                                <li>
+                                    <button type="button" class="btn-reply" onclick="commentForm.showReplyArea(${item.commentId})">답글 ${item.pcommentList.length}</button>
+                                </li>
                                 <li>
                                     <a href="javascript:;" class="btn-like">
                                         <span class="ico-like">좋아요</span>
@@ -53,12 +69,14 @@ const commentForm = {
                                 </li>
                             </ul>
                         </div>
-                        ${item.pcommentList.length > 0 ? `<div id="replyWrap_${item.commentId}" class="cbox_reply_area">` 
-                : `<div id="replyWrap_${item.commentId}" class="cbox_reply_area" style="display: none">`}
-                          <div id="replyArea_${item.commentId}" class="reply_write_wrap flex-column" style="display: none">
+                         ${item.pcommentList.length > 0 ? `<div id="replyArea_${item.commentId}" class="cbox_reply_area">` 
+                : `<div id="replyArea_${item.commentId}" class="cbox_reply_area" style="display: none">`}
+                          <div id="replyWrap_${item.commentId}" class="reply_write_wrap flex-column" style="display: none">
                             <textarea id="replyText_${item.commentId}" class="comment-input" rows="6" placeholder="댓글을 작성하세요."></textarea>
                             <div class="reply_btn-_wrap">
-                                <button type="button" class="btn-cancel" onclick="commentForm.hideReplyArea(${item.commentId})">취소</button>
+                             ${item.pcommentList.length > 0 ? `<button type="button" class="btn-cancel" onclick="commentForm.hideReplyWrap(${item.commentId})">취소</button>`
+                : `<button type="button" class="btn-cancel" onclick="commentForm.hideReplyArea(${item.commentId})">취소</button>`}
+                                
                                 <button type="button" class="btn-comment" onclick="commentForm.replyCommentSave(${item.commentId})">댓글 작성</button>
                             </div>
                           </div>
@@ -108,8 +126,8 @@ const commentForm = {
                                         <div class="cbox_date">${item.createDate}</div>
                                     </div>
                                     <div class="cbox-action">
-                                        <button type="button">수정</button>
-                                        <button type="button" class="btn-delComment">삭제</button>
+                                        <button type="button" onclick="commentForm.showUpdateForm(this, ${item.commentId})">수정</button>
+                                        <button type="button" class="btn-delComment" onclick="commentForm.deleteComment(${item.commentId})">삭제</button>
                                     </div>
                                 </div>
                                 <div class="cbox_txt">
@@ -135,10 +153,16 @@ const commentForm = {
 
     showReplyArea(commentId) {
         document.getElementById('replyArea_' + commentId).style.display = 'block'
+        document.getElementById('replyWrap_' + commentId).style.display = 'block'
     },
 
     hideReplyArea(commentId) {
         document.getElementById('replyArea_' + commentId).style.display = 'none'
+        document.getElementById('replyWrap_' + commentId).style.display = 'none'
+    },
+
+    hideReplyWrap(commentId) {
+        document.getElementById('replyWrap_' + commentId).style.display = 'none'
     },
 
     deleteComment(commentId) {
