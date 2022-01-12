@@ -2,12 +2,11 @@ const boardUpdate = {
 
     init: () => {
         boardUpdate.getDetail()
-        smartEditor.init()
+        toastEditor.createFrame()
         boardUpdate.bind()
     },
 
     bind: () => {
-        document.getElementById('previewBtn').addEventListener('click', boardUpdate.preview)
         document.getElementById('updateBtn').addEventListener('click', boardUpdate.update)
     },
 
@@ -15,7 +14,7 @@ const boardUpdate = {
         const boardId = document.getElementById('boardId').value
         const successHandler = (data) => {
             document.getElementById('subject').value = data.subject
-            $('#content').summernote('code', data.content)
+            toastEditor.setValue(data.content)
         }
 
         fetch('/boards/detail/'+ boardId, {
@@ -45,13 +44,8 @@ const boardUpdate = {
             .catch((error) => alert(error))
     },
 
-    preview: () => {
-        const previewArea = document.getElementById('previewArea')
-        previewArea.innerHTML = document.getElementById('content').value
-    },
-
     createUpdateRequest: () => {
-        const content = document.getElementById('content').value
+        const content = toastEditor.getValue()
         const subject = document.getElementById('subject').value
         const boardId = document.getElementById('boardId').value
         const request = {content, subject, boardId}

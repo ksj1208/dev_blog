@@ -3,6 +3,17 @@
       layout:decorate="user/layout/detailLayout">
 
 <section layout:fragment="content">
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/3.0.0/toastui-editor-plugin-code-syntax-highlight.min.css" />
+
+    <!-- Editor -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <!-- Editor's Plugin -->
+    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+    <script src="https://uicdn.toast.com/editor-plugin-uml/latest/toastui-editor-plugin-uml.min.js"></script>
+
+
     <div class="container inner">
         <div class="content_wrap">
             <div class="cont_header">
@@ -19,7 +30,9 @@
                 </div>
             </div>
             <div class="cont_post">
-                <p th:utext="${board.content}"/>
+                <input type="hidden" id="boardContent" th:value="${board.content}">
+<!--                <p th:utext="${board.content}"/>-->
+                <div id="viewer"></div>
                 <div class="post_bottom">
                     <ul class="post-tag">
                         <li class="tag-item">#test</li>
