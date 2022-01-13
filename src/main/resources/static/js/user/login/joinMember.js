@@ -97,7 +97,7 @@ const joinMember = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
-                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('userId')
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
             },
             body: JSON.stringify(request)
         })
@@ -154,11 +154,7 @@ const joinMember = {
     isExistNickName(nickName){
         //닉네임 중복 검사
         alert("nick name check ");
-
     }
-
-
-
 }
 
 joinMember.init()

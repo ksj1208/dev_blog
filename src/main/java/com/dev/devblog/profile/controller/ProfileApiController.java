@@ -2,6 +2,7 @@ package com.dev.devblog.profile.controller;
 
 import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
+import com.dev.devblog.grobal.annotation.CurrentUserCode;
 import com.dev.devblog.profile.dto.ProfileSaveRequest;
 import com.dev.devblog.profile.dto.ProfileListResponse;
 import com.dev.devblog.profile.dto.ProfileUpdateRequest;
@@ -23,7 +24,7 @@ public class ProfileApiController {
     private final ProfileReadService profileReadService;
     private final ProfileCUDService profileCUDService;
 
-    @GetMapping("/profiles/list")
+    @GetMapping("/admin/profiles/list")
     public ResponseEntity<ProfileListResponse> getList(final Pageable pageable){
         // 예) /profiles/list?page=0&size=20&sort=id,desc&sort=username,desc
         log.info("================= 프로필 리스트 시작 =================");
@@ -36,10 +37,10 @@ public class ProfileApiController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/profile/save")
-    public ResponseEntity<String> profileCreate(@RequestBody final ProfileSaveRequest request) {
+    @PostMapping("/admin/profile/save")
+    public ResponseEntity<String> profileCreate(@RequestBody final ProfileSaveRequest request,  @CurrentUserCode Long userCode) {
         log.info("================= 프로필 등록 시작 =================");
-        profileCUDService.profileSave(request, 13L);
+        profileCUDService.profileSave(request, userCode);
         log.info("================= 프로필 등록 끝 =================");
         log.info("");
         log.info("");
@@ -48,7 +49,7 @@ public class ProfileApiController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/profile/status")
+    @PatchMapping("/admin/profile/status")
     public ResponseEntity<String> profileUpdateStatus(@RequestBody final ProfileUpdateStatusRequest request) {
         log.info("================= 프로필 상태 변경 시작 =================");
         log.info("Request Value :" + request.getProfileCode() + " :: " + request.getStatus());
@@ -61,7 +62,7 @@ public class ProfileApiController {
         return ResponseEntity.ok("변경이 완료되었습니다.");
     }
 
-    @PatchMapping("/profile/modify")
+    @PatchMapping("/admin/profile/modify")
     public ResponseEntity<String> profileUpdate(@RequestBody final ProfileUpdateRequest request) {
         log.info("================= 프로필 변경 시작 =================");
         log.info("Request Value :" + request.getProfileCode() + " :: " + request.getSubject() + " :: " + request.getContent());
