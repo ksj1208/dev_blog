@@ -8,7 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface TagsRepository extends JpaRepository<Tags, Long> {
 
-	@Query(value = "SELECT c FROM Tags c" +
-			" ORDER BY c.createDate DESC ")
+	@Query(value = "SELECT t FROM Tags t" +
+			" ORDER BY t.createDate DESC ")
 	Page<Tags> findAllByPageable(Pageable pageable);
+
+	@Query(value = "SELECT t FROM Tags t" +
+			" WHERE t.tagStatus = :status" +
+			" ORDER BY t.createDate DESC ")
+	Page<Tags> findAllByPageableAndStatus(Pageable pageable, String status);
 }

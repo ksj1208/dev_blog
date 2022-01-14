@@ -17,8 +17,8 @@ public class TagsReadService {
 
 	private final TagsRepository tagsRepository;
 
-	public TagsListResponse getList(Pageable pageable){
-		return TagsListResponse.from(tagsRepository.findAllByPageable(pageable));
+	public TagsListResponse getList(Pageable pageable, String status){
+		return TagsListResponse.from(tagsRepository.findAllByPageableAndStatus(pageable, status));
 	}
 
 	public TagsResponse getDetail(Long tagId) {
@@ -26,5 +26,9 @@ public class TagsReadService {
 				() -> new NoSuchElementException("해당 태그가 존재하지 않습니다.")
 		);
 		return TagsResponse.from(tags);
+	}
+
+	public TagsListResponse getListAll(Pageable pageable) {
+		return TagsListResponse.from(tagsRepository.findAllByPageable(pageable));
 	}
 }

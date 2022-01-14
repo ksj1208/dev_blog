@@ -18,9 +18,15 @@ public class TagsApiController {
     private final TagsReadService tagsReadService;
     private final TagsCUDService tagsCUDService;
 
-	@GetMapping("/tags/list")
+	@GetMapping("/tags/listAll")
 	public ResponseEntity<TagsListResponse> getList(final Pageable pageable){
-		TagsListResponse response = tagsReadService.getList(pageable);
+		TagsListResponse response = tagsReadService.getListAll(pageable);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/tags/list/{status}")
+	public ResponseEntity<TagsListResponse> getList(final Pageable pageable, @PathVariable String status){
+		TagsListResponse response = tagsReadService.getList(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 
