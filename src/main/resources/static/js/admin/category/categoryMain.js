@@ -18,7 +18,7 @@ const categoryMain = {
             categoryName: categoryName
         }
 
-        fetch("/categories/save", {
+        fetch("/categories", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

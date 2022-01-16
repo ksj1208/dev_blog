@@ -21,7 +21,7 @@ const categoryList = {
             categoryList.appendData(data.content)
         }
 
-        fetch('/categories/list/'+ request.status + '?' + $.param(request), {
+        fetch('/categories/'+ request.status + '?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

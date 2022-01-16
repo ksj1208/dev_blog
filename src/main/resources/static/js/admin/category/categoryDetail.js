@@ -29,7 +29,7 @@ const categoryDetail = {
             location.href = "/category/categoryListPage"
         }
 
-        fetch("/categories/update", {
+        fetch("/categories", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
