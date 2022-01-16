@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <title>태그 생성</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+<h2>태그 상세 페이지입니다.</h2>
+
+<div>
+    <h3>태그 상세</h3>
+    <div>
+        <label>태그명 : </label>
+        <input type="hidden" id="tagId" th:value="${tag.tagId}">
+        <input type="text" id="tagName" name="tagName" th:value="${tag.tagName}">
+        <select id="tagStatus">
+            <option value="사용" th:if="${tag.tagStatus == '사용'}" selected>사용</option>
+            <option value="미사용" th:if="${tag.tagStatus == '사용'}">미사용</option>
+            <option value="사용" th:unless="${tag.tagStatus == '사용'}">사용</option>
+            <option value="미사용" th:unless="${tag.tagStatus == '사용'}" selected>미사용</option>
+        </select>
+        <button id="updateBtn">수정</button>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="/js/admin/tag/tagDetail.js"></script>
+</html>

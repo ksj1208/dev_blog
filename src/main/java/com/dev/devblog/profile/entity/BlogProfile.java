@@ -44,15 +44,19 @@ public class BlogProfile {
     private String status;
 
     public void updateStatus(String status) {
+
         this.status = status;
     }
     public void updateSubject(String subject) {
+
         this.subject = subject;
     }
     public void updateContent(String content) {
+
         this.content = content;
     }
     public void updateDate(LocalDateTime updateDate) {
+
         this.updateDate = updateDate;
     }
 }

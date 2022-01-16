@@ -1,13 +1,12 @@
-package com.dev.devblog.board.entity;
+package com.dev.devblog.comment.entity;
 
+import com.dev.devblog.user.entity.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,9 +14,11 @@ import java.time.LocalDateTime;
 @Table(name = "COMMENT")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Comment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
 
     @Column(name = "BOARD_ID")
@@ -29,9 +30,14 @@ public class Comment {
     @Column(name = "CONTENT")
     private String content;
 
+    @JoinColumn(name = "USER_CODE", referencedColumnName = "userCode")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @Column(name = "CREATE_DATE")
     private LocalDateTime createDate;
 
-    @Column(name = "USER_CODE")
-    private Long userCode;
+    public void updateContent(String comment) {
+        this.content = comment;
+    }
 }

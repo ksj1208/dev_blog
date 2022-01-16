@@ -1,29 +1,29 @@
-const categoryList = {
+const tagList = {
     init: () => {
-        categoryList.bind()
-        categoryList.search(1)
+        tagList.bind()
+        tagList.search(1)
     },
 
     bind: () => {
-        document.getElementById('categoryWriteBtn').addEventListener('click', categoryList.onClickCategoryWrite)
-        document.getElementById('categoryDeleteBtn').addEventListener('click', categoryList.onClickCategoryDelete)
-        document.getElementById('checkboxAll').addEventListener('click', categoryList.onClickCheckboxAll)
+        document.getElementById('tagWriteBtn').addEventListener('click', tagList.onClicktagWrite)
+        document.getElementById('tagDeleteBtn').addEventListener('click', tagList.onClicktagDelete)
+        document.getElementById('checkboxAll').addEventListener('click', tagList.onClickCheckboxAll)
     },
 
-    onClickCategoryDelete: () => {
-        let categoryIdArr = []
+    onClicktagDelete: () => {
+        let tagIdArr = []
         document.querySelectorAll('.checkbox').forEach(target => {
             if(target.checked)
-                categoryIdArr.push(target.value)
+                tagIdArr.push(target.value)
         })
 
-        const request = categoryIdArr
+        const request = tagIdArr
         const successHandler = (data) => {
-            categoryList.search(1)
+            tagList.search(1)
             // alert(data)
         }
 
-        fetch("/categories/delete", {
+        fetch("/tags/delete", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -35,8 +35,8 @@ const categoryList = {
             .then(data => successHandler(data))
     },
 
-    onClickCategoryWrite: () => {
-        location.href = "/category/categoryWrite"
+    onClicktagWrite: () => {
+        location.href = "/tags/tagWrite"
     },
 
     onClickCheckboxAll: () => {
@@ -59,12 +59,12 @@ const categoryList = {
 
         const successHandler= (response) => {
             console.log("response : ", response);
-            const data = response.categoryList
-            categoryList.appendData(data.content)
-            categoryList.appendPaging(data.totalElements, pageNum)
+            const data = response.tagList
+            tagList.appendData(data.content)
+            tagList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/categories/listAll?' + $.param(request), {
+        fetch('/tags/listAll?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())
@@ -72,29 +72,29 @@ const categoryList = {
     },
 
     appendData: (data) => {
-        $('#categoryListTable tr:not(:first)').remove();
+        $('#tagListTable tr:not(:first)').remove();
 
         const rows = data.map((item, i) => {
             return `<tr>
-                <td><input type="checkbox" class="checkbox" name="checkbox" value="${item.categoryId}"></td>
+                <td><input type="checkbox" class="checkbox" name="checkbox" value="${item.tagId}"></td>
                 <td>${i + 1}</td>
-                <td style="cursor: pointer" onclick= "location.href ='/category/detailPage/${item.categoryId}'">${item.categoryName}</td>
-<!--                <td>${item.categoryName}</td>-->
+                <td style="cursor: pointer" onclick= "location.href ='/tags/detailPage/${item.tagId}'">${item.tagName}</td>
+<!--                <td>${item.tagName}</td>-->
                 <td>${item.createDate}</td>
                 <td>${item.updateDate}</td>
-                <td>${item.categoryStatus}</td>
+                <td>${item.tagStatus}</td>
             </tr>`
         }).join('')
 
-        document.getElementById('categoryListTable').insertAdjacentHTML('beforeend', rows)
+        document.getElementById('tagListTable').insertAdjacentHTML('beforeend', rows)
     },
 
     appendPaging: (totalCount, pageNum) => {
         const paging = new Paging(20, 10, totalCount, pageNum)
         paging.showPaging()
-        paging.attachClickEvent(categoryList.search)
+        paging.attachClickEvent(tagList.search)
     }
 
 }
 
-categoryList.init()
+tagList.init()
