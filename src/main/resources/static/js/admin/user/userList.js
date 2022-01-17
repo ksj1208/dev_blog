@@ -32,7 +32,6 @@ const userList = {
             .then(data => successHandler(data))
     },
 
-
     appendData: (data) => {
         $('#userListTable tr:not(:first)').remove();
 

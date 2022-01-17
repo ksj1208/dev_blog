@@ -17,7 +17,6 @@ public class AdminUserApiController {
 
     private final AdminUserReadService adminUserReadService;
     //private final AdminUserCUDService adminUserCUDService;
-
     @GetMapping("/admin/adminUser/list")
     public ResponseEntity<AdminUserListResponse> getList(final Pageable pageable){
         log.info("================= 어드민 유저 리스트 시작 =================");

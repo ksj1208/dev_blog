@@ -42,4 +42,5 @@ public class AdminUserResponse {
     }
 
     public static AdminUserResponse from(User user) { return new AdminUserResponse(user); }
+
 }
