@@ -64,7 +64,7 @@ const tagList = {
             tagList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/tags/'+ request.status + '?' + $.param(request), {
+        fetch('/tags?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

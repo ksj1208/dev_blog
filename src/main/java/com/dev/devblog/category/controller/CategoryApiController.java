@@ -1,5 +1,6 @@
 package com.dev.devblog.category.controller;
 
+import com.dev.devblog.category.dto.CategoryDtoListResponse;
 import com.dev.devblog.category.dto.CategoryListResponse;
 import com.dev.devblog.category.dto.CategorySaveRequest;
 import com.dev.devblog.category.service.CategoryCUDService;
@@ -18,15 +19,16 @@ public class CategoryApiController {
     private final CategoryReadService categoryReadService;
     private final CategoryCUDService categoryCUDService;
 
-//	@GetMapping("/categories")
-//	public ResponseEntity<CategoryListResponse> getList(final Pageable pageable){
-//		CategoryListResponse response = categoryReadService.getListAll(pageable);
-//		return ResponseEntity.ok(response);
-//	}
+	@GetMapping("/categories")
+	public ResponseEntity<CategoryListResponse> getList(final Pageable pageable){
+		CategoryListResponse response = categoryReadService.getList(pageable);
+		return ResponseEntity.ok(response);
+	}
 
 	@GetMapping("/categories/{status}")
-	public ResponseEntity<CategoryListResponse> getUseList(final Pageable pageable, @PathVariable String status){
-		CategoryListResponse response = categoryReadService.getList(pageable, status);
+	public ResponseEntity<CategoryDtoListResponse> getUseList(final Pageable pageable, @PathVariable String status){
+		System.out.println("status = " + status);
+		CategoryDtoListResponse response = categoryReadService.findAllByStatus(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 

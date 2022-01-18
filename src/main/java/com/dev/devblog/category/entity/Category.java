@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Table(name = "CATEGORY")
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @DynamicUpdate
 @ToString
@@ -32,6 +32,8 @@ public class Category {
 
 	@Column(name = "UPDATE_DATE")
 	private LocalDateTime updateDate;
+
+
 
 	public void updateCategoryStatus(String categoryStatus) {
 		this.categoryStatus = categoryStatus;

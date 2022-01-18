@@ -2,6 +2,7 @@ package com.dev.devblog.tags.service;
 
 
 import com.dev.devblog.tags.dao.TagsRepository;
+import com.dev.devblog.tags.dto.TagsDtoListResponse;
 import com.dev.devblog.tags.dto.TagsListResponse;
 import com.dev.devblog.tags.dto.TagsResponse;
 import com.dev.devblog.tags.entity.Tags;
@@ -17,8 +18,8 @@ public class TagsReadService {
 
 	private final TagsRepository tagsRepository;
 
-	public TagsListResponse getList(Pageable pageable, String status){
-		return TagsListResponse.from(tagsRepository.findAllByPageableAndStatus(pageable, status));
+	public TagsListResponse findAll(Pageable pageable){
+		return TagsListResponse.from(tagsRepository.findAll(pageable));
 	}
 
 	public TagsResponse getDetail(Long tagId) {
@@ -28,7 +29,7 @@ public class TagsReadService {
 		return TagsResponse.from(tags);
 	}
 
-	public TagsListResponse getListAll(Pageable pageable) {
-		return TagsListResponse.from(tagsRepository.findAllByPageable(pageable));
+	public TagsDtoListResponse findAllByStatus(Pageable pageable, String status) {
+		return TagsDtoListResponse.from(tagsRepository.findAllByStatus(pageable, status));
 	}
 }

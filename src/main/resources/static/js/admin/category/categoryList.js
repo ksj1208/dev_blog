@@ -54,7 +54,7 @@ const categoryList = {
     search: (pageNum) => {
         const request = {
             page: pageNum - 1,
-            size: 20
+            size: 20,
         }
 
         const successHandler= (response) => {

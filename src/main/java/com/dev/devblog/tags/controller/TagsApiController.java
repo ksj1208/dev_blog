@@ -1,5 +1,7 @@
 package com.dev.devblog.tags.controller;
 
+import com.dev.devblog.tags.dto.TagsDtoListResponse;
+import com.dev.devblog.tags.dto.TagsDtoResponse;
 import com.dev.devblog.tags.dto.TagsListResponse;
 import com.dev.devblog.tags.dto.TagsSaveRequest;
 import com.dev.devblog.tags.service.TagsCUDService;
@@ -18,16 +20,15 @@ public class TagsApiController {
     private final TagsReadService tagsReadService;
     private final TagsCUDService tagsCUDService;
 
-//	@GetMapping("/tags")
-//	public ResponseEntity<TagsListResponse> getList(final Pageable pageable){
-//		TagsListResponse response = tagsReadService.getListAll(pageable);
-//		return ResponseEntity.ok(response);
-//	}
+	@GetMapping("/tags")
+	public ResponseEntity<TagsListResponse> getList(final Pageable pageable){
+		TagsListResponse response = tagsReadService.findAll(pageable);
+		return ResponseEntity.ok(response);
+	}
 
 	@GetMapping("/tags/{status}")
-	public ResponseEntity<TagsListResponse> getList(final Pageable pageable, @PathVariable String status){
-		System.out.println("status = " + status);
-		TagsListResponse response = tagsReadService.getList(pageable, status);
+	public ResponseEntity<TagsDtoListResponse> getList(final Pageable pageable, @PathVariable String status){
+		TagsDtoListResponse response = tagsReadService.findAllByStatus(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 
