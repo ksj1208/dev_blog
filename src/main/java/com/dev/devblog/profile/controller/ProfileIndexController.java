@@ -17,18 +17,18 @@ public class ProfileIndexController {
 
     private final ProfileReadService profileReadService;
 
-    @GetMapping("/profile/listPage")
+    @GetMapping("/admin/profile/listPage")
     public String profileListPage() {
         return "/admin/profile/profileList";
     }
 
-    @GetMapping("/profile/profileWriter")
+    @GetMapping("/admin/profile/profileWriter")
     public String profileWritePage() {
         return "/admin/profile/profileWriter";
     }
 
 
-    @GetMapping("/profile/detailPage/{profileCode}")
+    @GetMapping("/admin/profile/detailPage/{profileCode}")
     public String userBoardDetailPage(@PathVariable Long profileCode, Model model) {
         log.info("================= 프로필 조회 시작 =================");
         ProfileResponse response = profileReadService.getDetail(profileCode);

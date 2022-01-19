@@ -10,7 +10,7 @@ const profileList = {
     },
 
     onClickProfileWrite: () => {
-        location.href = "/profile/profileWriter"
+        location.href = "/admin/profile/profileWriter"
     },
 
     onClickProfileCheckAll: () => {
@@ -37,7 +37,7 @@ const profileList = {
             profileList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/profiles/list?' + $.param(request), {
+        fetch('/admin/profiles/list?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())
@@ -51,7 +51,7 @@ const profileList = {
         const rows = data.map((item, i) => {
             return `<tr>
                 <td>${i + 1}</td>
-                <td style="cursor: pointer" onclick= "location.href ='/profile/detailPage/${item.profileCode}'">${item.subject}</td>
+                <td style="cursor: pointer" onclick= "location.href ='/admin/profile/detailPage/${item.profileCode}'">${item.subject}</td>
                 <td>${item.writer}</td>
                 <td>${item.createDate}</td>
                 <td>
@@ -82,7 +82,7 @@ const profileList = {
             profileList.search(1)
         }
 
-        fetch("/profile/status", {
+        fetch("/admin/profile/status", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

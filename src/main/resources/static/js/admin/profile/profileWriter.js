@@ -5,6 +5,7 @@ const profileWriter = {
 
     bind: () => {
         document.getElementById('profileSaveBtn').addEventListener('click', profileWriter.save)
+
     },
 
     createSaveRequest: () => {
@@ -19,10 +20,10 @@ const profileWriter = {
         const request = profileWriter.createSaveRequest()
         const successHandler = (data) => {
             alert("프로필 등록 완료")
-            location.href = "/profile/listPage"
+            location.href = "/admin/profile/listPage"
         }
 
-        fetch("/profile/save", {
+        fetch("/admin/profile/save", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
