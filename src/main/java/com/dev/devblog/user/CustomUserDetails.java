@@ -1,5 +1,6 @@
 package com.dev.devblog.user;
 
+import com.dev.devblog.user.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -85,4 +86,35 @@ public class CustomUserDetails implements UserDetails {
 
     //user nickname
     public String getNickName() {return nickName; }
+
+
+
+    private CustomUserDetails (User user){
+        this.userId = user.getUserId();
+        this.password = user.getPassword();
+        //this.authorities = authorities();
+        this.nickName = user.getNickName();
+        this.email = user.getEmail();
+        this.accountPath = user.getAccountPath();
+    }
+
+    public static CustomUserDetails from(User user){
+        return new CustomUserDetails(user);
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

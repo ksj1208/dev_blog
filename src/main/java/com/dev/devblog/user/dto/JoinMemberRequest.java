@@ -7,9 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class JoinMemberReqeust {
+public class JoinMemberRequest {
     private String userId;
     private String nickName;
     private String password;
     private String email;
+
+
 }
