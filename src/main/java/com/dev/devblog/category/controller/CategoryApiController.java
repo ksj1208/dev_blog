@@ -27,7 +27,6 @@ public class CategoryApiController {
 
 	@GetMapping("/categories/{status}")
 	public ResponseEntity<CategoryDtoListResponse> getUseList(final Pageable pageable, @PathVariable String status){
-		System.out.println("status = " + status);
 		CategoryDtoListResponse response = categoryReadService.findAllByStatus(pageable, status);
 		return ResponseEntity.ok(response);
 	}

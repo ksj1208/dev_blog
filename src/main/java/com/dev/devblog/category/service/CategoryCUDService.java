@@ -39,8 +39,6 @@ public class CategoryCUDService {
 				() -> new NoSuchElementException("수정할 카테고리가 존재하지 않습니다.")
 		);
 
-		System.out.println("request = " + request);
-
 		category.updateCategoryName(request.getCategoryName());
 		category.updateCategoryStatus(request.getCategoryStatus());
 		category.updateDate(LocalDateTime.now());
