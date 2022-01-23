@@ -4,6 +4,7 @@ import com.dev.devblog.user.dto.JoinMemberReqeust;
 import com.dev.devblog.user.dto.UserStatusType;
 import com.dev.devblog.user.entity.User;
 import lombok.Getter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -22,6 +23,9 @@ public class Users {
         this.email = request.getEmail();
     }
 
+
+
+
     public static Users of(JoinMemberReqeust request){
         return new Users(request);
     }
@@ -29,7 +33,7 @@ public class Users {
     public User toCreateEntity(){
         return User.builder()
                 .userId(this.userId)
-                .password(this.password)
+                .password(new BCryptPasswordEncoder().encode(this.password)) //password 암호화
                 .authority("user")
                 .nickName(this.nickName)
                 .status(UserStatusType.ACTIVE.getValue())
