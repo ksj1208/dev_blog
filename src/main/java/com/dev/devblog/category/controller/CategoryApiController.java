@@ -19,32 +19,32 @@ public class CategoryApiController {
     private final CategoryReadService categoryReadService;
     private final CategoryCUDService categoryCUDService;
 
-	@GetMapping("/categories")
+	@GetMapping("/categories/list")
 	public ResponseEntity<CategoryListResponse> getList(final Pageable pageable){
 		CategoryListResponse response = categoryReadService.getList(pageable);
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/categories/{status}")
+	@GetMapping("/categories/list/{status}")
 	public ResponseEntity<CategoryDtoListResponse> getUseList(final Pageable pageable, @PathVariable String status){
 		CategoryDtoListResponse response = categoryReadService.findAllByStatus(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 
-	@PostMapping("/categories")
+	@PostMapping("/categories/save")
 	public ResponseEntity<String> categorySave(@RequestBody final CategorySaveRequest request) {
 		categoryCUDService.categorySave(request, 1L);
 
 		return ResponseEntity.ok().build();
 	}
 
-	@DeleteMapping("/categories")
+	@DeleteMapping("/categories/delete")
 	public ResponseEntity<String> categoryDelete(@RequestBody final List<Long> categoryIdArr) {
 		categoryCUDService.categoryDelete(categoryIdArr);
 		return ResponseEntity.ok("삭제되었습니다.");
 	}
 
-	@PatchMapping("/categories")
+	@PatchMapping("/categories/update")
 	public ResponseEntity<String> categoryUpdate(@RequestBody final CategorySaveRequest request) {
 		categoryCUDService.categoryUpdate(request);
 		return ResponseEntity.ok().build();

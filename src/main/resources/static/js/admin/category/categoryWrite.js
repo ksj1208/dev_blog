@@ -24,7 +24,7 @@ const categoryWrite = {
             location.href = "/category/categoryListPage"
         }
 
-        fetch("/categories", {
+        fetch("/categories/save", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

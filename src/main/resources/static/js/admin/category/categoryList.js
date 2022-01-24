@@ -23,7 +23,7 @@ const categoryList = {
             // alert(data)
         }
 
-        fetch("/categories", {
+        fetch("/categories/delete", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -64,7 +64,7 @@ const categoryList = {
             categoryList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/categories?' + $.param(request), {
+        fetch('/categories/list?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())
