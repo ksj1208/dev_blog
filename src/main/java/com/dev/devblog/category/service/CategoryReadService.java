@@ -1,7 +1,6 @@
 package com.dev.devblog.category.service;
 
 import com.dev.devblog.category.dao.CategoryRepository;
-import com.dev.devblog.category.dto.CategoryDtoListResponse;
 import com.dev.devblog.category.dto.CategoryListResponse;
 import com.dev.devblog.category.dto.CategoryResponse;
 import com.dev.devblog.category.entity.Category;
@@ -28,7 +27,7 @@ public class CategoryReadService {
 		return CategoryResponse.from(category);
 	}
 
-	public CategoryDtoListResponse findAllByStatus(Pageable pageable, String status) {
-		return CategoryDtoListResponse.from(categoryRepository.findAllByStatus(pageable, status));
+	public CategoryListResponse findAllByStatus(Pageable pageable, String status) {
+		return CategoryListResponse.from(categoryRepository.findAllByStatus(pageable, status));
 	}
 }

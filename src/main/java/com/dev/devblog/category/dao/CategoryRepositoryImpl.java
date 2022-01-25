@@ -1,7 +1,6 @@
 package com.dev.devblog.category.dao;
 
-import com.dev.devblog.category.dto.CategoryDto;
-import com.dev.devblog.category.dto.QCategoryDto;
+import com.dev.devblog.category.entity.Category;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -26,22 +25,16 @@ public class CategoryRepositoryImpl implements CategoryDynamicRepository {
 	}
 
 	@Override
-	public Page<CategoryDto> findAllByStatus(Pageable pageable, String status) {
-		QueryResults<CategoryDto> results = queryFactory
-				.select(new QCategoryDto(
-						category.categoryId,
-						category.categoryName,
-						category.categoryStatus,
-						category.createDate,
-						category.updateDate
-				))
+	public Page<Category> findAllByStatus(Pageable pageable, String status) {
+		QueryResults<Category> results = queryFactory
+				.select(category)
 				.from(category)
 				.where(statusEq(status))
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
 				.fetchResults();
 
-		List<CategoryDto> content = results.getResults();
+		List<Category> content = results.getResults();
 		long total = results.getTotal();
 		return new PageImpl<>(content, pageable, total);
 	}

@@ -1,11 +1,11 @@
 package com.dev.devblog.category.service;
 
-import com.dev.devblog.board.entity.Board;
 import com.dev.devblog.category.dao.CategoryRepository;
 import com.dev.devblog.category.domain.Categories;
 import com.dev.devblog.category.dto.CategorySaveRequest;
 import com.dev.devblog.category.entity.Category;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +16,16 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class CategoryCUDService {
 
 	private final CategoryRepository categoryRepository;
 
-	public void categorySave(CategorySaveRequest request, Long userCode) {
+	public void categorySave(CategorySaveRequest request) {
+		Long count = categoryRepository.findByCategoryName(request.getCategoryName());
+
+		if (count != 0) throw new IllegalArgumentException("이미 존재하는 카테고리입니다.");
+
 		categoryRepository.save(Categories.of(request).toCreateEntity());
 	}
 
