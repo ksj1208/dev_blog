@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         //로그인 처리를 하기 위한 buider설정
-        auth.userDetailsService(userCUDService).passwordEncoder(passwordEncoder());
+        //auth.userDetailsService(userCUDService).passwordEncoder(passwordEncoder());
     }
 
 
