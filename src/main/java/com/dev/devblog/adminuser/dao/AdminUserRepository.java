@@ -17,10 +17,8 @@ import org.springframework.data.jpa.repository.Query;
  * 2022-01-13           Lee Hosung           최초 생성
  */
 public interface AdminUserRepository extends JpaRepository<User, Long> {
-
     @Query(value = "SELECT b FROM User b" +
             " ORDER BY b.createDate DESC ")
     Page<User> findAllWithPageable(Pageable pageable);
-
 
 }
