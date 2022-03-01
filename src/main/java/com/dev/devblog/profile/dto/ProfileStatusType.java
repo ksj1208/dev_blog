@@ -11,4 +11,5 @@ public enum ProfileStatusType {
     ProfileStatusType(String value) {
         this.value = value;
     }
+
 }

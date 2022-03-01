@@ -16,4 +16,5 @@ public interface ProfileRepository extends JpaRepository<BlogProfile, Long> {
     @Modifying
     @Query(value = "UPDATE BlogProfile set status = 'I'")
     int updateToDisableAllProfileCode();
+
 }

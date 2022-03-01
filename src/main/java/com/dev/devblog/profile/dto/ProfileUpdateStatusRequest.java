@@ -10,4 +10,5 @@ import lombok.Setter;
 public class ProfileUpdateStatusRequest {
     private Long profileCode;
     private String status;
+
 }

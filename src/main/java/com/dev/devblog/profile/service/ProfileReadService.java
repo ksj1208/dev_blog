@@ -27,4 +27,5 @@ public class ProfileReadService {
         );
         return ProfileResponse.from(profile);
     }
+
 }

@@ -40,7 +40,6 @@ public class AdminUserResponse {
         this.email = user.getEmail();
         this.accountPath = user.getAccountPath();
     }
-
     public static AdminUserResponse from(User user) { return new AdminUserResponse(user); }
 
 }

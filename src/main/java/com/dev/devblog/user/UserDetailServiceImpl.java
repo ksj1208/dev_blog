@@ -32,8 +32,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         //권한체크 수정필요 (현재 하드코딩되어있음)
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
+        authorities.add(new SimpleGrantedAuthority(user.getAuthority()));
         CustomUserDetails customUserDetails = new CustomUserDetails(user);
 //        customUserDetails.setUserId(user.getUserId());
 //        customUserDetails.setUserCode(user.getUserCode());
@@ -42,7 +41,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //        customUserDetails.setNickName(user.getNickName());
 //        customUserDetails.setEmail(user.getEmail());
 //        customUserDetails.setAccountPath(user.getAccountPath());
-
 
         return new CustomUserDetails(user);
 //        return new User(user.getUserId(), user.getPassword(), authorities);

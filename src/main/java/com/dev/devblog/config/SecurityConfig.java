@@ -1,5 +1,6 @@
 package com.dev.devblog.config;
 
+
 import com.dev.devblog.user.service.UserCUDService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Bean
+    public SessionRegistry sessionRegistry(){
+        return new SessionRegistryImpl();
+    }
 //    private UserCUDService userCUDService;
 
     @Override
@@ -31,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //권한설정
         http.authorizeRequests()
-                .mvcMatchers("/user/**").hasRole("USER")
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .mvcMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .mvcMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
                 .mvcMatchers("/**").permitAll();
         //로그인 설정
         http.formLogin()
@@ -47,8 +52,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedPage("/denied");
 
+        http.sessionManagement()
+                .maximumSessions(-1)        // 최대 접속수 (-1 : 무한대)
+                .expiredUrl("/login")       // 세션 제한시 리다이렉트할 URL
+                .sessionRegistry(sessionRegistry());
+
 //        http.authorizeRequests().antMatchers("/kakao/callback").permitAll()
-//                .anyRequest().authenticated()
+//                .anyRequest().authenticated(
 //            .and()
 //                .oauth2Login();
     }
