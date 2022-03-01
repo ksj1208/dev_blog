@@ -147,7 +147,7 @@ const joinMember = {
 
     isValidNickName(nickName){
         //닉네임 유효성 검사
-        var reg_nickName = /^[가-힣a-zA-Z0-9]{4,12}$/;
+        const reg_nickName = /^[가-힣a-zA-Z0-9]{4,12}$/;
         if(!reg_nickName.test(nickName)){
             return false;
         }
