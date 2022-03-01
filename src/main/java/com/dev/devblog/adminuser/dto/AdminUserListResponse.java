@@ -20,7 +20,6 @@ import org.springframework.data.domain.Page;
 public class AdminUserListResponse {
 
     private final Page<AdminUserResponse> adminUserList;
-
     private AdminUserListResponse(Page<User> list){
         this.adminUserList = list.map(AdminUserResponse::from);
         log.info(adminUserList.toString());
