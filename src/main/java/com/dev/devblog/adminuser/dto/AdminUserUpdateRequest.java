@@ -20,5 +20,4 @@ import lombok.Setter;
 public class AdminUserUpdateRequest {
     private Long userCode;
     private String authority;
-
 }

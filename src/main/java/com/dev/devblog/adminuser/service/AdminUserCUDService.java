@@ -49,6 +49,7 @@ public class AdminUserCUDService {
                 sessions.forEach(SessionInformation::expireNow);
             }
         }
+
         user.updateAuthority(request.getAuthority());
     }
 }

@@ -21,5 +21,4 @@ public interface AdminUserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT b FROM User b" +
             " ORDER BY b.createDate DESC ")
     Page<User> findAllWithPageable(Pageable pageable);
-
 }

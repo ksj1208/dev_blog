@@ -25,7 +25,6 @@ public class AdminUserListResponse {
         this.adminUserList = list.map(AdminUserResponse::from);
         log.info(adminUserList.toString());
     }
-
     public static AdminUserListResponse from(Page<User> list){
         return new AdminUserListResponse(list);
     }

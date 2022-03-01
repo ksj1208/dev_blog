@@ -85,6 +85,7 @@ const adminUserList = {
 
     },
 
+
     appendPaging: (totalCount, pageNum) => {
         const paging = new Paging(20, 10, totalCount, pageNum)
         paging.showPaging()
