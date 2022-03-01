@@ -20,7 +20,7 @@ const goLogin = {
     },
 
     onclickGoJoinPage: () => {
-        location.href = "/users/signup"
+        location.href = ""
 
     },
 

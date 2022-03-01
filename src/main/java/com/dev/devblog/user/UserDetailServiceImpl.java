@@ -34,7 +34,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        CustomUserDetails customUserDetails = new CustomUserDetails();
+        CustomUserDetails customUserDetails = new CustomUserDetails(user);
 //        customUserDetails.setUserId(user.getUserId());
 //        customUserDetails.setUserCode(user.getUserCode());
 //        customUserDetails.setPassword(user.getPassword());
@@ -44,7 +44,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //        customUserDetails.setAccountPath(user.getAccountPath());
 
 
-        return UserDetails.from(user);
+        return new CustomUserDetails(user);
 //        return new User(user.getUserId(), user.getPassword(), authorities);
 
     }

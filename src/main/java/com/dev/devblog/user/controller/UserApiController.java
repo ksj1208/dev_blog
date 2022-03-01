@@ -27,7 +27,7 @@ public class UserApiController {
 
     @GetMapping("/users/login")
     public String login(){
-        return "/login";
+        return "redirect:/";
     }
 
 }

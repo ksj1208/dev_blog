@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserCUDService userCUDService;
+//    private UserCUDService userCUDService;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
