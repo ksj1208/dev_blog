@@ -2,10 +2,12 @@ package com.dev.devblog.user;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 
 @Data
 public class CustomUserDetails implements UserDetails {
@@ -19,13 +21,13 @@ public class CustomUserDetails implements UserDetails {
     private LocalDateTime passwordUpdateDate;
     private String email;
     private String accountPath;
-    private Collection<GrantedAuthority> authorities; //권한목록
+    private String authorities;
 
 
     //해당 유저 권한 목록
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Collections.singletonList(new SimpleGrantedAuthority(authorities));
     }
 
     @Override

@@ -60,5 +60,8 @@ public class User {
         this.accountPath = accountPath;
     }
 
+    public void updateAuthority(String authority){
+        this.authority = authority;
+    }
 
 }

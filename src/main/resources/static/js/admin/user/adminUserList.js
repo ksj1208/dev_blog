@@ -1,16 +1,16 @@
-const userList = {
+const adminUserList = {
     init: () => {
-        userList.bind()
-        userList.search(1)
+        //adminUserList.bind()
+        adminUserList.search(1)
     },
 
-    bind: () => {
-        document.getElementById('adminUserAddBtn').addEventListener('click', userList.onClickUserAdd)
+    /*bind: () => {
+        document.getElementById('adminUserAddBtn').addEventListener('click', adminUserList.onClickUserAdd)
     },
 
     onClickUserAdd: () => {
         alert("추가 눌림");
-    },
+    },*/
 
     search: (pageNum) => {
         const request = {
@@ -21,8 +21,8 @@ const userList = {
         const successHandler= (response) => {
             console.log(response);
             const data = response.adminUserList
-            userList.appendData(data.content)
-            userList.appendPaging(data.totalElements, pageNum)
+            adminUserList.appendData(data.content)
+            adminUserList.appendPaging(data.totalElements, pageNum)
         }
 
         fetch('/admin/adminUser/list?' + $.param(request), {
@@ -33,7 +33,7 @@ const userList = {
     },
 
     appendData: (data) => {
-        $('#userListTable tr:not(:first)').remove();
+        $('#adminUserListTable tr:not(:first)').remove();
 
         const rows = data.map((item, i) => {
             return `<tr>
@@ -41,33 +41,38 @@ const userList = {
                 <td>${item.userId}</td>
                 <td>${item.nickName}</td>
                 <td>${item.createDate}</td>
-                <td>${item.passwordUpdateDate}</td>
+                <td>${item.passwordUpdateDate == null ? "-" : item.passwordUpdateDate}</td>
                 <td>${item.email}</td>                
                 <td>${item.status}</td>
-                <td>${item.authority}</td>
+                <td>
+                    <select id="statusSelectBox" data-userCode = ${item.userCode}>
+                        ${item.authority == 'ROLE_ADMIN'? `<option value="ROLE_ADMIN" selected>관리자</option>` : `<option value="ROLE_ADMIN">관리자</option>`}
+                        ${item.authority == 'ROLE_USER'? `<option value="ROLE_USER" selected>유저</option>` : `<option value="ROLE_USER">유저</option>`}
+                    </select>
+                </td>
             </tr>`
         }).join('')
 
         document.getElementById('adminUserListTable').insertAdjacentHTML('beforeend', rows)
         document.querySelectorAll('#statusSelectBox').forEach(target => {
-            target.addEventListener('change', userList.onchangeStatus)
+            target.addEventListener('change', adminUserList.onchangeStatus)
         })
     },
-
     onchangeStatus: (e) => {
-        if(!confirm("이 프로필을 활성화 하시겠습니까? 다른 프로필은 비활성화 됩니다."))
+        if(!confirm("계정의 권한을 변경 하시겠습니까?"))
             return
 
-        const profileCode = e.target.dataset.profilecode
-        const status = e.target.value
-        const request = {profileCode, status}
-        console.log("프로필 코드 " + profileCode);
+        const userCode = e.target.dataset.usercode
+        const authority = e.target.value
+        const request = {userCode, authority}
+
+        console.log("유저 코드 " + userCode);
         const successHandler = (data) => {
             alert(data)
-            userList.search(1)
+            adminUserList.search(1)
         }
 
-        fetch("/admin/profile/status", {
+        fetch("/admin/adminUser/authority", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -83,8 +88,8 @@ const userList = {
     appendPaging: (totalCount, pageNum) => {
         const paging = new Paging(20, 10, totalCount, pageNum)
         paging.showPaging()
-        paging.attachClickEvent(userList.search)
+        paging.attachClickEvent(adminUserList.search)
     }
 }
 
-userList.init()
+adminUserList.init()
