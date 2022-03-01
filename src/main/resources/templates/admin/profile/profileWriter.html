@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
 <title>프로필 - 목록</title>
 
 <meta charset="UTF-8">
@@ -21,7 +23,7 @@
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">작성자</td>
-                    <td align="left" width="70%"><input type="text" id="writer" name="writer" size="10"></td>
+                    <td align="left" width="70%"><input type="text" id="writer" name="writer" size="10" readonly th:value="${#authentication.name}"></td>
                 </tr>
                 <tr>
                     <td bgcolor="#e3e3e4" width="30%">내용</td>

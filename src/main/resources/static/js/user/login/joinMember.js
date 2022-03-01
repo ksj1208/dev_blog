@@ -158,11 +158,7 @@ const joinMember = {
     isExistNickName(nickName){
         //닉네임 중복 검사
         alert("nick name check ");
-
     }
-
-
-
 }
 
 joinMember.init()

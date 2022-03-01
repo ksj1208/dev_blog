@@ -24,7 +24,7 @@ const tagWrite = {
             location.href = "/tags/tagListPage"
         }
 
-        fetch("/tags/save", {
+        fetch("/tags", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

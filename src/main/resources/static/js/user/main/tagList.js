@@ -21,7 +21,7 @@ const tagList = {
             tagList.appendData(data.content)
         }
 
-        fetch('/tags/list/'+ request.status + '?' + $.param(request), {
+        fetch('/tags/'+ request.status + '?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

@@ -18,7 +18,7 @@ const profileDetail = {
     },
 
     back: () => {
-        location.href = "/profile/listPage"
+        location.href = "/admin/profile/listPage"
         //onclick="history.back()"
     },
 
@@ -31,11 +31,11 @@ const profileDetail = {
         const request = profileDetail.modifyRequest()
         const successHandler = (data) => {
             alert("프로필 수정 완료")
-            location.href = "/profile/listPage"
+            location.href = "/admin/profile/listPage"
         }
 
 
-        fetch("/profile/modify", {
+        fetch("/admin/profile/modify", {
 
             method: "PATCH",
             headers: {

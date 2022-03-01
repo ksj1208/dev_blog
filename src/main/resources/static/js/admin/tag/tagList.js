@@ -23,7 +23,7 @@ const tagList = {
             // alert(data)
         }
 
-        fetch("/tags/delete", {
+        fetch("/tags", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -54,7 +54,7 @@ const tagList = {
     search: (pageNum) => {
         const request = {
             page: pageNum - 1,
-            size: 20
+            size: 20,
         }
 
         const successHandler= (response) => {
@@ -64,7 +64,7 @@ const tagList = {
             tagList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/tags/listAll?' + $.param(request), {
+        fetch('/tags?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())

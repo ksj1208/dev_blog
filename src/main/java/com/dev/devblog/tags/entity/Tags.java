@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Table(name = "TAGS")
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @DynamicUpdate
 @ToString

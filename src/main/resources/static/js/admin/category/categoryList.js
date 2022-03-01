@@ -54,7 +54,7 @@ const categoryList = {
     search: (pageNum) => {
         const request = {
             page: pageNum - 1,
-            size: 20
+            size: 20,
         }
 
         const successHandler= (response) => {
@@ -64,7 +64,7 @@ const categoryList = {
             categoryList.appendPaging(data.totalElements, pageNum)
         }
 
-        fetch('/categories/listAll?' + $.param(request), {
+        fetch('/categories/list?' + $.param(request), {
             method: 'GET'
         })
             .then(response => response.json())
