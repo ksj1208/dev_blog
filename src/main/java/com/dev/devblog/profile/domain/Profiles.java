@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Profiles {
 
-    private String content;
+    private final String content;
     private final String subject;
     private final User user;
 
