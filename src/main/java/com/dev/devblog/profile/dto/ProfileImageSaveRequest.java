@@ -10,4 +10,5 @@ import lombok.Setter;
 public class ProfileImageSaveRequest {
     private String content;
     private String subject;
+
 }

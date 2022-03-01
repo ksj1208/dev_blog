@@ -39,4 +39,5 @@ public class ProfileIndexController {
         log.info("");
         return "/admin/profile/profileDetail";
     }
+
 }

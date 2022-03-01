@@ -10,4 +10,5 @@ import lombok.Setter;
 public class ProfileSaveRequest {
     private String content;
     private String subject;
+
 }

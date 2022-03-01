@@ -48,4 +48,5 @@ public class ProfileCUDService {
         profile.updateContent(request.getContent());
         profile.updateDate(LocalDateTime.now());
     }
+
 }

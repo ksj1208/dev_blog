@@ -26,4 +26,5 @@ public class ProfileResponse {
     public static ProfileResponse from(BlogProfile profile) {
         return new ProfileResponse(profile);
     }
+
 }

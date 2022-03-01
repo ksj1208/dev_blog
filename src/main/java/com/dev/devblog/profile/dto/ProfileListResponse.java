@@ -21,4 +21,5 @@ public class ProfileListResponse {
     public static ProfileListResponse from(Page<BlogProfile> list) {
         return new ProfileListResponse(list);
     }
+
 }

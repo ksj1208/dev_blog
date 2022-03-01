@@ -36,4 +36,5 @@ public class Profiles {
                 .status(BoardStatusType.INACTIVE.getValue())
                 .build();
     }
+
 }
