@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class AdminUserIndexController {
-
     @GetMapping("/admin/userListPage")
     public String profileListPage() {
         return "/admin/adminUser/adminUserList";

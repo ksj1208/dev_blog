@@ -17,5 +17,4 @@ public class AdminUserReadService {
         return AdminUserListResponse.from(adminUserRepository.findAllWithPageable(pageable));
     }
 
-
 }

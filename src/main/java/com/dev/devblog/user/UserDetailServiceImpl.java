@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -28,20 +29,21 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException(userId);
         }
+
         //권한체크 수정필요 (현재 하드코딩되어있음)
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getAuthority()));
+        CustomUserDetails customUserDetails = new CustomUserDetails(user);
+//        customUserDetails.setUserId(user.getUserId());
+//        customUserDetails.setUserCode(user.getUserCode());
+//        customUserDetails.setPassword(user.getPassword());
+        customUserDetails.setAuthorities(authorities);
+//        customUserDetails.setNickName(user.getNickName());
+//        customUserDetails.setEmail(user.getEmail());
+//        customUserDetails.setAccountPath(user.getAccountPath());
 
-        CustomUserDetails customUserDetails = new CustomUserDetails();
-        customUserDetails.setUserId(user.getUserId());
-        customUserDetails.setUserCode(user.getUserCode());
-        customUserDetails.setPassword(user.getPassword());
-        customUserDetails.setAuthorities(user.getAuthority());
-        customUserDetails.setNickName(user.getNickName());
-        customUserDetails.setEmail(user.getEmail());
-        customUserDetails.setAccountPath(user.getAccountPath());
-
-        return customUserDetails;
+        return new CustomUserDetails(user);
+//        return new User(user.getUserId(), user.getPassword(), authorities);
 
     }
 

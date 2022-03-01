@@ -18,21 +18,21 @@ public class CategoryApiController {
     private final CategoryReadService categoryReadService;
     private final CategoryCUDService categoryCUDService;
 
-	@GetMapping("/categories/listAll")
+	@GetMapping("/categories/list")
 	public ResponseEntity<CategoryListResponse> getList(final Pageable pageable){
-		CategoryListResponse response = categoryReadService.getListAll(pageable);
+		CategoryListResponse response = categoryReadService.getList(pageable);
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/categories/list/{status}")
 	public ResponseEntity<CategoryListResponse> getUseList(final Pageable pageable, @PathVariable String status){
-		CategoryListResponse response = categoryReadService.getList(pageable, status);
+		CategoryListResponse response = categoryReadService.findAllByStatus(pageable, status);
 		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping("/categories/save")
 	public ResponseEntity<String> categorySave(@RequestBody final CategorySaveRequest request) {
-		categoryCUDService.categorySave(request, 1L);
+		categoryCUDService.categorySave(request);
 
 		return ResponseEntity.ok().build();
 	}

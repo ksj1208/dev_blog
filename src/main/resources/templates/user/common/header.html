@@ -5,7 +5,16 @@
     </h1>
     <div>
       <div class="menu">
-        <a href="/login" class="login">로그인</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
+<!--        <a href="/login" class="login">로그인</a>-->
+
+        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+          <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>
+          <span class="text-white mr-2 mx-2" sec:authentication="principal.authorities">권한</span>
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">logout</button>
+        </form>
+
         <a href="#" class="search" id="search_open">검색</a>
         <div class="search_area">
           <form action="/search">

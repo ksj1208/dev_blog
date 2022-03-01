@@ -29,7 +29,7 @@ const tagDetail = {
             location.href = "/tags/tagListPage"
         }
 
-        fetch("/tags/update", {
+        fetch("/tags", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

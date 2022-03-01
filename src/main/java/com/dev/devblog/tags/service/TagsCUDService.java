@@ -40,8 +40,6 @@ public class TagsCUDService {
 				() -> new NoSuchElementException("수정할 카테고리가 존재하지 않습니다.")
 		);
 
-		System.out.println("request = " + request);
-
 		tags.updateTagName(request.getTagName());
 		tags.updateTagStatus(request.getTagStatus());
 		tags.updateDate(LocalDateTime.now());
