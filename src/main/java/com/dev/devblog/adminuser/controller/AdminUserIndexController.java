@@ -14,5 +14,4 @@ public class AdminUserIndexController {
     public String profileListPage() {
         return "/admin/adminUser/adminUserList";
     }
-
 }

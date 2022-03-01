@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdminUserApiController {
 
-
     private final AdminUserReadService adminUserReadService;
     //private final AdminUserCUDService adminUserCUDService;
     @GetMapping("/admin/adminUser/list")

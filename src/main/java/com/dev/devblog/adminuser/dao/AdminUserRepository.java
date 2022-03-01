@@ -22,5 +22,4 @@ public interface AdminUserRepository extends JpaRepository<User, Long> {
             " ORDER BY b.createDate DESC ")
     Page<User> findAllWithPageable(Pageable pageable);
 
-
 }
