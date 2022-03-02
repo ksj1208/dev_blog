@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 public class Categories {
 	private final String categoryName;

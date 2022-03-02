@@ -1,5 +1,6 @@
 package com.dev.devblog.board.controller;
 
+
 import com.dev.devblog.board.dto.BoardListResponse;
 import com.dev.devblog.board.dto.BoardResponse;
 import com.dev.devblog.board.dto.BoardSaveRequest;

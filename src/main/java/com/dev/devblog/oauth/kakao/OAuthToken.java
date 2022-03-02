@@ -2,6 +2,7 @@ package com.dev.devblog.oauth.kakao;
 
 import lombok.Data;
 
+
 @Data
 public class OAuthToken {
     private String access_token;

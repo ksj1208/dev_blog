@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Getter
 public class CommentListResponse {
     private final List<CommentResponse> commentList;

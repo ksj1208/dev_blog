@@ -16,6 +16,7 @@ import java.util.List;
 import static com.dev.devblog.category.entity.QCategory.*;
 import static org.springframework.util.StringUtils.*;
 
+
 public class CategoryRepositoryImpl implements CategoryDynamicRepository {
 
 	private final JPAQueryFactory queryFactory;

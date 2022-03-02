@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
+
 @Data
 public class CustomUserDetails implements UserDetails {
 

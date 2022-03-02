@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Getter
 @Table(name = "BOARD")

@@ -2,6 +2,7 @@ package com.dev.devblog.profile.dto;
 
 import lombok.Getter;
 
+
 @Getter
 public enum ProfileStatusType {
     ACTIVE("A"), INACTIVE("I"), DELETE("D");

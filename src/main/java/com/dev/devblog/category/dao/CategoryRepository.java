@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
+
 public interface CategoryRepository extends JpaRepository<Category, Long>, CategoryDynamicRepository {
 
 	@Query(value = "SELECT count(c.categoryId) FROM Category c WHERE c.categoryName = :categoryName")

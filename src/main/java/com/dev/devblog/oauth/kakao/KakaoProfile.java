@@ -1,5 +1,6 @@
 package com.dev.devblog.oauth.kakao;
 
+
 import lombok.Data;
 
 @Data

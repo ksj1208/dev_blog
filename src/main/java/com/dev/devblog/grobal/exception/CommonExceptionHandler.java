@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.NoSuchElementException;
 
+
 @Slf4j
 @RestControllerAdvice
 public class CommonExceptionHandler {

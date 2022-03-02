@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 public class ProfileResponse {
     private final Long profileCode;

@@ -5,6 +5,7 @@ import com.dev.devblog.user.entity.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table (name = "LOGIN_HISTORY")
 public class LoginHistory {

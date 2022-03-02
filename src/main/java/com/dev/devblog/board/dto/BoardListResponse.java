@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.data.domain.Page;
 
 
+
 @Getter
 public class BoardListResponse {
     private final Page<BoardResponse> boardList;

@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 public class TagDomain {
 	private final String tagName;

@@ -17,6 +17,7 @@ import static com.dev.devblog.category.entity.QCategory.category;
 import static com.dev.devblog.tags.entity.QTags.*;
 import static org.springframework.util.StringUtils.hasText;
 
+
 public class TagsRepositoryImpl implements TagsDynamicRepository{
 
 	private final JPAQueryFactory queryFactory;

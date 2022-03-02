@@ -4,6 +4,7 @@ import com.dev.devblog.user.entity.User;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table (name = "EMAIL_AUTH")
 public class EmailAuth {

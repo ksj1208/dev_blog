@@ -6,6 +6,7 @@ import com.dev.devblog.user.entity.User;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Entity
 @Table (name = "LIKE_INFO")
 public class LikeInfo implements Serializable {
