@@ -1,6 +1,7 @@
 package com.dev.devblog.board.dto;
 
 import com.dev.devblog.board.entity.Board;
+import com.dev.devblog.category.entity.Category;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class BoardResponse {
     private final String content;
     private final String status;
     private final LocalDateTime createDate;
+    private final Category category;
     private final String writer;
 
     private BoardResponse(Board board) {
@@ -22,6 +24,7 @@ public class BoardResponse {
         this.subject = board.getSubject();
         this.status = board.getStatus();
         this.createDate = board.getCreateDate();
+        this.category = board.getCategory();
         this.writer = board.getUser().getNickName();
     }
 

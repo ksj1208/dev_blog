@@ -28,7 +28,7 @@ public class Board {
     private Long boardId;
 
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
     @JoinColumn(name = "USER_CODE", referencedColumnName = "userCode")

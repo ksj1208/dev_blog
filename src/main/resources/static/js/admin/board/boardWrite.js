@@ -32,7 +32,8 @@ const boardWrite = {
     createSaveRequest: () => {
         const content = toastEditor.getValue()
         const subject = document.getElementById('subject').value
-        const request = {content, subject}
+        const categoryId = document.getElementById('category').value
+        const request = {content, subject, categoryId}
 
         return request
     }

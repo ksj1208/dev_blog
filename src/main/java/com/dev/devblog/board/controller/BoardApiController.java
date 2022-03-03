@@ -7,6 +7,7 @@ import com.dev.devblog.board.dto.BoardSaveRequest;
 import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
 import com.dev.devblog.board.service.BoardCUDService;
 import com.dev.devblog.board.service.BoardReadService;
+import com.dev.devblog.grobal.annotation.CurrentUserCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -35,10 +36,8 @@ public class BoardApiController {
     }
 
     @PostMapping("/boards/save")
-    public ResponseEntity<String> boardSave(@RequestBody final BoardSaveRequest request) {
-        //TODO 유저 detail 만들어지면 userCode 넣어야함.
-        boardCUDService.boardSave(request, 1L);
-
+    public ResponseEntity<String> boardSave(@CurrentUserCode Long userCode, @RequestBody final BoardSaveRequest request) {
+        boardCUDService.boardSave(request, userCode);
         return ResponseEntity.ok().build();
     }
 
