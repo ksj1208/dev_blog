@@ -12,4 +12,5 @@ public class BoardSaveRequest {
     private Long boardId;
     private String content;
     private String subject;
+    private Long categoryId;
 }
