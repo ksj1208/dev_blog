@@ -25,6 +25,7 @@ const adminUserList = {
             adminUserList.appendPaging(data.totalElements, pageNum)
         }
 
+
         fetch('/admin/adminUser/list?' + $.param(request), {
             method: 'GET'
         })

@@ -33,19 +33,17 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         //권한체크 수정필요 (현재 하드코딩되어있음)
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getAuthority()));
-        CustomUserDetails customUserDetails = new CustomUserDetails(user);
+//        authorities.add(new SimpleGrantedAuthority(user.getAuthority()));
+//        CustomUserDetails customUserDetails = new CustomUserDetails(user);
 //        customUserDetails.setUserId(user.getUserId());
 //        customUserDetails.setUserCode(user.getUserCode());
 //        customUserDetails.setPassword(user.getPassword());
-        customUserDetails.setAuthorities(authorities);
+//        customUserDetails.setAuthorities(user.getAuthority());
 //        customUserDetails.setNickName(user.getNickName());
 //        customUserDetails.setEmail(user.getEmail());
 //        customUserDetails.setAccountPath(user.getAccountPath());
-
-        return new CustomUserDetails(user);
-//        return new User(user.getUserId(), user.getPassword(), authorities);
-
+        return CustomUserDetails.from(user);
+//        return new org.springframework.security.core.userdetails.User(user.getUserId(), user.getPassword(), authorities);
     }
 
     @Transactional

@@ -95,7 +95,7 @@ public class CustomUserDetails implements UserDetails {
     protected CustomUserDetails(User user){
         this.userId = user.getUserId();
         this.password = user.getPassword();
-        //this.authorities = authorities();
+        this.authorities = user.getAuthority();
         this.nickName = user.getNickName();
         this.email = user.getEmail();
         this.accountPath = user.getAccountPath();
@@ -104,9 +104,6 @@ public class CustomUserDetails implements UserDetails {
     public static CustomUserDetails from(User user){
         return new CustomUserDetails(user);
     }
-
-
-
 }
 
 
