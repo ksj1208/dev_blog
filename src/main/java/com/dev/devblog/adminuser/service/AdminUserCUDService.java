@@ -45,6 +45,7 @@ public class AdminUserCUDService {
         List<CustomUserDetails> users = sessionRegistry.getAllPrincipals().stream()
                 .map(o -> (CustomUserDetails) o).collect(Collectors.toList());
 
+
         for(CustomUserDetails userDetails : users){
             if(userDetails.getUserCode() == request.getUserCode()){
                 List<SessionInformation> sessions = sessionRegistry.getAllSessions(userDetails, false);

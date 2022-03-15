@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -42,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/**").permitAll();
         //로그인 설정
         http.formLogin()
-                .loginPage("/login")    //커스텀 로그인 페이지 사용
+//                .loginPage("/login")    //커스텀 로그인 페이지 사용
                 .defaultSuccessUrl("/") //로그인 성공시 이동 페이지
                 .permitAll();
         //로그아웃 설정
@@ -62,18 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .anyRequest().authenticated(
 //            .and()
 //                .oauth2Login();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        //로그인 처리를 하기 위한 buider설정
-        //auth.userDetailsService(userCUDService).passwordEncoder(passwordEncoder());
-    }
-
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-       return new BCryptPasswordEncoder();
     }
 
 
