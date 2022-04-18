@@ -26,7 +26,7 @@ const boardUpdate = {
 
     update: () => {
         const request = boardUpdate.createUpdateRequest()
-        const successHandler = (data) => {
+        const successHandler = () => {
             alert("게시글 수정 완료")
             location.href = "/admin/board/listPage"
         }
@@ -39,8 +39,11 @@ const boardUpdate = {
             },
             body: JSON.stringify(request)
         })
-            .then((response) => response.text())
-            .then((data) => successHandler(data))
+            .then((res) => {
+                if(res.ok)
+                    return successHandler();
+                throw new Error();
+            })
             .catch((error) => alert(error))
     },
 
@@ -48,7 +51,9 @@ const boardUpdate = {
         const content = toastEditor.getValue()
         const subject = document.getElementById('subject').value
         const boardId = document.getElementById('boardId').value
-        const request = {content, subject, boardId}
+        const categoryId = document.getElementById('category').value
+
+        const request = {content, subject, boardId, categoryId}
 
         return request
     }

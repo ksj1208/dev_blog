@@ -93,6 +93,7 @@ public class CustomUserDetails implements UserDetails {
 
 
     protected CustomUserDetails(User user){
+        this.userCode = user.getUserCode();
         this.userId = user.getUserId();
         this.password = user.getPassword();
         this.authorities = user.getAuthority();

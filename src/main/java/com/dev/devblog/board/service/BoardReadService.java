@@ -32,4 +32,12 @@ public class BoardReadService {
 
         return BoardResponse.from(board);
     }
+
+    public Long findCategoryIdByBoardId(Long boardId) {
+        Board board = boardRepository.findById(boardId).orElseThrow(
+                () -> new NoSuchElementException()
+        );
+
+        return board.getCategory().getCategoryId();
+    }
 }
