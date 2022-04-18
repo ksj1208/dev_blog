@@ -34,7 +34,12 @@ public class BoardIndexController {
 
     @GetMapping("/admin/board/updatePage/{boardId}")
     public String adminBoardUpdatePage(@PathVariable Long boardId, Model model) {
+        CategoryAllListResponse response = categoryReadService.findAllByStatus("사용");
+        Long categoryId = boardReadService.findCategoryIdByBoardId(boardId);
+
+        model.addAttribute("categoryList", response.getCategoryList());
         model.addAttribute("boardId", boardId);
+        model.addAttribute("cateGoryId", categoryId);
         return "/admin/board/boardUpdate";
     }
 

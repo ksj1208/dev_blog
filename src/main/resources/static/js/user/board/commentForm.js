@@ -262,8 +262,11 @@ const commentForm = {
             },
             body: JSON.stringify({comment, boardId})
         })
-            .then((response) => response.text())
-            .then((data) => successHandler(data))
+            .then((res) => {
+                if(res.ok)
+                    return successHandler(res)
+                throw new Error()
+            })
             .catch((error) => alert(error))
     },
 

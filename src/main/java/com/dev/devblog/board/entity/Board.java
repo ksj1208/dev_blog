@@ -66,4 +66,8 @@ public class Board {
     public void updateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
+
+    public void updateCategoryId(Category category) {
+        this.category = category;
+    }
 }

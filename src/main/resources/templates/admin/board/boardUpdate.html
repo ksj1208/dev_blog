@@ -33,6 +33,14 @@
     <input type="hidden" id="boardId" th:value = "${boardId}">
     <div>
         <label>제목: </label> <input type="text" id="subject">
+        <label>카테고리 목록: </label>
+        <select id="category" th:value="${cateGoryId}">
+            <option th:each="list : ${categoryList}"
+                    th:value="${list.categoryId}"
+                    th:utext="${list.categoryName}"
+                    th:selected="${cateGoryId}== ${list.categoryId}"></option>
+        </select>
+
         <div id="editor"></div>
         <button id="updateBtn">수정</button>
     </div>

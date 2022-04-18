@@ -61,9 +61,13 @@ public class BoardCUDService {
         Board board = boardRepository.findById(request.getBoardId()).orElseThrow(
                 () -> new NoSuchElementException("수정할 게시글이 존재하지 않습니다.")
         );
+        Category category = categoryRepository.findById(request.getCategoryId()).orElseThrow(
+                () -> new NoSuchElementException("수정할 게시글에 카테고리가 존재하지 않습니다.")
+        );
 
         board.updateSubject(request.getSubject());
         board.updateContent(request.getContent());
+        board.updateCategoryId(category);
         board.updateDate(LocalDateTime.now());
     }
 }

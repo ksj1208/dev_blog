@@ -1,6 +1,7 @@
 package com.dev.devblog.board.dao;
 
 import com.dev.devblog.board.entity.Board;
+import com.dev.devblog.category.entity.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,5 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
             " WHERE b.content LIKE %:searchContent%" +
             " ORDER BY b.createDate DESC ")
     Page<Board> findAllByContaining(@Param("searchContent") String searchContent, Pageable pageable);
+
 }
