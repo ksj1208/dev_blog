@@ -99,5 +99,13 @@ public class BoardCUDService {
         board.updateContent(request.getContent());
         board.updateCategoryId(category);
         board.updateDate(LocalDateTime.now());
+
+        List<Tags> list = saveTagList(request.getTagList());
+        boardTagInfoRepository.deleteByBoardId(board.getBoardId());
+
+        for(Tags tags : list) {
+            BoardTagInfo tagInfo = BoardTagInfo.toEntity(board.getBoardId(), tags);
+            boardTagInfoRepository.save(tagInfo);
+        }
     }
 }

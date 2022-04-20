@@ -8,6 +8,7 @@ const tag = {
         this.autoMaker = document.getElementById('autoMaker');
         this.tagsValue = document.getElementById('tagsValue');
 
+        this.inputTag = document.querySelectorAll("input[name='tagCode']");
         this.selectTagList();
         this.eventBind();
     },
@@ -15,6 +16,9 @@ const tag = {
     eventBind() {
         this.searchArea.addEventListener('keyup', (e) => this.onKeyupSearchArea(e))
         this.searchArea.addEventListener('keydown', () => this.onKeydownSearchArea())
+        this.inputTag.forEach((tag) => {
+            this.tagList.set(tag.dataset.name, tag.dataset.code)
+        })
     },
 
     async selectTagList() {
@@ -47,6 +51,9 @@ const tag = {
         this.showTagList(txt);
 
         if(e.key == 'Enter') {
+            if(tag.tagList.get(txt))
+                return alert("이미 등록된 태그입니다.");
+
             const row = `
                     <div style="display: inline-block"><label class="tag-name">${txt}</label> 
                     <button onclick="tag.deleteTag(this)">X</button></div>`;
@@ -68,6 +75,9 @@ const tag = {
     onclickAutoMaker() {
         $('#autoMaker').children().each(function(){
             $(this).click(function(){
+                if(tag.tagList.get($(this).text()))
+                    return alert("이미 등록된 태그입니다.");
+
                 const row = `
                     <div style="display: inline-block"><label class="tag-name">${$(this).text()}</label> 
                     <button onclick="tag.deleteTag(this)">X</button></div>`;

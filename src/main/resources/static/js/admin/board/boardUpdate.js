@@ -52,8 +52,11 @@ const boardUpdate = {
         const subject = document.getElementById('subject').value
         const boardId = document.getElementById('boardId').value
         const categoryId = document.getElementById('category').value
+        const tagList = Object.fromEntries(tag.tagList);
 
-        const request = {content, subject, boardId, categoryId}
+        const request = {content, subject, boardId, categoryId, tagList}
+
+        console.log(request)
 
         return request
     }
