@@ -34,9 +34,12 @@
 <!--                <p th:utext="${board.content}"/>-->
                 <div id="viewer"></div>
                 <div class="post_bottom">
+
                     <ul class="post-tag">
-                        <li class="tag-item">#test</li>
-                        <li class="tag-item">#image</li>
+                        <li th:each="list : ${tagList}"
+                            th:value="${list.tagCode}">
+                            <a href="#" th:utext="${list.tagName}"></a>
+                        </li>
                     </ul>
                 </div>
             </div>
