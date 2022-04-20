@@ -2,13 +2,11 @@ package com.dev.devblog.tags.dao;
 
 import com.dev.devblog.tags.entity.Tags;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
 
 public interface TagsRepository extends JpaRepository<Tags, Long>, TagsDynamicRepository {
-    boolean existsByTagName(@Param("tagName") String tagName);
 
     Optional<Tags> findByTagName(String key);
 

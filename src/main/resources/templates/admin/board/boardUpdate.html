@@ -27,6 +27,19 @@
             font-family: 'NotoSansKR';
             src: url('/summernote/font/NotoSansKR-Black.otf') format('opentype')
         }
+        #autoMaker{
+            padding : 3px;
+            position: absolute; width: 200px;
+            height: auto; background: white;
+            margin-top: 3px; cursor:pointer;
+        }
+        #autoMaker > div{
+            border : 1px solid #e6e6e6;
+            margin-top : 3px;
+        }
+        #autoMaker > div:hover{
+            background : #e6d1ff;
+        }
     </style>
 </head>
 <body>
@@ -42,12 +55,26 @@
         </select>
 
         <div id="editor"></div>
-        <button id="updateBtn">수정</button>
+        <br>
+        <label>태그등록</label>
+        <div style="display: inline-block">
+            <input type="text" id='searchArea'>
+            <div id='autoMaker'></div>
+        </div><br><br>
+        <div id="tagsValue" class="post_bottom" style="height: 30px;">
+            <div style="display: inline-block" th:each="list:${tagList}">
+                <input type="hidden" name="tagCode" th:data-code="${list.tagCode}" th:data-name="${list.tagName}">
+                <label class="tag-name" th:utext="${list.tagName}"></label>
+                <button onclick="tag.deleteTag(this)">X</button>
+            </div>
+        </div>
+        <div><button id="updateBtn">수정</button></div>
     </div>
 
     <div id="previewArea"></div>
 
 <script type="text/javascript" src="/js/common/toastEditor.js"></script>
+<script type="text/javascript" src="/js/admin/board/tag.js"></script>
 <script type="text/javascript" src="/js/admin/board/boardUpdate.js"></script>
 </body>
 </html>
