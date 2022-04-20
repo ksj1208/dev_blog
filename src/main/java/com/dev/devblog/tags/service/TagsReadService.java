@@ -1,7 +1,10 @@
 package com.dev.devblog.tags.service;
 
 
+import com.dev.devblog.board.dao.BoardTagInfoRepository;
+import com.dev.devblog.tag.entity.BoardTagInfo;
 import com.dev.devblog.tags.dao.TagsRepository;
+import com.dev.devblog.tags.dto.TagAllListResponse;
 import com.dev.devblog.tags.dto.TagsDtoListResponse;
 import com.dev.devblog.tags.dto.TagsListResponse;
 import com.dev.devblog.tags.dto.TagsResponse;
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 
@@ -18,6 +22,7 @@ import java.util.NoSuchElementException;
 public class TagsReadService {
 
 	private final TagsRepository tagsRepository;
+	private final BoardTagInfoRepository boardTagInfoRepository;
 
 	public TagsListResponse findAll(Pageable pageable){
 		return TagsListResponse.from(tagsRepository.findAll(pageable));
@@ -32,5 +37,9 @@ public class TagsReadService {
 
 	public TagsDtoListResponse findAllByStatus(Pageable pageable, String status) {
 		return TagsDtoListResponse.from(tagsRepository.findAllByStatus(pageable, status));
+	}
+
+	public TagAllListResponse findByBoardId(Long boardId) {
+		return TagAllListResponse.from(boardTagInfoRepository.findAllByBoardId(boardId));
 	}
 }

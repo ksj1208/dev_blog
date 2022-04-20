@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Map;
+
 
 @Getter
 @Setter
@@ -13,4 +15,5 @@ public class BoardSaveRequest {
     private String content;
     private String subject;
     private Long categoryId;
+    private Map<String, Long> tagList;
 }

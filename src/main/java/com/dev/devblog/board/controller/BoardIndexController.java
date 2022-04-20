@@ -5,6 +5,8 @@ import com.dev.devblog.board.service.BoardReadService;
 import com.dev.devblog.category.dto.CategoryAllListResponse;
 import com.dev.devblog.category.dto.CategoryResponse;
 import com.dev.devblog.category.service.CategoryReadService;
+import com.dev.devblog.tags.dto.TagAllListResponse;
+import com.dev.devblog.tags.service.TagsReadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ public class BoardIndexController {
 
     private final BoardReadService boardReadService;
     private final CategoryReadService categoryReadService;
+    private final TagsReadService tagsReadService;
 
     @GetMapping("/admin/board/listPage")
     public String adminBoardListPage(Model model) {
@@ -46,7 +49,11 @@ public class BoardIndexController {
     @GetMapping("/user/board/detailPage/{boardId}")
     public String userBoardDetailPage(@PathVariable Long boardId, Model model) {
         BoardResponse response = boardReadService.getDetail(boardId);
+        TagAllListResponse tagAllListResponse = tagsReadService.findByBoardId(boardId);
+
         model.addAttribute("board", response);
+        model.addAttribute("tagList", tagAllListResponse.getList());
+
         return "/user/board/boardDetail";
     }
 }

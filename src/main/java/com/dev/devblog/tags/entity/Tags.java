@@ -34,6 +34,15 @@ public class Tags {
 	@Column(name = "UPDATE_DATE")
 	private LocalDateTime updateDate;
 
+	public static Tags toEntity(String key) {
+		return Tags.builder()
+				.tagName(key)
+				.createDate(LocalDateTime.now())
+				.updateDate(LocalDateTime.now())
+				.tagStatus("사용")
+				.build();
+	}
+
 	public void updateTagStatus(String tagStatus) {
 		this.tagStatus = tagStatus;
 	}
