@@ -1,12 +1,16 @@
 package com.dev.devblog.web;
 
-import com.dev.devblog.user.UserDetailServiceImpl;
-import com.dev.devblog.user.entity.User;
+import com.dev.devblog.board.dto.BoardListResponse;
+import com.dev.devblog.board.dto.SearchBoardListRequest;
+import com.dev.devblog.board.service.BoardReadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 
@@ -14,12 +18,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserDetailServiceImpl userDetailServiceImpl;
+    private final BoardReadService boardReadService;
+    private final static int LIMIT_PAGE_COUNT = 5;
 
-    @GetMapping("/")
-    public String homeView() {
+    @GetMapping("/main")
+    public String homeView(@PageableDefault(size = 2) Pageable pageable, @ModelAttribute SearchBoardListRequest request, Model model) {
+        BoardListResponse response = boardReadService.getList(pageable, request, "All");
+
+        int minPage = (int) Math.floor((pageable.getPageNumber()) / LIMIT_PAGE_COUNT);
+        int startPage = minPage * LIMIT_PAGE_COUNT + 1;
+        int endPage = (minPage + 1) * LIMIT_PAGE_COUNT;
+        int totalPage = response.getBoardList().getTotalPages();
+
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage > totalPage ? totalPage : endPage);
+        model.addAttribute("categoryId", request.getCategoryId());
+        model.addAttribute("boardList", response.getBoardList());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", pageable.getPageNumber() + 1);
+
         return "main";
     }
+
 
     @GetMapping("/login")
     public String loginView() {
