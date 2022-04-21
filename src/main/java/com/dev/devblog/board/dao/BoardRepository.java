@@ -22,4 +22,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
             " ORDER BY b.createDate DESC ")
     Page<Board> findAllByContaining(@Param("searchContent") String searchContent, Pageable pageable);
 
+
+    @Query(value = "SELECT b FROM Board b" +
+            " WHERE b.content LIKE %:searchContent%" +
+            " AND b.category.categoryId IN :categoryId" +
+            " AND b.status IN ('A')" +
+            " ORDER BY b.createDate DESC ")
+    Page<Board> findAllByContaining(@Param("searchContent") String searchContent, Pageable pageable, @Param("categoryId") Long categoryId);
 }

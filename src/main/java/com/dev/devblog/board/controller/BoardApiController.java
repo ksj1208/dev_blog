@@ -1,10 +1,7 @@
 package com.dev.devblog.board.controller;
 
 
-import com.dev.devblog.board.dto.BoardListResponse;
-import com.dev.devblog.board.dto.BoardResponse;
-import com.dev.devblog.board.dto.BoardSaveRequest;
-import com.dev.devblog.board.dto.BoardUpdateStatusRequest;
+import com.dev.devblog.board.dto.*;
 import com.dev.devblog.board.service.BoardCUDService;
 import com.dev.devblog.board.service.BoardReadService;
 import com.dev.devblog.grobal.annotation.CurrentUserCode;
@@ -24,8 +21,8 @@ public class BoardApiController {
     private final BoardCUDService boardCUDService;
 
     @GetMapping("/boards/list/{status}")
-    public ResponseEntity<BoardListResponse> getList(Pageable pageable, @PathVariable String status) {
-        BoardListResponse response = boardReadService.getList(pageable, status);
+    public ResponseEntity<BoardListResponse> getList(Pageable pageable, @ModelAttribute SearchBoardListRequest request, @PathVariable String status) {
+        BoardListResponse response = boardReadService.getList(pageable, request, status);
         return ResponseEntity.ok(response);
     }
 

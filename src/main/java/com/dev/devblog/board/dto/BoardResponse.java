@@ -37,6 +37,10 @@ public class BoardResponse {
         return year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute;
     }
 
+    public String getContent() {
+        return this.content.substring(0, 10);
+    }
+
     public static BoardResponse from(Board board) {
         return new BoardResponse(board);
     }
