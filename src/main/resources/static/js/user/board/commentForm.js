@@ -36,8 +36,7 @@ const commentForm = {
     },
 
     tableAppend(data) {
-        document.getElementById('comment_box').innerHTML = ''
-        console.log(data)
+        document.getElementById('comment_box').innerHTML = '';
 
         const rows = data.commentList.map((item, i) => {
             return `<div class="comment">
@@ -278,7 +277,7 @@ const commentForm = {
 
         return true
         //TODO 비속어, 특정단어 필터링 필요.
-    }
+    },
 }
 
 commentForm.init()

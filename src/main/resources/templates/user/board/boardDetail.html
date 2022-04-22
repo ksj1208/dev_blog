@@ -48,7 +48,7 @@
                     <h4 id="commentCount"></h4>
                     <div class="btn-post-wrap flex-start">
                         <div class="btn-post">
-                            <a href="javascript:;" class="btn-like">
+                            <a href="javascript:;" id="likeBtn" class="btn-like">
                                 <span class="ico-like">좋아요</span>
                                 <span class="like-count">공감</span>
                             </a>
@@ -172,13 +172,6 @@
 
         })();
 
-
-        function enterkey() {
-            if (window.event.keyCode == 13) {
-                // 엔터키가 눌렸을 때
-            }
-        }
-
         function clip() {
             var url = '';
             var textarea = document.createElement('textarea');
@@ -209,27 +202,9 @@
                     }
                 });
         }
-
-        function deleteContent() {
-            swal({
-                //title: "작성한 글을 삭제할까요?",
-                text: "작성한 글을 삭제할까요?",
-                //icon: "warning",
-                buttons: ["취소", "네!"],
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("삭제 완료!", {
-                            icon: "success",
-                        });
-                    } else {
-                        //swal("Your imaginary file is safe!");
-                    }
-                });
-        }
     </script>
 
+<script type="text/javascript" th:src="@{/js/user/board/likeContent.js}"></script>
 <script type="text/javascript" th:src="@{/js/user/board/commentForm.js}"></script>
 </section>
 </html>
